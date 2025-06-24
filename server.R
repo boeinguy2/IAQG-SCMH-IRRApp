@@ -46,7 +46,7 @@ function(input, output, session) {
     " ",
     " ",
     " ",
-    " ",
+    "This system has two epistemic inputs, each at two levels.  The result combines the two, creating 4 combinations.  The result then contains 4 histograms, one for each combination.  ",
     " ",
     " ",
     " ",
@@ -1746,7 +1746,7 @@ function(input, output, session) {
         dflow <- analysis_results_8()[analysis_results_8()$PoF == min(analysis_results_8()$PoF),"IRR"]
         dfhigh <- analysis_results_8()[analysis_results_8()$PoF == max(analysis_results_8()$PoF),"IRR"]
         
-        quantile_table <- data.frame("PC" = c(min(analysis_results_8()$PoF),max(analysis_results_8()$PoF)),
+        quantile_table <- data.frame("PoF" = c(min(analysis_results_8()$PoF),max(analysis_results_8()$PoF)),
                                      "0.025" = c(quantile(dflow,0.025),quantile(dfhigh,0.025)),
                                      "0.975" = c(quantile(dflow,0.975),quantile(dfhigh,0.975))
         )
@@ -2653,7 +2653,7 @@ function(input, output, session) {
         dflow <- analysis_results_12()[analysis_results_12()$PNC == min(analysis_results_12()$PNC),"IRR"]
         dfhigh <- analysis_results_12()[analysis_results_12()$PNC == max(analysis_results_12()$PNC),"IRR"]
         
-        quantile_table <- data.frame("PC" = c(min(analysis_results_12()$PoF),max(analysis_results_12()$PoF)),
+        quantile_table <- data.frame("PNC" = c(min(analysis_results_12()$PNC),max(analysis_results_12()$PNC)),
                                      "0.025" = c(quantile(dflow,0.025),quantile(dfhigh,0.025)),
                                      "0.975" = c(quantile(dflow,0.975),quantile(dfhigh,0.975))
         )
@@ -3184,7 +3184,7 @@ function(input, output, session) {
     
     ## Create Subtitle
     
-    output$subtitle_s1 <- renderUI({
+    output$subtitle_s15 <- renderUI({
       
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
         # Create div for Variable 1 statement
@@ -3311,6 +3311,22 @@ function(input, output, session) {
       }
     })
     
+    # add summary comment
+    
+    output$results_comment_s15 <- renderUI({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        #Create div for Variable 3 statement
+        div1 <- div(
+          style = "text-align: center; font-size: 20px; font-weight: bold;",
+          p(results_comment_list[15])
+        )
+        
+        # Return all three div elements
+        tagList(div1)
+      }
+    })
+    
     ## Summary
     
     # create summarization table
@@ -3339,14 +3355,15 @@ function(input, output, session) {
       
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
         
-        PNClow <- analysis_results_15()[analysis_results_15()$PNC == min(analysis_results_15()$PNC),"IRR"]
-        PNChigh <- analysis_results_15()[analysis_results_15()$PNC == max(analysis_results_15()$PNC),"IRR"]
-        PClow <- analysis_results_15()[analysis_results_15()$PC == min(analysis_results_15()$PC),"IRR"]
-        PChigh <- analysis_results_15()[analysis_results_15()$PC == max(analysis_results_15()$PC),"IRR"]
+        PNClowPClow <- analysis_results_15()[analysis_results_15()$PNC == min(analysis_results_15()$PNC) & analysis_results_15()$PC == min(analysis_results_15()$PC),"IRR"]
+        PNChighPClow <- analysis_results_15()[analysis_results_15()$PNC == max(analysis_results_15()$PNC) & analysis_results_15()$PC == min(analysis_results_15()$PC),"IRR"]
+        PNClowPChigh <- analysis_results_15()[analysis_results_15()$PNC == min(analysis_results_15()$PNC) & analysis_results_15()$PC == max(analysis_results_15()$PC),"IRR"]
+        PNChighPChigh <- analysis_results_15()[analysis_results_15()$PNC == max(analysis_results_15()$PNC) & analysis_results_15()$PC == max(analysis_results_15()$PC),"IRR"]
         
-        quantile_table <- data.frame("PC" = c(min(analysis_results_15()$PoF),max(analysis_results_15()$PoF)),
-                                     "0.025" = c(quantile(PNClow,0.025),quantile(PNChigh,0.025)),
-                                     "0.975" = c(quantile(PNClow,0.975),quantile(PNChigh,0.975))
+        quantile_table <- data.frame("PNC" = c(min(analysis_results_15()$PNC),min(analysis_results_15()$PNC),max(analysis_results_15()$PNC),max(analysis_results_15()$PNC)),
+                                     "PC" = c(min(analysis_results_15()$PC),max(analysis_results_15()$PC),min(analysis_results_15()$PC),max(analysis_results_15()$PC)),
+                                     "0.025" = c(quantile(PNClowPClow,0.025),quantile(PNChighPClow,0.025),quantile(PNClowPChigh,0.025),quantile(PNChighPChigh,0.025)),
+                                     "0.975" = c(quantile(PNClowPClow,0.975),quantile(PNChighPClow,0.975),quantile(PNClowPChigh,0.975),quantile(PNChighPChigh,0.975))
         )
         return(quantile_table)
         
@@ -3361,38 +3378,38 @@ function(input, output, session) {
     
     output$ecdf_plot_s15 <- renderPlot({
       
-      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
         
-        PNClow <- analysis_results_15()[analysis_results_15()$PNC == min(analysis_results_15()$PNC),"IRR"]
-        PNChigh <- analysis_results_15()[analysis_results_15()$PNC == max(analysis_results_15()$PNC),"IRR"]
-        PClow <- analysis_results_15()[analysis_results_15()$PC == min(analysis_results_15()$PC),"IRR"]
-        PChigh <- analysis_results_15()[analysis_results_15()$PC == max(analysis_results_15()$PC),"IRR"]
+        PNClowPClow <- analysis_results_15()[analysis_results_15()$PNC == min(analysis_results_15()$PNC) & analysis_results_15()$PC == min(analysis_results_15()$PC),"IRR"]
+        PNChighPClow <- analysis_results_15()[analysis_results_15()$PNC == max(analysis_results_15()$PNC) & analysis_results_15()$PC == min(analysis_results_15()$PC),"IRR"]
+        PNClowPChigh <- analysis_results_15()[analysis_results_15()$PNC == min(analysis_results_15()$PNC) & analysis_results_15()$PC == max(analysis_results_15()$PC),"IRR"]
+        PNChighPChigh <- analysis_results_15()[analysis_results_15()$PNC == max(analysis_results_15()$PNC) & analysis_results_15()$PC == max(analysis_results_15()$PC),"IRR"]
         
         fig <-ggplot() +
-          stat_ecdf(aes(PNClow), color = "darkblue") +
-          stat_ecdf(aes(PNChigh), color = "red") +
-          stat_ecdf(aes(PClow), color = "green") +
-          stat_ecdf(aes(PChigh), color = "brown") +
+          stat_ecdf(aes(PNClowPClow), color = "orange") +
+          stat_ecdf(aes(PNChighPClow), color = "red") +
+          stat_ecdf(aes(PNClowPChigh), color = "green") +
+          stat_ecdf(aes(PNChighPChigh), color = "purple") +
           
-          # #Point LL
-          # geom_segment(aes(x = quantile(dflow,0.025), y = 0.025-0.02, xend = quantile(dflow,0.025), yend = 0.025+0.02)) +
-          # geom_segment(aes(x = (quantile(dflow,0.025)-0.005), y = 0.025, xend = (quantile(dflow,0.025)+0.005), yend = 0.025)) +
-          # annotate("text", x=quantile(dflow,0.025)-0.010, y=0.025+0.030, label= round(quantile(dflow,0.025),3)) +
-          # 
-          # #Point RL
-          # geom_segment(aes(x = quantile(dfhigh,0.025), y = 0.025-0.02, xend = quantile(dfhigh,0.025), yend = 0.025+0.02)) +
-          # geom_segment(aes(x = (quantile(dfhigh,0.025)-0.005), y = 0.025, xend = (quantile(dfhigh,0.025)+0.005), yend = 0.025)) +
-          # annotate("text", x=quantile(dfhigh,0.025)+0.005, y=0.025+0.030, label= round(quantile(dfhigh,0.025),3)) +
-          # 
-          # # Point LH
-          # geom_segment(aes(x = quantile(dflow,0.975), y = 0.975-0.02, xend = quantile(dflow,0.975), yend = 0.975+0.02)) +
-          # geom_segment(aes(x = (quantile(dflow,0.975)-0.005), y = 0.975, xend = (quantile(dflow,0.975)+0.005), yend = 0.975)) +
-          # annotate("text", x=quantile(dflow,0.975)-0.010, y=0.975-0.030, label= round(quantile(dflow,0.975),3)) +
-          # 
-          # # Point RL
-          # geom_segment(aes(x = quantile(dfhigh,0.975), y = 0.975-0.02, xend = quantile(dfhigh,0.975), yend = 0.975+0.02)) +
-          # geom_segment(aes(x = (quantile(dfhigh,0.975)-0.005), y = 0.975, xend = (quantile(dfhigh,0.975)+0.005), yend = 0.975)) +
-          # annotate("text", x=quantile(dfhigh,0.975)-0.010, y=0.975-0.030, label= round(quantile(dfhigh,0.975),3)) +
+          #Point LL
+          geom_segment(aes(x = quantile(PNClowPClow,0.025), y = 0.025-0.02, xend = quantile(PNClowPClow,0.025), yend = 0.025+0.02)) +
+          geom_segment(aes(x = (quantile(PNClowPClow,0.025)-0.005), y = 0.025, xend = (quantile(PNClowPClow,0.025)+0.005), yend = 0.025)) +
+          annotate("text", x=quantile(PNClowPClow,0.025)-0.010, y=0.025+0.030, label= round(quantile(PNClowPClow,0.025),3)) +
+
+          #Point RL
+          geom_segment(aes(x = quantile(PNChighPChigh,0.025), y = 0.025-0.02, xend = quantile(PNChighPChigh,0.025), yend = 0.025+0.02)) +
+          geom_segment(aes(x = (quantile(PNChighPChigh,0.025)-0.005), y = 0.025, xend = (quantile(PNChighPChigh,0.025)+0.005), yend = 0.025)) +
+          annotate("text", x=quantile(PNChighPChigh,0.025)+0.005, y=0.025+0.030, label= round(quantile(PNChighPChigh,0.025),3)) +
+
+          # Point LH
+          geom_segment(aes(x = quantile(PNClowPClow,0.975), y = 0.975-0.02, xend = quantile(PNClowPClow,0.975), yend = 0.975+0.02)) +
+          geom_segment(aes(x = (quantile(PNClowPClow,0.975)-0.005), y = 0.975, xend = (quantile(PNClowPClow,0.975)+0.005), yend = 0.975)) +
+          annotate("text", x=quantile(PNClowPClow,0.975)-0.010, y=0.975-0.030, label= round(quantile(PNClowPClow,0.975),3)) +
+
+          # Point RL
+          geom_segment(aes(x = quantile(PNChighPChigh,0.975), y = 0.975-0.02, xend = quantile(PNChighPChigh,0.975), yend = 0.975+0.02)) +
+          geom_segment(aes(x = (quantile(PNChighPChigh,0.975)-0.005), y = 0.975, xend = (quantile(PNChighPChigh,0.975)+0.005), yend = 0.975)) +
+          annotate("text", x=quantile(PNChighPChigh,0.975)-0.010, y=0.975-0.030, label= round(quantile(PNChighPChigh,0.975),3)) +
           
           ggtitle("ECDF for IRR from Simulation (Cumulative Density Function)") +
           xlab("IRR") +
@@ -3442,7 +3459,7 @@ function(input, output, session) {
         #Create div for Variable 3 statement
         div1 <- div(
           style = "text-align: center; font-size: 20px; font-weight: bold;",
-          p(results_comment_list[15])
+          p(summary_comment_list[15])
         )
         
         # Return all three div elements
