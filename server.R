@@ -110,7 +110,8 @@ function(input, output, session) {
   # List for making recommendations
   
   recommendation_list <- c(
-    "Based on the existence of three subjective values, this results should be applied with caution.  Validation of the results should be required to capture any risk that the product may have a higher probability of failure than intended.  It is highly recommended that this value be applied only where there is a high tolerance for failure.  This should include target probabilities of failure that are > 1 x 10^(-3),  in the category of 'Likely Failure Condition'.  See Table 3.X in the Tutorial for ranges of Target Probability of Failure and appropriate labels."
+    "Based on the existence of three subjective values, this results should be applied with caution.  Validation of the results should be required to capture any risk that the product may have a higher probability of failure than intended.  It is highly recommended that this value be applied only where there is a high tolerance for failure.  This should include target probabilities of failure that are > 1 x 10^(-3),  in the category of 'Likely Failure Condition'.  See Table 3.X in the Tutorial for ranges of Target Probability of Failure and appropriate labels.",
+    "Based on the existence of three epistemic values, this results should be applied with caution.  Validation of the results should be required to capture any risk that the product may have a higher probability of failure than intended.  It is highly recommended that this value be applied only where there is a moderate tolerance for failure.  This should include target probabilities of failure that are > 1 x 10^(-5),  in the category of 'Likely Failure Condition'.  See Table 3.X in the Tutorial for ranges of Target Probability of Failure and appropriate labels."
   )
   
   #############################################################################################
@@ -2778,9 +2779,9 @@ function(input, output, session) {
     
     ## Create Subtitle
     
-    output$subtitle_s12 <- renderUI({
+    output$subtitle_s13 <- renderUI({
       
-      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'unknownUnc_PTARG') {
         # Create div for Variable 1 statement
         div1 <- div(
           style = "text-align: center; font-size: 20px; font-weight: bold;",
@@ -2969,74 +2970,212 @@ function(input, output, session) {
       }
     })  
   
-    ## End System 13                ##
+    ## End System 13                                   ##
     
     ## System 14                                       ##
+    ## PNC = Epistemic              ##
+    ## PC = Point                   ##
+    ## PTARG = Aleatoric            ##
     
-    # Epistemic Estimates
+    ## Create Subtitle
     
-    epi_df_s14 <- reactive({
+    output$subtitle_s14 <- renderUI({
       
-      epi_Pc <- c(input$PF_C_lower,input$PF_C_upper)
-      epi_Pnc <- c(input$PF_NC_lower, input$PF_NC_upper)
-      epi_Ptarget1 <- c(input$PF_TARG_lower,input$PF_TARG_upper)
-      epi_PoF_Table <- expand.grid(epi_Pnc,epi_Pc,epi_Ptarget1)
-      names(epi_PoF_Table) <- c("PoF_NC", "PoF_C", "Target")
-      epi_PoF_Table$IRR <- (epi_PoF_Table$PoF_NC-epi_PoF_Table$Target)/(epi_PoF_Table$PoF_NC-epi_PoF_Table$PoF_C)
-      
-      print(epi_PoF_Table)
-      
-      epi_PoF_Table
-    })
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
+        # Create div for Variable 1 statement
+        div1 <- div(
+          style = "text-align: center; font-size: 20px; font-weight: bold;",
+          p(paste("PNC is an ",type_list[2], ", PC is a ", type_list[2], ", Target is a ",type_list[2]))
+        )
+        
+        # Return all div elements
+        
+        tagList(div1)
+      }
+    }) 
     
-    # build table
+    ## Create data
     
-    output$epi_PoF_table_s14 <- renderTable({
-      print(epi_df_s14)
+    analysis_results_14 <- eventReactive(input$start_btn, {
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
+        
+      # Create Vectors
+        
+      PNC_lower <- isolate(input$PF_NC_lower)
+      PNC_upper <- isolate(input$PF_NC_upper)
+      PNC <- c(PNC_lower, PNC_upper)
+      PC_lower <- isolate(input$PF_C_lower)
+      PC_upper <- isolate(input$PF_C_upper)
+      PC <- c(PC_lower,PC_upper)
+      PoF_lower <- isolate(input$PF_TARG_lower)
+      PoF_upper <- isolate(input$PF_TARG_upper)
+      PoF <- c(PoF_lower,PoF_upper)
+      
+      # Validate Constraints
+      
       validate(
         
         #Epistemic Range Orientation
-        need(input$PF_C_lower < input$PF_C_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
-        need(input$PF_NC_lower < input$PF_NC_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
-        need(input$PF_TARG_lower < input$PF_TARG_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
+        need(PC_lower < PC_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
+        need(PNC_lower < PNC_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
+        need(PoF_lower < PoF_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
         
         #comparisons to Target
-        need(input$PF_NC_lower >= input$PF_TARG_upper,"- The Probability of Failure given Nonconformance is less than the Target Probability of Failure which produces invalid probability for the IRR (the numerator becomes a negative number making the ratio less than 0)"),
-        need(input$PF_C_upper <= input$PF_TARG_lower,"- The Probability of Failure given Conformance is greater than the Target Probability of Failure which produces invalid probability for the IRR (the denominator is less than the numerator, making the ratio greater than 1)"),
+        need(PNC_lower >= PoF_upper,"- The Probability of Failure given Nonconformance is less than the Target Probability of Failure which produces invalid probability for the IRR (the numerator becomes a negative number making the ratio less than 0)"),
+        need(PC_upper <= PoF_lower,"- The Probability of Failure given Conformance is greater than the Target Probability of Failure which produces invalid probability for the IRR (the denominator is less than the numerator, making the ratio greater than 1)"),
         
         #comparisons between A & B
-        need(input$PF_C_lower != input$PF_NC_upper,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
-        need(input$PF_C_lower != input$PF_NC_lower,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
-        need(input$PF_C_upper != input$PF_NC_upper,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
-        need(input$PF_C_upper != input$PF_NC_lower,"- The Probability of Failure given Conformance upper boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)")
+        need(PC_lower != PNC_upper,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
+        need(PC_lower != PNC_lower,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
+        need(PC_upper != PNC_upper,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
+        need(PC_upper != PNC_lower,"- The Probability of Failure given Conformance upper boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)")
       )
       
-      epi_df_s14()
+      # Create dataframe
+      
+      df <- expand.grid(PNC,PC,PoF)
+      names(df) <- c("PNC", "PC", "Target")
+      
+      # Add IRR
+      df$IRR <- (df$PNC-df$Target)/(df$PNC-df$PC)
+      
+      return(df)
+      
+      }
+    })
+    
+    ## Results
+    
+    # build results table
+    
+    output$epi_PoF_table_s14 <- renderTable({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
+        
+        analysis_results_14()
+        
+      }
     },
     digits = 9,
-    striped = TRUE
+    striped = TRUE,
+    caption = "Table of IRR Estimates",
+    caption.placement = getOption("xtable.caption.placement", "top"), 
+    caption.width = getOption("xtable.caption.width", NULL)
     )
+    
+    # add results comment
+    
+    output$results_comment_s14 <- renderUI({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
+        #Create div for Variable 3 statement
+        div1 <- div(
+          style = "text-align: center; font-size: 20px; font-weight: bold;",
+          p(results_comment_list[14])
+        )
+        
+        # Return all three div elements
+        tagList(div1)
+      }
+    })
+    
+    ## Create Summary 
     
     # build summary table
     
     output$epi_values_table_s14 <- renderTable({
-      #Use plotly hover Z if available, otherwise calculate manually
       
-      min_IRR <- min(epi_df_s14()$IRR)
-      max_IRR <- max(epi_df_s14()$IRR)
-      
-      data.frame(
-        Parameter = c("Minimum IRR", "Maximum IRR", "Epistemic Value"),
-        Value = c(
-          sprintf("%.6f", min_IRR),
-          sprintf("%.6f", max_IRR),
-          sprintf("%.6f", max_IRR)
-        ),
-        stringsAsFactors = FALSE
-      )
-    }, striped = TRUE, hover = TRUE, bordered = TRUE)
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
+        
+        min_IRR <- min(analysis_results_14()$IRR)
+        max_IRR <- max(analysis_results_14()$IRR)
+        
+        data.frame(
+          Parameter = c("Minimum IRR", "Maximum IRR", "Epistemic Value"),
+          Value = c(
+            sprintf("%.6f", min_IRR),
+            sprintf("%.6f", max_IRR),
+            sprintf("%.6f", max_IRR)
+          ),
+          stringsAsFactors = FALSE
+        )
+        
+      }
+    }, 
+    striped = TRUE, 
+    hover = TRUE, 
+    bordered = TRUE,
+    caption = "Summary Table of minimum and maximum IRR Estimates",
+    caption.placement = getOption("xtable.caption.placement", "top"), 
+    caption.width = getOption("xtable.caption.width", NULL)
+    )
     
-    ##                                ##
+    # create uncertainty statements
+    
+    output$uncertainty_statements_s14 <- renderUI({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
+        # Create div for Variable 1 statement
+        div1 <- div(
+          style = "background-color: #fff8f0; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #FF9800;",
+          h5("PNC Uncertainty Notes:"),
+          p(uncertainty_list[4])
+        )
+        
+        # Create div for Variable 2 statement
+        div2 <- div(
+          style = "background-color: #fff8f0; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #FF9800;",
+          h5("PC Uncertainty Assessment:"),
+          p(uncertainty_list[5])
+        )
+        
+        # Create div for Variable 3 statement
+        div3 <- div(
+          style = "background-color: #fff8f0; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #FF9800;",
+          h5("Target Uncertainty Assessment:"),
+          p(uncertainty_list[3])
+        )
+        
+        # Return all div elements
+        
+        tagList(div1, div2, div3)
+      }
+    })  
+    
+    # add summary comment
+    
+    output$summary_comment_s14 <- renderUI({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
+        #Create div for Variable 3 statement
+        div1 <- div(
+          style = "text-align: center; font-size: 20px; font-weight: bold;",
+          p(summary_comment_list[14])
+        )
+        
+        # Return all div elements
+        
+        tagList(div1)
+      }
+    })
+    
+    ## Create Recommendations
+    
+    output$recommendation_statement_s14 <- renderUI({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
+        # Create div for Variable 1 statement
+        div1 <- div(
+          style = "background-color: #fff8f0; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #FF9800;",
+          p(recommendation_list[2])
+        )
+        
+        tagList(div1)
+      }
+    })  
+    
+    ## End System 14                                   ##
     
     ## System 15  ##
     

@@ -1230,17 +1230,15 @@ navbarPage(id = "tabs1",
                                    br(),
                                    hr(),
                                    tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                   tags$div("PofF_NC, PofF_NC and PofF_C are Epistemic", style = "text-align: center; font-size: 20px; font-weight: bold;"),
+                                   br(),
+                                   uiOutput("subtitle_s14"),
                                    hr(),
-                                   br(),
-                                   br(),
                                    
                                    # The Results Section
                                    
                                    br(),
-                                   tags$div("Table of Estimated IRR Values for Bounded PofF_NC, PofF_C and P Target", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                   tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
                                    br(),
-                                   
                                    tags$head(
                                      tags$style(
                                        "tr:nth-child(1) {font-weight: bold;}
@@ -1249,43 +1247,31 @@ navbarPage(id = "tabs1",
                                      )
                                    ),
                                    br(),
-                                   br(),
                                    tableOutput("epi_PoF_table_s14"),
+                                   br(),
+                                   uiOutput("results_comment_s14"),
+                                   br(),
                                    hr(),
-                                   br(),
-                                   br(),
-                                   
-                                   tags$div("This table includes the minimum and maximum IRR produced in the bounded range for the Probability of Failure given Conformance.  To the degree that the region contains the actual IRR needed, the least risk approach would be to select the maximum for this application.", style = "text-align: left; font-size: 20px; font-weight: bold;"),
-                                   br(),
                                    
                                    # The Summary
                                    
                                    tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
                                    br(),
-                                   br(),
                                    tableOutput("epi_values_table_s14"),
                                    br(),
+                                   uiOutput("uncertainty_statements_s14"),
                                    br(),
-                                   
-                                   tags$div("1.  The Probability of Failure given Nonconformance is based on judgment without any knowledge of the associated uncertainty. ", style = "text-align: left; font-size: 20px; font-weight: bold;"),
-                                   tags$div("2.  The Probability of Failure given Conformance is based on judgment without any knowledge of the associated uncertainty. ", style = "text-align: left; font-size: 20px; font-weight: bold;"),
-                                   tags$div("3.  If this is a problem where a target is defined by regulation or by allocation, it is not subject to uncertainty.  We may used a bounded procedure to show what the IRR will look like in a range of Targets.  However, If this is a problem where a target is defined based on current performance, then the boundaries help capture some of the uncertainty.  Remianing uncertainty will continue to exist for each of the upper and lower boundaries. ", style = "text-align: left; font-size: 20px; font-weight: bold;"),
-                                   br(),
-                                   tags$div("4.  Given the unknown uncertainty we cannot provide an IRR value that specifies a confidence level. ", style = "text-align: left; font-size: 20px; font-weight: bold;"),
-                                   tags$div("5.  If this range fails to capture the actual need, then, if the actual need falls outside the upper boundary, the delivered product will not satisfy the actual need. The cost of inspection is reduced but at the risk that the product will not satisfy the actual need.  If the actual need falls below this range, then cost to inspect the product will increase. The product will more than satisfy the actual need, but at increased manufacturing costs.", style = "text-align: left; font-size: 20px; font-weight: bold;"),
-                                   tags$div("6.  This raises an important question. Are the boundaries the result of judgment or are they the result of hard boundaries resutlign from limitations in physics, materials properties etc.  This will influence our assessment of the risk from unquantified uncertainty.", style = "text-align: left; font-size: 20px; font-weight: bold;"),
+                                   uiOutput("summary_comment_s14"),
                                    hr(),
-                                   br(),
                                    
                                    # The Recommendation
                                    
                                    br(),
-                                   br(),
                                    tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                   tags$div("It is highly recommended that this value be applied only where there is a high tolerance for failure.  This should include target probabilities of failure that are > 1 x 10^(-3),  in the category of 'Likely Failure Condition'.  See Table 3.X in the Tutorial for ranges of Target Probability of Failure and appropriate labels.", style = "text-align: left; font-size: 20px; font-weight: bold;"),
+                                   br(),
+                                   uiOutput("recommendation_statement_s14"),
+                                   br(),
                                    hr(),
-                                   br(),
-                                   br(),
                                    
                             )
                           ),
