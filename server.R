@@ -3178,30 +3178,67 @@ function(input, output, session) {
     ## End System 14                                   ##
     
     ## System 15  ##
+    ## PNC = Epistemic              ##
+    ## PC = Point                   ##
+    ## PTARG = Aleatoric            ##
     
-    # create data
+    ## Create Subtitle
     
-    aleatoric_data_s15 <- reactive({
+    output$subtitle_s1 <- renderUI({
       
-      PC <- c(input$PF_C_lower, input$PF_C_upper)
-      PNC <- c(input$PF_NC_lower, input$PF_NC_upper)
-      test <- expand.grid(PNC,PC)
-      df <- data.frame("PNC" = rep(test$Var1,25000),"PC" = rep(test$Var2,25000))
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        # Create div for Variable 1 statement
+        div1 <- div(
+          style = "text-align: center; font-size: 20px; font-weight: bold;",
+          p(paste("PNC is an ",type_list[2], ", PC is a ", type_list[2], ", Target is a ",type_list[3]))
+        )
+        
+        # Return all div elements
+        
+        tagList(div1)
+      }
+    }) 
+    
+    ## Create data
+    
+    analysis_results_15 <- eventReactive(input$start_btn, {
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+      # Create Vectors
+        
+      PNC_lower <- isolate(input$PF_NC_lower)
+      PNC_upper <- isolate(input$PF_NC_upper)
+      PNC <- c(PNC_lower, PNC_upper)
+      PC_lower <- isolate(input$PF_C_lower)
+      PC_upper <- isolate(input$PF_C_upper)
+      PC <- c(PC_lower, PC_upper)
       
       if(input$TARG_in == "TARG_norm"){
         # Normal distribution
-        PoF <- rnorm(100000, mean = input$PF_TARG_mean, sd = input$PF_TARG_sd)
+        PTARG_mean <- isolate(input$PF_TARG_mean)
+        PTARG_sd <- isolate(input$PF_TARG_sd)
+        PoF <- rnorm(100000, mean = PTARG_mean, sd = PTARG_sd)
       } 
       else if(input$TARG_in == "TARG_beta"){
-        PoF <- rbeta(100000, shape1 = input$PF_TARG_shape1, shape2 = input$PF_TARG_shape2)
+        PTARG_shape1 <- isolate(input$PF_TARG_shape1)
+        PTARG_shape2 <- isolate(input$PF_TARG_shape2)
+        PoF <- rbeta(100000, shape1 = PTARG_shape1, shape2 = PTARG_shape2)
       }
       else if(input$TARG_in == "TARG_lgnorm"){
-        PoF <- rlnorm(100000, meanlog = input$PF_TARG_lgMean, sdlog = input$PF_TARG_lgSD)
+        PTARG_lgMmean <- isolate(input$PF_TARG_lgMean)
+        PTARG_lgSD <- isolate(input$PF_TARG_lgSD)
+        PoF <- rlnorm(100000, meanlog = PTARG_lgMean, sdlog = PTARG_lgSD)
       }
+      
+      test <- expand.grid(PNC,PC)
+      df <- data.frame("PNC" = rep(test$Var1,25000),"PC" = rep(test$Var2,25000))
       
       df$PoF <- PoF
       
       df$IRR <- round((df$PNC - df$PoF)/(df$PNC - df$PC),digits = 9)
+      
+      # Check Constraints
       
       df <- df[df$PNC >= df$PoF & df$PC <= df$PoF & df$PC < df$PNC,]
       
@@ -3209,21 +3246,26 @@ function(input, output, session) {
       
       return(df)
       
+      }
     })
+    
+    ## Results
     
     # create results histogram
     
     output$aleatoric_hist_s15 <- renderPlotly({
       
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
       fig <- plot_ly(type = "histogram", alpha = 0.8) 
       
-      fig <- fig %>% add_histogram(x = ~aleatoric_data_s15()[aleatoric_data_s15()$PNC == input$PF_NC_lower & aleatoric_data_s15()$PC == input$PF_C_lower,"IRR"], name = "PNC lower & PC lower")
+      fig <- fig %>% add_histogram(x = ~analysis_results_15()[analysis_results_15()$PNC == input$PF_NC_lower & analysis_results_15()$PC == input$PF_C_lower,"IRR"], name = "PNC lower & PC lower")
       
-      fig <- fig %>% add_histogram(x = ~aleatoric_data_s15()[aleatoric_data_s15()$PNC == input$PF_NC_upper & aleatoric_data_s15()$PC == input$PF_C_lower,"IRR"], name = "PNC upper & PC lower")
+      fig <- fig %>% add_histogram(x = ~analysis_results_15()[analysis_results_15()$PNC == input$PF_NC_upper & analysis_results_15()$PC == input$PF_C_lower,"IRR"], name = "PNC upper & PC lower")
       
-      fig <- fig %>% add_histogram(x = ~aleatoric_data_s15()[aleatoric_data_s15()$PNC == input$PF_NC_lower & aleatoric_data_s15()$PC == input$PF_C_upper,"IRR"], name = "PNC lower & PC upper")
+      fig <- fig %>% add_histogram(x = ~analysis_results_15()[analysis_results_15()$PNC == input$PF_NC_lower & analysis_results_15()$PC == input$PF_C_upper,"IRR"], name = "PNC lower & PC upper")
       
-      fig <- fig %>% add_histogram(x = ~aleatoric_data_s15()[aleatoric_data_s15()$PNC == input$PF_NC_upper & aleatoric_data_s15()$PC == input$PF_C_upper,"IRR"], name = "PNC upper & PC upper")
+      fig <- fig %>% add_histogram(x = ~analysis_results_15()[analysis_results_15()$PNC == input$PF_NC_upper & analysis_results_15()$PC == input$PF_C_upper,"IRR"], name = "PNC upper & PC upper")
       
       fig <- fig %>%
         layout(
@@ -3254,26 +3296,176 @@ function(input, output, session) {
       
       fig
       
+      }
     })
     
     #create measure of utilization
     
     output$count_data_s15 <- renderPrint({
-      value <- nrow(aleatoric_data_s15())/100000
-      paste("Fraction of simulated values included in the histogram", value)
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        value <- nrow(analysis_results_15())/100000
+       paste("Fraction of simulated values included in the histogram", value)
+      
+      }
     })
+    
+    ## Summary
     
     # create summarization table
     
     output$quantile_data_s15 <- renderTable({
-      quantiles <- round(quantile(aleatoric_data_s15()$IRR, probs = c(0.95, 0.975, 0.99, 0.999, 0.9999, 0.99999, 0.999999, 0.9999999, 0.99999999, 0.999999999)),digits = 9)
-      quantile_table <- t(data.frame(
-        Quantile = names(quantiles),
-        Value = as.numeric(quantiles)
-      ))
-    }, digits = 9)
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        quantiles <- round(quantile(analysis_results_15()$IRR, probs = c(0.95, 0.975, 0.99, 0.999, 0.9999, 0.99999, 0.999999, 0.9999999, 0.99999999, 0.999999999)),digits = 9)
+        quantile_table <- (data.frame(
+          Quantile = names(quantiles),
+          Value = as.numeric(quantiles)
+        ))
+        
+      }
+    }, 
+    digits = 9,
+    caption = "Maximum IRR Values",
+    caption.placement = getOption("xtable.caption.placement", "top"), 
+    caption.width = getOption("xtable.caption.width", NULL)
+    )
     
-    ##                                          ##
+    # create 95% interval
+    
+    output$interval_data_s15 <- renderTable({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        PNClow <- analysis_results_15()[analysis_results_15()$PNC == min(analysis_results_15()$PNC),"IRR"]
+        PNChigh <- analysis_results_15()[analysis_results_15()$PNC == max(analysis_results_15()$PNC),"IRR"]
+        PClow <- analysis_results_15()[analysis_results_15()$PC == min(analysis_results_15()$PC),"IRR"]
+        PChigh <- analysis_results_15()[analysis_results_15()$PC == max(analysis_results_15()$PC),"IRR"]
+        
+        quantile_table <- data.frame("PC" = c(min(analysis_results_15()$PoF),max(analysis_results_15()$PoF)),
+                                     "0.025" = c(quantile(PNClow,0.025),quantile(PNChigh,0.025)),
+                                     "0.975" = c(quantile(PNClow,0.975),quantile(PNChigh,0.975))
+        )
+        return(quantile_table)
+        
+      }
+    }, 
+    digits = 9, 
+    caption = "95% Interval",
+    caption.placement = getOption("xtable.caption.placement", "top"), 
+    caption.width = getOption("xtable.caption.width", NULL))
+    
+    # create ecdf plot
+    
+    output$ecdf_plot_s15 <- renderPlot({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        PNClow <- analysis_results_15()[analysis_results_15()$PNC == min(analysis_results_15()$PNC),"IRR"]
+        PNChigh <- analysis_results_15()[analysis_results_15()$PNC == max(analysis_results_15()$PNC),"IRR"]
+        PClow <- analysis_results_15()[analysis_results_15()$PC == min(analysis_results_15()$PC),"IRR"]
+        PChigh <- analysis_results_15()[analysis_results_15()$PC == max(analysis_results_15()$PC),"IRR"]
+        
+        fig <-ggplot() +
+          stat_ecdf(aes(PNClow), color = "darkblue") +
+          stat_ecdf(aes(PNChigh), color = "red") +
+          stat_ecdf(aes(PClow), color = "green") +
+          stat_ecdf(aes(PChigh), color = "brown") +
+          
+          # #Point LL
+          # geom_segment(aes(x = quantile(dflow,0.025), y = 0.025-0.02, xend = quantile(dflow,0.025), yend = 0.025+0.02)) +
+          # geom_segment(aes(x = (quantile(dflow,0.025)-0.005), y = 0.025, xend = (quantile(dflow,0.025)+0.005), yend = 0.025)) +
+          # annotate("text", x=quantile(dflow,0.025)-0.010, y=0.025+0.030, label= round(quantile(dflow,0.025),3)) +
+          # 
+          # #Point RL
+          # geom_segment(aes(x = quantile(dfhigh,0.025), y = 0.025-0.02, xend = quantile(dfhigh,0.025), yend = 0.025+0.02)) +
+          # geom_segment(aes(x = (quantile(dfhigh,0.025)-0.005), y = 0.025, xend = (quantile(dfhigh,0.025)+0.005), yend = 0.025)) +
+          # annotate("text", x=quantile(dfhigh,0.025)+0.005, y=0.025+0.030, label= round(quantile(dfhigh,0.025),3)) +
+          # 
+          # # Point LH
+          # geom_segment(aes(x = quantile(dflow,0.975), y = 0.975-0.02, xend = quantile(dflow,0.975), yend = 0.975+0.02)) +
+          # geom_segment(aes(x = (quantile(dflow,0.975)-0.005), y = 0.975, xend = (quantile(dflow,0.975)+0.005), yend = 0.975)) +
+          # annotate("text", x=quantile(dflow,0.975)-0.010, y=0.975-0.030, label= round(quantile(dflow,0.975),3)) +
+          # 
+          # # Point RL
+          # geom_segment(aes(x = quantile(dfhigh,0.975), y = 0.975-0.02, xend = quantile(dfhigh,0.975), yend = 0.975+0.02)) +
+          # geom_segment(aes(x = (quantile(dfhigh,0.975)-0.005), y = 0.975, xend = (quantile(dfhigh,0.975)+0.005), yend = 0.975)) +
+          # annotate("text", x=quantile(dfhigh,0.975)-0.010, y=0.975-0.030, label= round(quantile(dfhigh,0.975),3)) +
+          
+          ggtitle("ECDF for IRR from Simulation (Cumulative Density Function)") +
+          xlab("IRR") +
+          ylab("Probability")
+        
+        fig
+        
+      }
+    })
+    
+    # create uncertainty statements
+    
+    output$uncertainty_statements_s15 <- renderUI({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        # Create div for Variable 1 statement
+        div1 <- div(
+          style = "background-color: #fff8f0; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #FF9800;",
+          h5("PNC Uncertainty Notes:"),
+          p(uncertainty_list[4])
+        )
+        
+        # Create div for Variable 2 statement
+        div2 <- div(
+          style = "background-color: #fff8f0; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #FF9800;",
+          h5("PC Uncertainty Assessment:"),
+          p(uncertainty_list[5])
+        )
+        
+        # Create div for Variable 3 statement
+        div3 <- div(
+          style = "background-color: #f0f8ff; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #4CAF50;",
+          h5("Target Uncertainty Assessment:"),
+          p(uncertainty_list[9])
+        )
+        
+        # Return all three div elements
+        tagList(div1, div2, div3)
+      }
+    })  
+    
+    # add summary comment
+    
+    output$summary_comment_s15 <- renderUI({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        #Create div for Variable 3 statement
+        div1 <- div(
+          style = "text-align: center; font-size: 20px; font-weight: bold;",
+          p(results_comment_list[15])
+        )
+        
+        # Return all three div elements
+        tagList(div1)
+      }
+    })
+    
+    ## Create Recommendations
+    
+    output$recommendation_statement_s15 <- renderUI({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        # Create div for Variable 1 statement
+        div1 <- div(
+          style = "background-color: #fff8f0; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #FF9800;",
+          p(recommendation_list[2])
+        )
+        
+        tagList(div1)
+      }
+    })  
+    
+    ## End System 15                                 ##
     
     
     ## System 16  ##
