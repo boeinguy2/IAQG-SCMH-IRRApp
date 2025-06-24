@@ -1348,55 +1348,54 @@ navbarPage(id = "tabs1",
                                    br(),
                                    br(),
                                    tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                   tags$div("PofF_NC is Epistemic, PofF_C is a point estimate, P Target is Aleatoric", style = "text-align: center; font-size: 20px; font-weight: bold;"),
+                                   br(),
+                                   uiOutput("subtitle_s16"),
                                    hr(),
-                                   br(),
-                                   br(),
                                    
                                    # The Results Section
                                    
                                    br(),
-                                   tags$div("Plot of Estimated IRR Values for PofF_NC as Epistemic and PofF_C Aleatoric", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                   br(),
-                                   
-                                   br(),
+                                   tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
                                    br(),
                                    plotlyOutput(outputId = "aleatoric_hist_s16",
                                                 width = "100%",
                                                 height = 600),
                                    verbatimTextOutput("count_data_s16"),
+                                   br(),
+                                   uiOutput("results_comment_s16"),
+                                   br(),
                                    hr(),
-                                   br(),
-                                   br(),
                                    
                                    # The Summary Section
                                    
                                    tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
                                    br(),
+                                   fluidRow(
+                                     column(6, align="center",
+                                            plotOutput(outputId = "ecdf_plot_s16",
+                                                       width = "100%",
+                                                       height = 600),
+                                     ),
+                                     column(6, align="center",
+                                            tableOutput("quantile_data_s16"),
+                                            br(),
+                                            tableOutput("interval_data_s16")
+                                     )
+                                   ),
                                    br(),
-                                   tableOutput("quantile_data_s16"),
+                                   uiOutput("uncertainty_statements_s16"),
                                    br(),
-                                   br(),
-                                   
-                                   tags$div("1.  The Probability of Failure given Nonconformance is based on judgment without any knowledge of the associated uncertainty. ", style = "text-align: left; font-size: 20px; font-weight: bold;"),
-                                   tags$div("2.  The Probability of Failure given Conformance is based on judgment without any knowledge of the associated uncertainty. ", style = "text-align: left; font-size: 20px; font-weight: bold;"),
-                                   tags$div("3.  This problem occurs where a target is defined based on current performance, and the distribution is known.  It helps to capture some of the uncertainty.  Remaining uncertainty will continue to exist for PNC and PC and will not be captured here. ", style = "text-align: left; font-size: 20px; font-weight: bold;"),
-                                   br(),
-                                   tags$div("4.  We are able to establish a confidence level for the distribution as far as it is known. ", style = "text-align: left; font-size: 20px; font-weight: bold;"),
-                                   tags$div("5.  But this estimate may still miss the mark in terms of over or underestimaing the needed IRR due to the point estimates used for PNC and PC.  We may still understimate the IRR and will not satisfy the actual need. The cost of inspection is reduced but at the risk that the product will not satisfy the actual need.  If the actual need falls below this range, then cost to inspect the product will increase. The product will more than satisfy the actual need, but at increased manufacturing costs.", style = "text-align: left; font-size: 20px; font-weight: bold;"),
-                                   tags$div("6.  As PofF_NC approachs 1, the IRR brecomes less sensitive to small changes, error will not have as significant effect in the IRR.  On the other had, as PofF_NC approaches P Target,the the IRR becomes much more sensitive to samll changes.", style = "text-align: left; font-size: 20px; font-weight: bold;"),
+                                   uiOutput("summary_comment_s16"),
                                    hr(),
-                                   br(),
                                    
                                    # The Recommendation Section
                                    
                                    br(),
-                                   br(),
                                    tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                   tags$div("While this method begins to reveal more with regards to uncertainty in our estimated required IRR, it still is highly recommended that this value be applied only where there is a high tolerance for failure.  This should include target probabilities of failure that are > 1 x 10^(-3),  in the category of 'Likely Failure Condition'.  See Table 3.X in the Tutorial for ranges of Target Probability of Failure and appropriate labels.", style = "text-align: left; font-size: 20px; font-weight: bold;"),
+                                   br(),
+                                   uiOutput("recommendation_statement_s16"),
+                                   br(),
                                    hr(),
-                                   br(),
-                                   br(),
                                    
                             )
                           ),
