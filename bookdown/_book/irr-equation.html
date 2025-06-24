@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 IRR Equation | IRR Calculator Tutorial</title>
+  <meta name="description" content="This document is intended to be a tutorial for using the IRR Calculator App." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 IRR Equation | IRR Calculator Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This document is intended to be a tutorial for using the IRR Calculator App." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 IRR Equation | IRR Calculator Tutorial" />
+  
+  <meta name="twitter:description" content="This document is intended to be a tutorial for using the IRR Calculator App." />
+  
+
+<meta name="author" content="Joe Hightower" />
+
+
+<meta name="date" content="2025-06-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="using-the-calculator.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">IRR Calculator Tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#irr-calculator-app"><i class="fa fa-check"></i><b>1.1</b> IRR Calculator App</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#using-the-tool"><i class="fa fa-check"></i><b>1.1.1</b> Using The Tool</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#the-design-engineering-tasks"><i class="fa fa-check"></i><b>1.1.2</b> The Design Engineering Tasks</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#the-quality-engineering-tasks"><i class="fa fa-check"></i><b>1.1.3</b> The Quality Engineering Tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#chapter-summaries"><i class="fa fa-check"></i><b>1.2</b> Chapter summaries</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#notes-on-the-bookdown-interface"><i class="fa fa-check"></i><b>1.3</b> Notes on the bookdown Interface</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#notes-on-app-layout"><i class="fa fa-check"></i><b>1.4</b> Notes on App Layout</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#notes-on-plots-created-in-the-irr-app"><i class="fa fa-check"></i><b>1.5</b> Notes on Plots Created in The IRR App</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="irr-equation.html"><a href="irr-equation.html"><i class="fa fa-check"></i><b>2</b> IRR Equation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="irr-equation.html"><a href="irr-equation.html#equation-for-the-total-probability-of-failure-in-delivered-product"><i class="fa fa-check"></i><b>2.1</b> Equation for the Total probability of Failure in delivered product</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="irr-equation.html"><a href="irr-equation.html#partitioning-the-total-probability-of-failure"><i class="fa fa-check"></i><b>2.1.1</b> Partitioning the Total Probability of Failure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="irr-equation.html"><a href="irr-equation.html#linking-the-equation-to-a-target-maximum-probability-of-failure"><i class="fa fa-check"></i><b>2.2</b> Linking the equation to a target maximum probability of failure</a></li>
+<li class="chapter" data-level="2.3" data-path="irr-equation.html"><a href="irr-equation.html#rearrangment-and-the-irr-definition"><i class="fa fa-check"></i><b>2.3</b> Rearrangment and the IRR definition</a></li>
+<li class="chapter" data-level="2.4" data-path="irr-equation.html"><a href="irr-equation.html#notes-on-probabilities"><i class="fa fa-check"></i><b>2.4</b> Notes on PRobabilities</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="irr-equation.html"><a href="irr-equation.html#functions-for-conditional-probabilities-of-failure"><i class="fa fa-check"></i><b>2.4.1</b> Functions for Conditional Probabilities of Failure</a></li>
+<li class="chapter" data-level="2.4.2" data-path="irr-equation.html"><a href="irr-equation.html#functions-for-marginal-probabilities-resulting-from-manufacturing"><i class="fa fa-check"></i><b>2.4.2</b> Functions for marginal probabilities resulting from manufacturing</a></li>
+<li class="chapter" data-level="2.4.3" data-path="irr-equation.html"><a href="irr-equation.html#aggregating-individual-irr-values-to-create-product-level-irr-values"><i class="fa fa-check"></i><b>2.4.3</b> Aggregating Individual IRR values to create product level IRR values</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="irr-equation.html"><a href="irr-equation.html#boundary-conditions"><i class="fa fa-check"></i><b>2.5</b> Boundary Conditions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="irr-equation.html"><a href="irr-equation.html#axioms-of-probability"><i class="fa fa-check"></i><b>2.5.1</b> Axioms of Probability</a></li>
+<li class="chapter" data-level="2.5.2" data-path="irr-equation.html"><a href="irr-equation.html#lower-boundary"><i class="fa fa-check"></i><b>2.5.2</b> Lower Boundary</a></li>
+<li class="chapter" data-level="2.5.3" data-path="irr-equation.html"><a href="irr-equation.html#upper-boundary"><i class="fa fa-check"></i><b>2.5.3</b> Upper Boundary</a></li>
+<li class="chapter" data-level="2.5.4" data-path="irr-equation.html"><a href="irr-equation.html#mathematical-boundary"><i class="fa fa-check"></i><b>2.5.4</b> Mathematical Boundary</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="irr-equation.html"><a href="irr-equation.html#summary"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="using-the-calculator.html"><a href="using-the-calculator.html"><i class="fa fa-check"></i><b>3</b> Using the Calculator</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="using-the-calculator.html"><a href="using-the-calculator.html#types-of-estimates"><i class="fa fa-check"></i><b>3.1</b> Types of estimates</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="using-the-calculator.html"><a href="using-the-calculator.html#judgement-under-uncertainty"><i class="fa fa-check"></i><b>3.1.1</b> Judgement Under Uncertainty</a></li>
+<li class="chapter" data-level="3.1.2" data-path="using-the-calculator.html"><a href="using-the-calculator.html#first-we-discuss-the-relationship-to-risk"><i class="fa fa-check"></i><b>3.1.2</b> First we discuss the relationship to Risk</a></li>
+<li class="chapter" data-level="3.1.3" data-path="using-the-calculator.html"><a href="using-the-calculator.html#point-estimates"><i class="fa fa-check"></i><b>3.1.3</b> Point Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="using-the-calculator.html"><a href="using-the-calculator.html#using-the-calculator-for-design-purposes"><i class="fa fa-check"></i><b>3.2</b> Using the Calculator for Design Purposes</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="using-the-calculator.html"><a href="using-the-calculator.html#point-estimates-1"><i class="fa fa-check"></i><b>3.2.1</b> Point Estimates</a></li>
+<li class="chapter" data-level="3.2.2" data-path="using-the-calculator.html"><a href="using-the-calculator.html#epistemic-boundaries"><i class="fa fa-check"></i><b>3.2.2</b> Epistemic Boundaries</a></li>
+<li class="chapter" data-level="3.2.3" data-path="using-the-calculator.html"><a href="using-the-calculator.html#aleatoric-estimates-1"><i class="fa fa-check"></i><b>3.2.3</b> Aleatoric Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="using-the-calculator.html"><a href="using-the-calculator.html#using-the-calculator-for-quality-purposes"><i class="fa fa-check"></i><b>3.3</b> Using the Calculator for Quality Purposes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="comparing-design-space.html"><a href="comparing-design-space.html"><i class="fa fa-check"></i><b>4</b> Comparing Design Space</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="comparing-design-space.html"><a href="comparing-design-space.html#comparing-design-space-for-design-purposes"><i class="fa fa-check"></i><b>4.1</b> Comparing Design Space For Design Purposes</a></li>
+<li class="chapter" data-level="4.2" data-path="comparing-design-space.html"><a href="comparing-design-space.html#comparing-design-space-for-quality-purposes"><i class="fa fa-check"></i><b>4.2</b> Comparing Design Space For Quality Purposes</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="additional-notes.html"><a href="additional-notes.html"><i class="fa fa-check"></i><b>5</b> Additional Notes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="additional-notes.html"><a href="additional-notes.html#xyz"><i class="fa fa-check"></i><b>5.1</b> xyz</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="additional-notes.html"><a href="additional-notes.html#examples-of-warnings-and-notes"><i class="fa fa-check"></i><b>5.1.1</b> Examples of warnings and notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="glossary.html"><a href="glossary.html"><i class="fa fa-check"></i><b>6</b> Glossary</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="glossary.html"><a href="glossary.html#epistemic-unceertainty"><i class="fa fa-check"></i><b>6.1</b> Epistemic Unceertainty</a></li>
+<li class="chapter" data-level="6.2" data-path="glossary.html"><a href="glossary.html#maximum-allowable-probability-of-failure"><i class="fa fa-check"></i><b>6.2</b> Maximum Allowable Probability of Failure</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+none
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IRR Calculator Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="irr-equation" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> IRR Equation<a href="irr-equation.html#irr-equation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="info-box">
+<i class="fas fa-info-circle box-icon"></i><strong>Info:</strong> This should be a styled into an info box
+</div>
+<div id="equation-for-the-total-probability-of-failure-in-delivered-product" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Equation for the Total probability of Failure in delivered product<a href="irr-equation.html#equation-for-the-total-probability-of-failure-in-delivered-product" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We start with the Law of Total Probability, which allows us to partition the Probability of Failure into two parts:</p>
+<ol style="list-style-type: decimal">
+<li><p>The Probability of Failure given Conformance - The probability of failure associated with product that conforms to requirements</p></li>
+<li><p>The Probability of Failure given Nonconformance - the probability of failure associated with product that does not conform to requirements</p></li>
+</ol>
+<p>We will label these as</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(P_{total}[failure]_{delivered}\)</span> the total probability of failure in the delivered airplane</li>
+<li><span class="math inline">\(P[failure|C]_{delivered}\)</span> the probability of failure given conformance in the delivered airplane</li>
+<li><span class="math inline">\(P[failure|NC]_{delivered}\)</span> the probability of failure given conformance in the delivered airplane</li>
+</ol>
+<p>Note that it is key that all three terms are representing the same scale. For example AC1309-1B measures the probability on a per hour basis. THat would mean that we would also represent <span class="math inline">\(P[failure|C]_{delivered}\)</span> and <span class="math inline">\(P[failure|NC]_{delivered}\)</span> on a per hour basis.</p>
+<div id="partitioning-the-total-probability-of-failure" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Partitioning the Total Probability of Failure<a href="irr-equation.html#partitioning-the-total-probability-of-failure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In Figure 1 we use a Venn diagram to illustrate the partitioning of the probability of failure into two regions.</p>
+<p><br></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
+<img src="Figure_1_IRR_Tutorial.png" alt="Venn Diagram Partitioning the space for Total Probability of Failure in delvered product" width="50%" />
+<p class="caption">
+Figure 2.1: Venn Diagram Partitioning the space for Total Probability of Failure in delvered product
+</p>
+</div>
+<p>The Venn Diagram shows two regions, the first is the joint probability that the prodcut fails and is nonconforming. The second is the joint probability that the product fails and is conforming.</p>
+<p>These are represented by</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(P[fails,conforming]_{delivered}\)</span></li>
+<li><span class="math inline">\(P[fails,nonconforming]_{delivered}\)</span></li>
+</ol>
+<p>and the total probability of failure is defined as</p>
+<p><span class="math display">\[
+P_{total}[failure]_{delivered} = P[fails,conforming]_{delivered} + P[fails,nonconforming]_{delivered} \tag{1}
+\]</span></p>
+<p>Our next step is to expand the identified joint probabilities using the standard relationship</p>
+<p><span class="math display">\[ Joint Probability = Marginal probability * Conditional Probability \]</span>
+In this case <span class="math inline">\(P[fails,conforming]_{delivered}\)</span> expands to</p>
+<p><span class="math display">\[ P[fails,conforming] = P[C]_{delivered} * P[failure|C]_{delivered} \]</span></p>
+<p>Then <span class="math inline">\(P[fails,conforming]_{delivered}\)</span> expands to</p>
+<p><span class="math display">\[ P[fails,nonconforming] = P[NC]_{delivered} * P[failure|NC]_{delivered} \]</span></p>
+<p>and now we can make substitutions in Equation X so that we arrive at a useful form in our discusison of the IRR</p>
+<p><span class="math display">\[ P_{total}[failure]_{delivered} = P[C]_{delivered} * P[failure|C]_{delivered} + P[NC]_{delivered} * P[failure|NC]_{delivered} \tag{2}\]</span></p>
+</div>
+</div>
+<div id="linking-the-equation-to-a-target-maximum-probability-of-failure" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Linking the equation to a target maximum probability of failure<a href="irr-equation.html#linking-the-equation-to-a-target-maximum-probability-of-failure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the design of product we are most interested in ensuring that <span class="math inline">\(P_{total}[failure]_{delivered}\)</span> does not exceed some threshold maximum probability of failure. We will call this threshold maximum <span class="math inline">\(P_{target}[failure]_{delivered}\)</span>. Substituting this into our equation results in the following</p>
+<p><span class="math display">\[ P_{target}[failure]_{delivered} &gt;= P[failure|C]_{delivered}*P[C]_{delivered} + P[failure|NC]_{delivered}*P[NC]_{delivered} \tag{3}\]</span>
+In this form we are required to assess the four terms on the right hand side, making sure that the design decisions that are made do not result in values for these terms where the result will exceed <span class="math inline">\(P_{target}[failure]_{delivered}\)</span></p>
+</div>
+<div id="rearrangment-and-the-irr-definition" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Rearrangment and the IRR definition<a href="irr-equation.html#rearrangment-and-the-irr-definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A useful relationship for this is to understand that our terms for … are statistical complements</p>
+<p><span class="math display">\[ P[NC]_{delivered} = 1 -P[C]_{delivered} \]</span></p>
+<p>We are now ready to perform algebraic rearrangement of Equation X, which result in a form that supports our definition of the IRR. When we are finished we arrive at</p>
+<p><span class="math display">\[ P[C]_{delivered} &gt;= \frac{P[failure|NC]_{delivered} - P_{target}[failure]_{delivered}}{P[failure|NC]_{delivered} -  P[failure|C]_{delivered}} \tag{4}\]</span>
+Finally, we define the IRR as <span class="math inline">\(P[C]_{delivered}\)</span></p>
+<p><span class="math display">\[ IRR = P[C]_{delivered} \tag{5}\]</span></p>
+</div>
+<div id="notes-on-probabilities" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Notes on PRobabilities<a href="irr-equation.html#notes-on-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Each of the probabilities included are not restricted to point estimates. They may be estimated by functions, which allows for IRR estimates where there is a range of nonconforming or conforming conditions to be evaluated.</p>
+<div id="functions-for-conditional-probabilities-of-failure" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Functions for Conditional Probabilities of Failure<a href="irr-equation.html#functions-for-conditional-probabilities-of-failure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="functions-for-marginal-probabilities-resulting-from-manufacturing" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Functions for marginal probabilities resulting from manufacturing<a href="irr-equation.html#functions-for-marginal-probabilities-resulting-from-manufacturing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="aggregating-individual-irr-values-to-create-product-level-irr-values" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Aggregating Individual IRR values to create product level IRR values<a href="irr-equation.html#aggregating-individual-irr-values-to-create-product-level-irr-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="boundary-conditions" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Boundary Conditions<a href="irr-equation.html#boundary-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>From Equation 4 we can derive three boundary conditions that must be satisfied.</p>
+<div id="axioms-of-probability" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Axioms of Probability<a href="irr-equation.html#axioms-of-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First we should understand that the five terms involved in Equation 4 are all probabilities. This requires that we enforce the three axioms of probability:</p>
+<ol style="list-style-type: decimal">
+<li>nonnegativity</li>
+<li>normalization</li>
+<li>additivity</li>
+</ol>
+<p>If these axioms are not satisified we will not be able to managed the reliability of the product by managing the outgoing quality of the manufacturing system.</p>
+</div>
+<div id="lower-boundary" class="section level3 hasAnchor" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Lower Boundary<a href="irr-equation.html#lower-boundary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The lower boundary is set by considering that the First Axiom requires that a probability be nonnegative. Each of these five probabilities cannot be less than 0. We can evaluate the conditions where the IRR or <span class="math inline">\(P[C]_{delivered}\)</span> is set to 0. OF course, in a simple relationship like this, we would expect 0 when the numerator of the ratio goes to 0:</p>
+<p><span class="math display">\[P[failure|NC]_{delivered} - P_{target}[failure]_{delivered} = 0\]</span>
+This condition will exist when</p>
+<p><span class="math display">\[P[failure|NC]_{delivered} = P_{target}[failure]_{delivered}\]</span></p>
+<p>If for any reason <span class="math inline">\(P[failure|NC]_{delivered} &lt; P_{target}[failure]_{delivered}\)</span> the axiom of nonnegativity is violated and we will fail to produce a useful IRR value. In other words if this boundary condition is violated we will not be able to managed the reliability of the product by managing the manufacturing system.</p>
+</div>
+<div id="upper-boundary" class="section level3 hasAnchor" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Upper Boundary<a href="irr-equation.html#upper-boundary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The upper boundary is set by considering that the Second Axiom requires that a probability be &gt;= 1. Each of these five probabilities cannot be less than 0. We can evaluate the conditions where the IRR or <span class="math inline">\(P[C]_{delivered}\)</span> is set to 1. Of course, in a simple relationship like this, we would expect 1 when the numerator of the ratio is equal to the denominator:</p>
+<p><span class="math display">\[P[failure|NC]_{delivered} - P_{target}[failure]_{delivered} = P[failure|NC]_{delivered} -  P[failure|NC]_{delivered}\]</span>
+This condition will exist when</p>
+<p><span class="math display">\[P[failure|C]_{delivered} = P_{target}[failure]_{delivered}\]</span></p>
+<p>If for any reason <span class="math inline">\(P[failure|C]_{delivered} &gt; P_{target}[failure]_{delivered}\)</span> the axiom of normalization is violated and we will fail to produce a useful IRR value. In other words if this boundary condition is violated we will not be able to manage the reliability of the product by managing the manufacturing system.</p>
+</div>
+<div id="mathematical-boundary" class="section level3 hasAnchor" number="2.5.4">
+<h3><span class="header-section-number">2.5.4</span> Mathematical Boundary<a href="irr-equation.html#mathematical-boundary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Our final boundary condition exists to protect the mathematical integrity of the equation. This is really not derived from the axioms of probability, but from the need to avoid the limitation created when we divide by zero. This occurs when the denominator of the ratio in Equation 4 goes to zero. This in turn goes to the condition where</p>
+<p><span class="math display">\[P[failure|NC]_{delivered} - P[failure|NC]_{delivered} = 0\]</span></p>
+<p>with the result that we cannot allow</p>
+<p><span class="math display">\[P[failure|NC]_{delivered} = P[failure|NC]_{delivered}\]</span></p>
+<p>If for any reason <span class="math inline">\(P[failure|NC]_{delivered} = P[failure|NC]_{delivered}\)</span> the divide by 0 restriction is violated and we will fail to produce a useful IRR value. In other words if this boundary condition is violated we will not be able to manage the reliability of the product by managing the manufacturing system.</p>
+</div>
+</div>
+<div id="summary" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Summary<a href="irr-equation.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="using-the-calculator.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true,
+    "toc_depth": 2
+  },
+  "toolbar": {
+    "position": "fixed"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

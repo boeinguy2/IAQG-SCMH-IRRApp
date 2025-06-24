@@ -1,0 +1,13 @@
+# Glossary
+
+## Epistemic Unceertainty
+
+Epistemic uncertainty is also known as systematic uncertainty, and is due to things one could in principle know but does not in practice. This may be because a measurement is not accurate, because the model neglects certain effects, or because particular data have been deliberately hidden.
+
+taken from Wikipedia article "Uncertianty Quantification" https://en.wikipedia.org/wiki/Uncertainty_quantification
+
+## Maximum Allowable Probability of Failure
+
+A target that limits the probability of failure the product can experience during its assigned mission.  This can range from minimal impact (>10-3), probable (<= 10-3, > 10-5),  remote (<= 10-5, > 10-7), extremely remote (<= 10-7, >10-9), extremely improbable (<= 10-9).
+
+taken from AC-1309-1B

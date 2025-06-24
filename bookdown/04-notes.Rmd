@@ -1,0 +1,28 @@
+# Additional Notes
+
+these will be added
+
+## xyz
+
+Now is the TIme for all good men to come to the aid of their fellows
+
+### Examples of warnings and notes
+
+Point estimates do not account for the uncertainty in the information the decision maker has available.  Each input term has either epistemic or aleatoric uncertainty associated, which in turn creates a range of possible \textit{IRR} Values
+
+
+```{r, echo=FALSE, results='asis'}
+cat(info_box("This is important information to remember."))
+```
+
+```{r, echo=FALSE, results='asis'}
+cat(warning_box("Be careful when running this code."))
+```
+
+```{r, echo=FALSE, results='asis'}
+cat(tip_box("Here's a helpful tip for better results."))
+```
+
+```{r, echo=FALSE, results='asis'}
+cat(error_box("This shows what happens when something goes wrong."))
+```

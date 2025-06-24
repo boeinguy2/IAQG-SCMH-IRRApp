@@ -1,0 +1,13 @@
+
+# References
+
+```{r echo=FALSE, results='asis'}
+if (knitr::is_latex_output()) {
+  cat("\\addcontentsline{toc}{section}{References}")
+  cat("\\nocite{*}")
+  cat("\\renewcommand{\\bibname}{References}")
+  cat("\\vspace{-2em}")  # Reduce space before bibliography
+} else {
+  cat("# References {-}")
+}
+```

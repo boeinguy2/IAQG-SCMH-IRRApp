@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>IRR Calculator Tutorial</title>
+  <meta name="description" content="This document is intended to be a tutorial for using the IRR Calculator App." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="IRR Calculator Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This document is intended to be a tutorial for using the IRR Calculator App." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="IRR Calculator Tutorial" />
+  
+  <meta name="twitter:description" content="This document is intended to be a tutorial for using the IRR Calculator App." />
+  
+
+<meta name="author" content="Joe Hightower" />
+
+
+<meta name="date" content="2025-06-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="irr-equation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">IRR Calculator Tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#the-book"><i class="fa fa-check"></i><b>1.1</b> The Book</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#chapter-summaries"><i class="fa fa-check"></i><b>1.1.1</b> Chapter summaries</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#using-the-tool"><i class="fa fa-check"></i><b>1.1.2</b> Using The Tool</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#the-design-engineering-tasks"><i class="fa fa-check"></i><b>1.1.3</b> The Design Engineering Tasks</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#the-quality-engineering-tasks"><i class="fa fa-check"></i><b>1.1.4</b> The Quality Engineering Tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#general-notes-on-the-tool"><i class="fa fa-check"></i><b>1.2</b> General Notes on the Tool</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#notes-on-the-bookdown-interface"><i class="fa fa-check"></i><b>1.2.1</b> Notes on the bookdown Interface</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#notes-on-app-layout"><i class="fa fa-check"></i><b>1.2.2</b> Notes on App Layout</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#notes-on-plots-created-in-the-irr-app"><i class="fa fa-check"></i><b>1.2.3</b> Notes on Plots Created in The IRR App</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="irr-equation.html"><a href="irr-equation.html"><i class="fa fa-check"></i><b>2</b> IRR Equation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="irr-equation.html"><a href="irr-equation.html#equation-for-the-total-probability-of-failure-in-delivered-product"><i class="fa fa-check"></i><b>2.1</b> Equation for the Total probability of Failure in delivered product</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="irr-equation.html"><a href="irr-equation.html#partitioning-the-total-probability-of-failure"><i class="fa fa-check"></i><b>2.1.1</b> Partitioning the Total Probability of Failure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="irr-equation.html"><a href="irr-equation.html#linking-the-equation-to-a-target-maximum-probability-of-failure"><i class="fa fa-check"></i><b>2.2</b> Linking the equation to a target maximum probability of failure</a></li>
+<li class="chapter" data-level="2.3" data-path="irr-equation.html"><a href="irr-equation.html#rearrangment-and-the-irr-definition"><i class="fa fa-check"></i><b>2.3</b> Rearrangment and the IRR definition</a></li>
+<li class="chapter" data-level="2.4" data-path="irr-equation.html"><a href="irr-equation.html#notes-on-probabilities"><i class="fa fa-check"></i><b>2.4</b> Notes on PRobabilities</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="irr-equation.html"><a href="irr-equation.html#functions-for-conditional-probabilities-of-failure"><i class="fa fa-check"></i><b>2.4.1</b> Functions for Conditional Probabilities of Failure</a></li>
+<li class="chapter" data-level="2.4.2" data-path="irr-equation.html"><a href="irr-equation.html#functions-for-marginal-probabilities-resulting-from-manufacturing"><i class="fa fa-check"></i><b>2.4.2</b> Functions for marginal probabilities resulting from manufacturing</a></li>
+<li class="chapter" data-level="2.4.3" data-path="irr-equation.html"><a href="irr-equation.html#aggregating-individual-irr-values-to-create-product-level-irr-values"><i class="fa fa-check"></i><b>2.4.3</b> Aggregating Individual IRR values to create product level IRR values</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="irr-equation.html"><a href="irr-equation.html#boundary-conditions"><i class="fa fa-check"></i><b>2.5</b> Boundary Conditions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="irr-equation.html"><a href="irr-equation.html#axioms-of-probability"><i class="fa fa-check"></i><b>2.5.1</b> Axioms of Probability</a></li>
+<li class="chapter" data-level="2.5.2" data-path="irr-equation.html"><a href="irr-equation.html#lower-boundary"><i class="fa fa-check"></i><b>2.5.2</b> Lower Boundary</a></li>
+<li class="chapter" data-level="2.5.3" data-path="irr-equation.html"><a href="irr-equation.html#upper-boundary"><i class="fa fa-check"></i><b>2.5.3</b> Upper Boundary</a></li>
+<li class="chapter" data-level="2.5.4" data-path="irr-equation.html"><a href="irr-equation.html#mathematical-boundary"><i class="fa fa-check"></i><b>2.5.4</b> Mathematical Boundary</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="irr-equation.html"><a href="irr-equation.html#summary"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="using-the-calculator.html"><a href="using-the-calculator.html"><i class="fa fa-check"></i><b>3</b> Using the Calculator</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="using-the-calculator.html"><a href="using-the-calculator.html#types-of-estimates"><i class="fa fa-check"></i><b>3.1</b> Types of estimates</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="using-the-calculator.html"><a href="using-the-calculator.html#judgement-under-uncertainty"><i class="fa fa-check"></i><b>3.1.1</b> Judgement Under Uncertainty</a></li>
+<li class="chapter" data-level="3.1.2" data-path="using-the-calculator.html"><a href="using-the-calculator.html#first-we-discuss-the-relationship-to-risk"><i class="fa fa-check"></i><b>3.1.2</b> First we discuss the relationship to Risk</a></li>
+<li class="chapter" data-level="3.1.3" data-path="using-the-calculator.html"><a href="using-the-calculator.html#point-estimates"><i class="fa fa-check"></i><b>3.1.3</b> Point Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="using-the-calculator.html"><a href="using-the-calculator.html#using-the-calculator-for-design-purposes"><i class="fa fa-check"></i><b>3.2</b> Using the Calculator for Design Purposes</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="using-the-calculator.html"><a href="using-the-calculator.html#point-estimates-1"><i class="fa fa-check"></i><b>3.2.1</b> Point Estimates</a></li>
+<li class="chapter" data-level="3.2.2" data-path="using-the-calculator.html"><a href="using-the-calculator.html#epistemic-boundaries"><i class="fa fa-check"></i><b>3.2.2</b> Epistemic Boundaries</a></li>
+<li class="chapter" data-level="3.2.3" data-path="using-the-calculator.html"><a href="using-the-calculator.html#aleatoric-estimates-1"><i class="fa fa-check"></i><b>3.2.3</b> Aleatoric Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="using-the-calculator.html"><a href="using-the-calculator.html#using-the-calculator-for-quality-purposes"><i class="fa fa-check"></i><b>3.3</b> Using the Calculator for Quality Purposes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="comparing-design-space.html"><a href="comparing-design-space.html"><i class="fa fa-check"></i><b>4</b> Comparing Design Space</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="comparing-design-space.html"><a href="comparing-design-space.html#comparing-design-space-for-design-purposes"><i class="fa fa-check"></i><b>4.1</b> Comparing Design Space For Design Purposes</a></li>
+<li class="chapter" data-level="4.2" data-path="comparing-design-space.html"><a href="comparing-design-space.html#comparing-design-space-for-quality-purposes"><i class="fa fa-check"></i><b>4.2</b> Comparing Design Space For Quality Purposes</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="additional-notes.html"><a href="additional-notes.html"><i class="fa fa-check"></i><b>5</b> Additional Notes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="additional-notes.html"><a href="additional-notes.html#xyz"><i class="fa fa-check"></i><b>5.1</b> xyz</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="additional-notes.html"><a href="additional-notes.html#examples-of-warnings-and-notes"><i class="fa fa-check"></i><b>5.1.1</b> Examples of warnings and notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="glossary.html"><a href="glossary.html"><i class="fa fa-check"></i><b>6</b> Glossary</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="glossary.html"><a href="glossary.html#epistemic-unceertainty"><i class="fa fa-check"></i><b>6.1</b> Epistemic Unceertainty</a></li>
+<li class="chapter" data-level="6.2" data-path="glossary.html"><a href="glossary.html#maximum-allowable-probability-of-failure"><i class="fa fa-check"></i><b>6.2</b> Maximum Allowable Probability of Failure</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+none
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IRR Calculator Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">IRR Calculator Tutorial</h1>
+<p class="author"><em>Joe Hightower</em></p>
+<p class="date"><em>2025-06-12</em></p>
+</div>
+<div id="introduction" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The Initial Reliability Requirement (IRR) is integral to the application of AS9138. It provides a summary of the Design Engineer’s evaluation of the effect of design decisions on the probability of failure in the delivered product. This in turn becomes the target that must be achieved by the production system (combined effects of process capability and inspection system) to realize those results.</p>
+<p>It is not easy to understand the IRR, how to develop one and how to apply it to the design and manufacture of product. Fo many it is a completely new concept that is not a standard part of curent design practices.</p>
+<p>The problem then is to help the Design Engineer understand how design choices affect probability of failure, and how this affects the requirements passed on to manufacturing. Then the Quality Engineer must understand and properly interpret the IRR to ensure that the delivered product will satisfy this requirement</p>
+<p>The purpose of this tool then is to support exploring the relationships involved, learning the basics of how the IRR functions. The tool can also be used to establish an IRR value for new designs and for existing designs that do not currently have an IRR value.</p>
+<div id="the-book" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> The Book<a href="index.html#the-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>But the most important aspect of the tool is the questions that the tool can help the Design Engineer and Quality Engineer can answer. Each can benefit from the ability of the tool to relate real decision problems in Design and Quality</p>
+<div id="chapter-summaries" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Chapter summaries<a href="index.html#chapter-summaries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Chapter 1 Presents a general overview of the purpose of this app</li>
+<li>Chapter 2 Discusses the relationship between reliability results and manufacturing outcomes</li>
+<li>Chapter 3 Presents the IRR equation, the mathematical development, and the enforceable boundary conditions</li>
+<li>Chapter 4 Discusses the IRR Calculator and offers several examples of applications</li>
+<li>Chapter 5 Discusses the Design Space Analysis Tools and offers several examples of Applications</li>
+<li>Chapter 6 Presents additional useful notes</li>
+<li>Chapter 7 Provides a glossary for terms that may be less familiar to the users</li>
+<li>Chapter 8 adds a list of relevant references used in the development of the Tutorial</li>
+</ol>
+</div>
+<div id="using-the-tool" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Using The Tool<a href="index.html#using-the-tool" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To help a user understand how the app works including how the calculator works and how contour plots work. This purpose is primarily about function. These include questions like:</p>
+<ol style="list-style-type: decimal">
+<li>What inputs are required?</li>
+<li>What boundary conditions are enforced by the tool</li>
+<li>How to use the different tabs for the calculator and the design space analysis</li>
+<li>How to use the graphical toolbar included with the contour plots in the design space analysis?</li>
+</ol>
+</div>
+<div id="the-design-engineering-tasks" class="section level3 hasAnchor" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> The Design Engineering Tasks<a href="index.html#the-design-engineering-tasks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Design Engineer will ask how the IRR relates to design decisions that affect the two parameters Probability of Failure given Conformance and the Probability of Failure Given Nonconformance. More importantly, how do these choices affect the inspection system requirements that must be applied to the manufacturing system.</p>
+<p>The Design Engineer has two primary tasks for which this tool will prove beneficial:</p>
+<ol style="list-style-type: decimal">
+<li>The design process - making design decisions that affect the Probability of Failure when conforming (closely related to margins of safety) and decisions that affect the Probability of Failure when nonconforming (closely related to fault tolerant design)</li>
+<li>Evaluating possible IRR values for and existing product - many existing products were not designed with the IRR in mind. But the design engineer may be asked to assign an IRR. This process will require at a minimum a qualitative, heuristics driven process to assess original goal for the maximum allowable probability of failure required by the delivered product. they will also need to assign estimates to the probability of failure given conformance and probability of failure given nonconformance and then the IRR that results from these three inputs. Of course a process like this has risk for cognitive bias and is subject to significant epistemic uncertainty</li>
+</ol>
+</div>
+<div id="the-quality-engineering-tasks" class="section level3 hasAnchor" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> The Quality Engineering Tasks<a href="index.html#the-quality-engineering-tasks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Quality Engineering Task is two fold. First, the quality Engineer designs the Inspection System which in conjunction with the manufacturing processes will manage the realized probability of conformance in delivered product (the outgoing quality).</p>
+<p>Second, the Quality Engineer may be required to evaluate a proposed IRR (such as those provided in Appendix A of AS9138) for a given application. To make that assessment, the Quality Engineer will be helped by understanding the three relevant questions the Quality Engineer must be prepared to answer:</p>
+<ol style="list-style-type: decimal">
+<li>What order of magnitude is associated with the target maximum probability of failure that the Design Engineer associates with the selected characteristic.</li>
+<li>what is the relationship between the probability of failure given conformance for the existing design and the proposed IRR values selected?</li>
+<li>what is the relationship between the probability of failure given nonconformance for the existing design and the proposed IRR values selected?</li>
+<li>what is the relationship between the probability of failure given conformance and the probability of failure given nonconformance</li>
+</ol>
+</div>
+</div>
+<div id="general-notes-on-the-tool" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> General Notes on the Tool<a href="index.html#general-notes-on-the-tool" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This section provides details regarding the Interface for this book, the layout of the App, and the graphs used to create visuals for the tool.</p>
+<div id="notes-on-the-bookdown-interface" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Notes on the bookdown Interface<a href="index.html#notes-on-the-bookdown-interface" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This Tutorial is presented using the bookdown interface <span class="citation">(<a href="#ref-R-bookdown">Xie 2025a</a>)</span>. There are several features of the bookdown interface used to display the book that are useful to understand. We present an overview here:</p>
+<p>The main interface is shown in Figure <a href="index.html#fig:mainBook">1.1</a>. There a few simple controls that may prove useful to the user.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:mainBook"></span>
+<img src="Main%20Book%20Interface.png" alt="Main bookdown Interface" width="80%" />
+<p class="caption">
+Figure 1.1: Main bookdown Interface
+</p>
+</div>
+<p>The Table of Contents can be made visible or hidden depending on preference Figure <a href="index.html#fig:toc">1.2</a>:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:toc"></span>
+<img src="Table%20of%20Contents%20Sidebar.png" alt="The Table of Contents Sidebar" width="80%" />
+<p class="caption">
+Figure 1.2: The Table of Contents Sidebar
+</p>
+</div>
+<p>The book can be searched using this magnifying glass icon; see Figure <a href="index.html#fig:search">1.3</a>. Text is entered at the top of the Table of Contents Bar:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:search"></span>
+<img src="Search%20Bar.png" alt="Search Function" width="80%" />
+<p class="caption">
+Figure 1.3: Search Function
+</p>
+</div>
+<p>The App provides a few tools to manage font size, background color, line spacing, and font type; see Figure <a href="index.html#fig:font">1.4</a>:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:font"></span>
+<img src="Font%20Management.png" alt="Font Management" width="80%" />
+<p class="caption">
+Figure 1.4: Font Management
+</p>
+</div>
+<p>Shown in Figure <a href="index.html#fig:download">1.5</a> this selection will allow the user to download a pdf copy of this book:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:download"></span>
+<img src="Download%20Selection.png" alt="Download Selection" width="80%" />
+<p class="caption">
+Figure 1.5: Download Selection
+</p>
+</div>
+<p>Finally in Figure <a href="index.html#fig:sharing">1.6</a>, in the upper right corner, the user can share pages from the book if desired:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sharing"></span>
+<img src="Sharing.png" alt="Sharing" width="80%" />
+<p class="caption">
+Figure 1.6: Sharing
+</p>
+</div>
+<p>Beyond this there is a scrollbar on the right side of the page for scrolling through pages. At the bottom of each page is a set of arrows that allow the user to turn to the next page.</p>
+</div>
+<div id="notes-on-app-layout" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Notes on App Layout<a href="index.html#notes-on-app-layout" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This tool uses Shiny <span class="citation">(<a href="#ref-R-Shiny">Chang et al. 2025</a>)</span>, an interface to provide functionality making data and data activities accessible in an accessible user interface. Underneath the hood is R <span class="citation">(<a href="#ref-R-base">R Core Team 2025</a>)</span>, Which performs the statistical work behind the results the user interacts with.</p>
+<p>The Shiny Interface includes the following:</p>
+<ol style="list-style-type: decimal">
+<li>Figure <a href="index.html#fig:landing">1.7</a> show a the landing page where the App starts out</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:landing"></span>
+<img src="Landing_Page.png" alt="Sharing" width="80%" />
+<p class="caption">
+Figure 1.7: Sharing
+</p>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>From the Landing Page the user can use tabbed sections to access</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Selecting the “Tutorial” tab as shown in Figure <a href="index.html#fig:book">1.8</a> displays this tutorial</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:book"></span>
+<img src="Main%20Book%20Interface.png" alt="Main bookdown Interface" width="80%" />
+<p class="caption">
+Figure 1.8: Main bookdown Interface
+</p>
+</div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Selecting “Calculator” tab, shown in Figure <a href="index.html#fig:calculator">1.9</a></li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:calculator"></span>
+<img src="IRR_Calculator.png" alt="Main bookdown Interface" width="80%" />
+<p class="caption">
+Figure 1.9: Main bookdown Interface
+</p>
+</div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>The Design Space Explorer</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="Design%20Space%20Explorer.png" alt="Main bookdown Interface" width="80%" />
+<p class="caption">
+Figure 1.10: Main bookdown Interface
+</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>Note that the application is designed to input required parameters on the left side and display results in the main area</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="Page%20Layout.png" alt="Main bookdown Interface" width="80%" />
+<p class="caption">
+Figure 1.11: Main bookdown Interface
+</p>
+</div>
+<div class="tip-box">
+<i class="fas fa-lightbulb box-icon"></i><strong>Tip:</strong> The Data Input may include additonal tabs separating the three input values where each may require multiple inputs and other settings.
+</div>
+</div>
+<div id="notes-on-plots-created-in-the-irr-app" class="section level3 hasAnchor" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Notes on Plots Created in The IRR App<a href="index.html#notes-on-plots-created-in-the-irr-app" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This tool uses Plotly R Open Source Graphing Library <span class="citation">(<a href="#ref-plotly">Inc. 2015</a>)</span>, a graphing library library making publication quality graphs. A key aspect of Plotly graphs is interactivity, through both the cursor and through a toolbar associated with each graph.</p>
+<p>Cursor interactivity changes depending on the graph type, but typically will include coordinate information of points where the cursor is located allowing the user to examine the data behind minimum and maximum values, etc.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="Cursor%20Feedback.png" alt="Main bookdown Interface" width="80%" />
+<p class="caption">
+Figure 1.12: Main bookdown Interface
+</p>
+</div>
+<p>The Toolbar is located in the upper right of the plot area. The Toolbar adds several useful tools including the ability to save a copy of the plot as a PNG image file, zoom, pan, and restore the plot to original scale.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="Plotly%20Toolbar.png" alt="Main bookdown Interface" width="80%" />
+<p class="caption">
+Figure 1.13: Main bookdown Interface
+</p>
+</div>
+<div class="tip-box">
+<i class="fas fa-lightbulb box-icon"></i><strong>Tip:</strong> The Download Image function captures the image as it appears on the screen. If the image has been zoomed, panned, or returned to original scale, the captured image will reflect those choices.
+</div>
+
+</div>
+</div>
+</div>
+<h3>References<a href="references-1.html#references-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-R-Shiny" class="csl-entry">
+Chang, Winston, Joe Cheng, JJ Allaire, Carson Sievert, Barret Schloerke, Yihui Xie, Jeff Allen, Jonathan McPherson, Alan Dipert, and Barbara Borges. 2025. <em>Shiny: Web Application Framework for r</em>. <a href="https://github.com/rstudio/shiny">https://github.com/rstudio/shiny</a>.
+</div>
+<div id="ref-plotly" class="csl-entry">
+Inc., Plotly Technologies. 2015. <span>“Collaborative Data Science.”</span> Montreal, QC: Plotly Technologies Inc. 2015. <a href="https://plotly.com/r/">https://plotly.com/r/</a>.
+</div>
+<div id="ref-R-base" class="csl-entry">
+R Core Team. 2025. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-R-bookdown" class="csl-entry">
+———. 2025a. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="irr-equation.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true,
+    "toc_depth": 2
+  },
+  "toolbar": {
+    "position": "fixed"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

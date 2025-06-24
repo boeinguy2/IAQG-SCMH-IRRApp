@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Using the Calculator | IRR Calculator Tutorial</title>
+  <meta name="description" content="This document is intended to be a tutorial for using the IRR Calculator App." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Using the Calculator | IRR Calculator Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This document is intended to be a tutorial for using the IRR Calculator App." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Using the Calculator | IRR Calculator Tutorial" />
+  
+  <meta name="twitter:description" content="This document is intended to be a tutorial for using the IRR Calculator App." />
+  
+
+<meta name="author" content="Joe Hightower" />
+
+
+<meta name="date" content="2025-06-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="irr-equation.html"/>
+<link rel="next" href="comparing-design-space.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">IRR Calculator Tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#irr-calculator-app"><i class="fa fa-check"></i><b>1.1</b> IRR Calculator App</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#using-the-tool"><i class="fa fa-check"></i><b>1.1.1</b> Using The Tool</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#the-design-engineering-tasks"><i class="fa fa-check"></i><b>1.1.2</b> The Design Engineering Tasks</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#the-quality-engineering-tasks"><i class="fa fa-check"></i><b>1.1.3</b> The Quality Engineering Tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#chapter-summaries"><i class="fa fa-check"></i><b>1.2</b> Chapter summaries</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#notes-on-the-bookdown-interface"><i class="fa fa-check"></i><b>1.3</b> Notes on the bookdown Interface</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#notes-on-app-layout"><i class="fa fa-check"></i><b>1.4</b> Notes on App Layout</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#notes-on-plots-created-in-the-irr-app"><i class="fa fa-check"></i><b>1.5</b> Notes on Plots Created in The IRR App</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="irr-equation.html"><a href="irr-equation.html"><i class="fa fa-check"></i><b>2</b> IRR Equation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="irr-equation.html"><a href="irr-equation.html#equation-for-the-total-probability-of-failure-in-delivered-product"><i class="fa fa-check"></i><b>2.1</b> Equation for the Total probability of Failure in delivered product</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="irr-equation.html"><a href="irr-equation.html#partitioning-the-total-probability-of-failure"><i class="fa fa-check"></i><b>2.1.1</b> Partitioning the Total Probability of Failure</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="irr-equation.html"><a href="irr-equation.html#linking-the-equation-to-a-target-maximum-probability-of-failure"><i class="fa fa-check"></i><b>2.2</b> Linking the equation to a target maximum probability of failure</a></li>
+<li class="chapter" data-level="2.3" data-path="irr-equation.html"><a href="irr-equation.html#rearrangment-and-the-irr-definition"><i class="fa fa-check"></i><b>2.3</b> Rearrangment and the IRR definition</a></li>
+<li class="chapter" data-level="2.4" data-path="irr-equation.html"><a href="irr-equation.html#notes-on-probabilities"><i class="fa fa-check"></i><b>2.4</b> Notes on PRobabilities</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="irr-equation.html"><a href="irr-equation.html#functions-for-conditional-probabilities-of-failure"><i class="fa fa-check"></i><b>2.4.1</b> Functions for Conditional Probabilities of Failure</a></li>
+<li class="chapter" data-level="2.4.2" data-path="irr-equation.html"><a href="irr-equation.html#functions-for-marginal-probabilities-resulting-from-manufacturing"><i class="fa fa-check"></i><b>2.4.2</b> Functions for marginal probabilities resulting from manufacturing</a></li>
+<li class="chapter" data-level="2.4.3" data-path="irr-equation.html"><a href="irr-equation.html#aggregating-individual-irr-values-to-create-product-level-irr-values"><i class="fa fa-check"></i><b>2.4.3</b> Aggregating Individual IRR values to create product level IRR values</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="irr-equation.html"><a href="irr-equation.html#boundary-conditions"><i class="fa fa-check"></i><b>2.5</b> Boundary Conditions</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="irr-equation.html"><a href="irr-equation.html#axioms-of-probability"><i class="fa fa-check"></i><b>2.5.1</b> Axioms of Probability</a></li>
+<li class="chapter" data-level="2.5.2" data-path="irr-equation.html"><a href="irr-equation.html#lower-boundary"><i class="fa fa-check"></i><b>2.5.2</b> Lower Boundary</a></li>
+<li class="chapter" data-level="2.5.3" data-path="irr-equation.html"><a href="irr-equation.html#upper-boundary"><i class="fa fa-check"></i><b>2.5.3</b> Upper Boundary</a></li>
+<li class="chapter" data-level="2.5.4" data-path="irr-equation.html"><a href="irr-equation.html#mathematical-boundary"><i class="fa fa-check"></i><b>2.5.4</b> Mathematical Boundary</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="irr-equation.html"><a href="irr-equation.html#summary"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="using-the-calculator.html"><a href="using-the-calculator.html"><i class="fa fa-check"></i><b>3</b> Using the Calculator</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="using-the-calculator.html"><a href="using-the-calculator.html#types-of-estimates"><i class="fa fa-check"></i><b>3.1</b> Types of estimates</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="using-the-calculator.html"><a href="using-the-calculator.html#judgement-under-uncertainty"><i class="fa fa-check"></i><b>3.1.1</b> Judgement Under Uncertainty</a></li>
+<li class="chapter" data-level="3.1.2" data-path="using-the-calculator.html"><a href="using-the-calculator.html#first-we-discuss-the-relationship-to-risk"><i class="fa fa-check"></i><b>3.1.2</b> First we discuss the relationship to Risk</a></li>
+<li class="chapter" data-level="3.1.3" data-path="using-the-calculator.html"><a href="using-the-calculator.html#point-estimates"><i class="fa fa-check"></i><b>3.1.3</b> Point Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="using-the-calculator.html"><a href="using-the-calculator.html#using-the-calculator-for-design-purposes"><i class="fa fa-check"></i><b>3.2</b> Using the Calculator for Design Purposes</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="using-the-calculator.html"><a href="using-the-calculator.html#point-estimates-1"><i class="fa fa-check"></i><b>3.2.1</b> Point Estimates</a></li>
+<li class="chapter" data-level="3.2.2" data-path="using-the-calculator.html"><a href="using-the-calculator.html#epistemic-boundaries"><i class="fa fa-check"></i><b>3.2.2</b> Epistemic Boundaries</a></li>
+<li class="chapter" data-level="3.2.3" data-path="using-the-calculator.html"><a href="using-the-calculator.html#aleatoric-estimates-1"><i class="fa fa-check"></i><b>3.2.3</b> Aleatoric Estimates</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="using-the-calculator.html"><a href="using-the-calculator.html#using-the-calculator-for-quality-purposes"><i class="fa fa-check"></i><b>3.3</b> Using the Calculator for Quality Purposes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="comparing-design-space.html"><a href="comparing-design-space.html"><i class="fa fa-check"></i><b>4</b> Comparing Design Space</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="comparing-design-space.html"><a href="comparing-design-space.html#comparing-design-space-for-design-purposes"><i class="fa fa-check"></i><b>4.1</b> Comparing Design Space For Design Purposes</a></li>
+<li class="chapter" data-level="4.2" data-path="comparing-design-space.html"><a href="comparing-design-space.html#comparing-design-space-for-quality-purposes"><i class="fa fa-check"></i><b>4.2</b> Comparing Design Space For Quality Purposes</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="additional-notes.html"><a href="additional-notes.html"><i class="fa fa-check"></i><b>5</b> Additional Notes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="additional-notes.html"><a href="additional-notes.html#xyz"><i class="fa fa-check"></i><b>5.1</b> xyz</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="additional-notes.html"><a href="additional-notes.html#examples-of-warnings-and-notes"><i class="fa fa-check"></i><b>5.1.1</b> Examples of warnings and notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="glossary.html"><a href="glossary.html"><i class="fa fa-check"></i><b>6</b> Glossary</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="glossary.html"><a href="glossary.html#epistemic-unceertainty"><i class="fa fa-check"></i><b>6.1</b> Epistemic Unceertainty</a></li>
+<li class="chapter" data-level="6.2" data-path="glossary.html"><a href="glossary.html#maximum-allowable-probability-of-failure"><i class="fa fa-check"></i><b>6.2</b> Maximum Allowable Probability of Failure</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+none
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IRR Calculator Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="using-the-calculator" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Using the Calculator<a href="using-the-calculator.html#using-the-calculator" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We will present examples of uses for Design Purpose and Quality Purposes. For each case, it is necessary that the user have three estimates in hand:</p>
+<ol style="list-style-type: decimal">
+<li>An Estimate of the probability of failure when the product is delivered nonconforming</li>
+<li>An estimate of the probability of failure when the product is delivered confomring</li>
+<li>An estimate of the maximum probability of failure that the product is designed to allow.</li>
+</ol>
+<p>We can use the associated estimates to determine an appropriate IRR value for a given context.</p>
+<p>Note: Consider that the resolution of the estimated IRR will depend on the …</p>
+<p>Note: This manual does not yet cover IRR values for Products. There is an additional level of uncertainty when the IRR is required to address a product with multiple product characteristics. This will be addressed in a future update of the tool.</p>
+<div id="types-of-estimates" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Types of estimates<a href="using-the-calculator.html#types-of-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="judgement-under-uncertainty" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Judgement Under Uncertainty<a href="using-the-calculator.html#judgement-under-uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Evaluating a IRR requires, to some degree, the judgement of the Engineer. We are dealing with a set of decisions regarding the Probability of Failure given conformance and the Probability of failure given nonconformance. These two are necessary for estimating an IRR. In some cases we may want to evaluate how the IRR is influenced by the target maximum probability of failure also.</p>
+<p>But in the real world we can only know these values with some degree of uncertainty. That uncertainty propagates into the estimated IRR value. Methods exist for estimating the uncertainty that is propagated in this way.</p>
+<p>But in a judgement based decision, we often do not know the uncertainty in our estimates of each the two parameters. This means that we cannot evaluate the propagated uncertainty associated with the IRR.</p>
+<p>So how do we reduce the risk associated with this problem? The first and primary approach is to gather the data necessary to estimate the parameter and the uncertainty associated with it. Then we can use simple methods to propagate the uncertainty int the IRR estimate, with the result that we will understand the uncertainty and be able to make decision accordingly.</p>
+</div>
+<div id="first-we-discuss-the-relationship-to-risk" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> First we discuss the relationship to Risk<a href="using-the-calculator.html#first-we-discuss-the-relationship-to-risk" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We start by evaluating a table constructed from data presented in AC 25.1309-1b “System Design and Analysis”. This data applies labels to different probabilities of failure. The labels reflect a perception that as probability of failure decreases by orders of magnitude the expectation of failure conditions decreases. This table is derived from <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<table>
+<colgroup>
+<col width="48%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Failure.Condition</th>
+<th align="center">Upper.Boundary</th>
+<th align="center">Lower.Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Likely Failure Condition</td>
+<td align="center"><span class="math inline">\(= 1 \times 10^{-1}\)</span></td>
+<td align="center"><span class="math inline">\(&gt; 1 \times 10^{-3}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Probable Failure Conditions</td>
+<td align="center"><span class="math inline">\(= 1 \times 10^{-3}\)</span></td>
+<td align="center"><span class="math inline">\(&gt; 1 \times 10^{-5}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Remote Failure Conditions</td>
+<td align="center"><span class="math inline">\(= 1 \times 10^{-5}\)</span></td>
+<td align="center"><span class="math inline">\(&gt; 1 \times 10^{-7}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Extremely Remote Failure Conditions</td>
+<td align="center"><span class="math inline">\(= 1 \times 10^{-7}\)</span></td>
+<td align="center"><span class="math inline">\(&gt; 1 \times 10^{-9}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Extremely Improbable Failure Conditions</td>
+<td align="center"><span class="math inline">\(= 1 \times 10^{-9}\)</span></td>
+<td align="center"><span class="math inline">\(&lt; 1 \times 10^{-9}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Now to relate this to risk, we would expect that we would set a lower probability failure as a maximum target in order to control the risk to the product and or the customer that results from those failure conditions. “Extremely Improbable Failure Conditions” would represent events that are very unlikely to occur, a level we would choose if the risk to the product or the customer for the failure condition is high.</p>
+<p>But often, we cannot take the time or the resources to make these estimates. The primary method then is to understand that uncertainty exists and then to manage the decisions we will make accordingly. If we have no knowledge about the uncertainty, we would not want to make decisions where precision is important.</p>
+<p>Judgements apart from data are very difficult to make. Simply evaluating an IRR would be extremely difficult. Making the judgement relies on intuition and experience. But it also relies on cognitive biases. These engage beliefs that may or may not be true, they may engage heuristics that causes an engineer to adjust their estimates based on pre-existing beliefs.</p>
+<p>Common cognitive biases include:</p>
+<ol style="list-style-type: decimal">
+<li><p>Anchoring biases - The anchoring bias, is the tendency to “anchor” on one piece of information when making decisions. If a value is suggested by and expert source, then the decision is anchored to that value even if adjsutments are made. This is often with disregard for differences in context or problem structure.</p></li>
+<li><p>Availability Biases - The tendency to overestimate the likelihood of a value based on more recent memory, which can be influenced by how unusual they may be. For instance, a major problem related to the decision addressed in the recent past may cause the decision maker to overemphasize the likelihood of that event recurring.</p></li>
+<li><p>Selection Biases - when a sample of information is not statistically representative of the problem</p></li>
+<li><p>Confirmation Biases - when the decision maker relies solely on data that confirms pre-existing beliefs and fails to consider all relevant data.</p></li>
+</ol>
+<p>For more discussion and additional cognitive biases see <a href="https://en.wikipedia.org/wiki/List_of_cognitive_biases">List of Cognitive Bias</a></p>
+<p>Properly calibrating judgements to avoid these biases is essential.</p>
+</div>
+<div id="point-estimates" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Point Estimates<a href="using-the-calculator.html#point-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Point estimates exist when a single value for each term is either known or assumed to be known. The Design Engineer will select point values for the probability of failure given conformance and the probability of failure given nonconformance that, in their judgement, represents the design decisions made when the product is certified.</p>
+<div class="note">
+<p><strong>Note:</strong> The probability of failure given conformance is reflected in judgement based on product testing required for design certification.</p>
+</div>
+<p>But the usual approach to design certification is only required to test conforming product. Nonconforming product is screened out by definition, meaning that these conditions are not available for testing. The probability of failure given nonconformance truly depend on engineering judgement.</p>
+<p>If, however, certification by analysis is used, then simulation results may well exist for both conforming conditions and nonconforming conditions. The Design Engineer may well have access to results that will provide some support for their judgement.</p>
+<p>However, no measure of uncertainty is provided.</p>
+<div class="warning">
+<p><strong>Warning:</strong> This form of estimate does not allow for uncertainty to be assessed in the estimate of the IRR.</p>
+</div>
+<p>This will matter when the IRR is estimated, and the effect of the estimate falls into one of three categories:</p>
+<ol style="list-style-type: decimal">
+<li>The estimate is a perfect reflection of the product design decisions and therefore its probability of failure will be satisfied by any inspection system that satisfies the IRR.<br />
+</li>
+<li>The input values are conservative and the required IRR is overestimated. The product is protected, but the the cost of inspection will be increased above optimum.</li>
+<li>The input values will be liberal and the required IRR will be underestimated. The product is not protected and the probability of failure will not be achieved, driving cost to the customer.</li>
+</ol>
+<div id="epistemic-estimates" class="section level4 hasAnchor" number="3.1.3.1">
+<h4><span class="header-section-number">3.1.3.1</span> Epistemic estimates<a href="using-the-calculator.html#epistemic-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If the probability of failure is bounded by a design engineer’s experience or beliefs, we have what is called an epistemic estimate of the values. We do not know the actual values, but we are able to establish an expected upper and lower limit for the estimate. We also do not know the distribution of possible values that could exist between these values. IN this context it is best to not supply more than the boundary conditions, making no assumptions about possible distributions. The IRR estimates then establish a bounded region within which we belief that the true IRR will lie.</p>
+</div>
+<div id="aleatoric-estimates" class="section level4 hasAnchor" number="3.1.3.2">
+<h4><span class="header-section-number">3.1.3.2</span> Aleatoric Estimates<a href="using-the-calculator.html#aleatoric-estimates" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>These estimates are based on data, with enough data accumulated to estimate the distribution of values within which true value is likely to fall. This form of estimate is called aleatoric.</p>
+<p>We will use the distributions for each of the three input parameters to generate a sampling distribution for the IRR. From this distribution we can select a parameter that meets selected criteria. For instance we can select the most conservative IRR where the value is greater than or equal to 90%, 95% or most conservatively 99% of the distribution of IRR values.</p>
+</div>
+</div>
+</div>
+<div id="using-the-calculator-for-design-purposes" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Using the Calculator for Design Purposes<a href="using-the-calculator.html#using-the-calculator-for-design-purposes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A Design Engineer will use this tool to answer two questions:</p>
+<ol style="list-style-type: decimal">
+<li>Given a known value for PNC and PC, for a specified target value, what IRR will we achieve</li>
+<li>For a specified IRR and Target, what values of PNC and PC are required - the tool will not work for this task - the contour plots are more useful.</li>
+</ol>
+<p>The Design Engineer may well have an already existing design. This situation will arise when a request is made for an IRR where data is not available. The Design Engineer has three choices for identifying an acceptable IRR:</p>
+<ol style="list-style-type: decimal">
+<li>use a judgement based estimate of the three input parameters</li>
+<li>use epistemic boundaries to account for the uncertainty in the engineers knowledge</li>
+<li>Gather data and estimate the three parameters.</li>
+</ol>
+<p>These represent decreasing uncertainty, both in terms of magnitude and in terms of knowledge. With point estimates no uncertainty is represented or its effect on IRR estimates is se the uncertainty associated with these estimates to propagate uncertainty into the estimated IRR. Epistemic uncertainties still represent judgement, but uncertainty is introduced into the estimate of the IRR by providing boundaries within which the we demonstrate a range of possible values. Finally, where the input values are estimated from data, we have a full accounting of the uncertainty in the estimates and can use simulation to estimate the resulting uncertainty in our IRR estimate.</p>
+<p>With this in mind, we recommend that point estimates be used only when the target maximum probability of failure coincides with the Likely Failure Condition Category. We would recommend that Epistemic uncertainties be applied only to Likely Failure Conditions or to Probable Failure Conditions. Neither of these two approaches should be applied to conditions where the target maximum is is 1 x e-5 of greater.</p>
+<p>Then we recommend that data driven estimates be required for all values &lt;= 1 x e-5.</p>
+<p>It is beyond the scope of this document to present the data that justifies these recommendations, we plan to add this to SCMH documentation in the future.</p>
+<div id="point-estimates-1" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Point Estimates<a href="using-the-calculator.html#point-estimates-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Point Estimates are only useful for low risk conditions. We would recommend that this method of evaluating a product and its relationship to the IRR only for Likely Failure Conditions.</p>
+<p>The Design Engineer identifies values for the probability of failure given conformance, and the probability of failure given nonconformance.</p>
+</div>
+<div id="epistemic-boundaries" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Epistemic Boundaries<a href="using-the-calculator.html#epistemic-boundaries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Epistemic boundaries are constructed by estimating the minimum and maximum values expected by the Engineer for the probability of failure given conformance and the probability of failure given nonconformance. IF the target maximum probability of failure is also uncertain, then upper and lower boundaries can be added for this also.</p>
+<p>When combined, these should produce a total of four (eight) IRR estimates. These four (eight) estimates represent the range of IRR values that the engineer expects to bound the IRR. The final step in the process is to select the IRR that provides the maximum protection to the product, which would be the maximim IRR represented in the range.</p>
+</div>
+<div id="aleatoric-estimates-1" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Aleatoric Estimates<a href="using-the-calculator.html#aleatoric-estimates-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="using-the-calculator-for-quality-purposes" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Using the Calculator for Quality Purposes<a href="using-the-calculator.html#using-the-calculator-for-quality-purposes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Note that it is possible to suggest a starting point with Design Engineers based on Appendix A in AS9138. This tool then can be used to assess whether that IRR is acceptable given the Design Engineers input for our three parameters.</p>
+<p>It is also possible to start discussion by estimating the AOQ for an existing inspection method then discussing the results with the Design Engineer. In many cases the linkage between the two may not be clear and enough information may not be available to support a judgment</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>AC 25.1309-1b “System Design And Analysis<a href="using-the-calculator.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="irr-equation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="comparing-design-space.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true,
+    "toc_depth": 2
+  },
+  "toolbar": {
+    "position": "fixed"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

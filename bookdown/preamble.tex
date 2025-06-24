@@ -1,0 +1,77 @@
+\usepackage{booktabs}
+
+\usepackage[a4paper, margin=2cm]{geometry}
+
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{tcolorbox}
+
+% Define colors
+\definecolor{infocolor}{RGB}{209, 236, 241}
+\definecolor{infoborder}{RGB}{190, 229, 235}
+\definecolor{warningcolor}{RGB}{255, 243, 205}
+\definecolor{warningborder}{RGB}{255, 234, 167}
+\definecolor{tipcolor}{RGB}{212, 237, 218}
+\definecolor{tipborder}{RGB}{195, 230, 203}
+\definecolor{errorcolor}{RGB}{248, 215, 218}
+\definecolor{errorborder}{RGB}{245, 198, 203}
+
+% Define box environments
+\newtcolorbox{infobox}{
+  colback=infocolor,
+  colframe=infoborder,
+  boxrule=1pt,
+  arc=3pt,
+  left=10pt,
+  right=10pt,
+  top=10pt,
+  bottom=10pt
+}
+
+\newtcolorbox{warningbox}{
+  colback=warningcolor,
+  colframe=warningborder,
+  boxrule=1pt,
+  arc=3pt,
+  left=10pt,
+  right=10pt,
+  top=10pt,
+  bottom=10pt
+}
+
+\newtcolorbox{tipbox}{
+  colback=tipcolor,
+  colframe=tipborder,
+  boxrule=1pt,
+  arc=3pt,
+  left=10pt,
+  right=10pt,
+  top=10pt,
+  bottom=10pt
+}
+
+\newtcolorbox{errorbox}{
+  colback=errorcolor,
+  colframe=errorborder,
+  boxrule=1pt,
+  arc=3pt,
+  left=10pt,
+  right=10pt,
+  top=10pt,
+  bottom=10pt
+}
+
+% Bibliography formatting
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-50pt}{40pt}
+
+% Control page breaks before bibliography
+\let\oldbibliography\bibliography
+\renewcommand{\bibliography}[1]{%
+  \clearpage
+  \phantomsection
+  \oldbibliography{#1}
+}

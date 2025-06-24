@@ -1,0 +1,6 @@
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+before_chapter_script: "setup.R"
+rmd_files: ["index.Rmd", "01-IRRDefinition.Rmd", "02-calculator.Rmd", "03-contour.Rmd", "04-notes.Rmd","05-glossary.Rmd","06-references.Rmd"]

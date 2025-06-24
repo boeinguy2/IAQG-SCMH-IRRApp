@@ -1,0 +1,156 @@
+# Using the Calculator
+
+We will present examples of uses for Design Purpose and Quality Purposes.  For each case, it is necessary that the user have three estimates in hand:
+
+1.  An Estimate of the probability of failure when the product is delivered nonconforming
+2.  An estimate of the probability of failure when the product is delivered confomring
+3.  An estimate of the maximum probability of failure that the product is designed to allow.
+
+We can use the associated estimates to determine an appropriate IRR value for a given context.
+
+Note:  Consider that the resolution of the estimated IRR will depend on the ...
+
+Note:  This manual does not yet cover IRR values for Products.  There is an additional level of uncertainty when the IRR is required to address a product with multiple product characteristics.  This will be addressed in a future update of the tool.
+
+## Types of estimates
+
+### Judgement Under Uncertainty
+
+Evaluating a IRR requires, to some degree, the judgement of the Engineer.  We are dealing with a set of decisions regarding the Probability of Failure given conformance and the Probability of failure given nonconformance.  These two are necessary for estimating an IRR.  In some cases we may want to evaluate how the IRR is influenced by the target maximum probability of failure also.  
+
+But in the real world we can only know these values with some degree of uncertainty.  That uncertainty propagates into the estimated IRR value.  Methods exist for estimating the uncertainty that is propagated in this way.
+
+But in a judgement based decision, we often do not know the uncertainty in our estimates of each the two parameters.  This means that we cannot evaluate the propagated uncertainty associated with the IRR.  
+
+So how do we reduce the risk associated with this problem?  The first and primary approach is to gather the data necessary to estimate the parameter and the uncertainty associated with it. Then we can use simple methods to propagate the uncertainty int the IRR estimate, with the result that we will understand the uncertainty and be able to make decision accordingly.
+
+### First we discuss the relationship to Risk
+
+We start by evaluating a table constructed from data presented in AC 25.1309-1b "System Design and Analysis".  This data applies labels to different probabilities of failure.  The labels reflect a perception that as probability of failure decreases by orders of magnitude the expectation of failure conditions decreases. This table is derived from ^[AC 25.1309-1b "System Design And Analysis]
+
+``` {r tab:risk_table, echo = FALSE }
+df_risk <- data.frame(
+  "Failure Condition" = c(
+    "Likely Failure Condition",
+    "Probable Failure Conditions", 
+    "Remote Failure Conditions",
+    "Extremely Remote Failure Conditions",
+    "Extremely Improbable Failure Conditions"
+  ),
+  "Upper Boundary" = c(
+    "$= 1 \\times 10^{-1}$",
+    "$= 1 \\times 10^{-3}$", 
+    "$= 1 \\times 10^{-5}$",
+    "$= 1 \\times 10^{-7}$",
+    "$= 1 \\times 10^{-9}$"
+  ),
+  "Lower Boundary" = c(
+    "$> 1 \\times 10^{-3}$",
+    "$> 1 \\times 10^{-5}$",
+    "$> 1 \\times 10^{-7}$", 
+    "$> 1 \\times 10^{-9}$",
+    "$< 1 \\times 10^{-9}$"
+  )
+)
+knitr::kable(df_risk,
+  #caption = "Table of Risk levels for Target Maximum Probability of Failure.",
+  align = c("c", "c", "c"),
+  escape = FALSE  # Important: allows LaTeX math to render
+)
+
+```
+
+Now to relate this to risk, we would expect that we would set a lower probability failure as a maximum target in order to control the risk to the product and or the customer that results from those failure conditions.  "Extremely Improbable Failure Conditions" would represent events that are very unlikely to occur, a level we would choose if the risk to the product or the customer for the failure condition is high.   
+
+But often, we cannot take the time or the resources to make these estimates.  The primary method then is to understand that uncertainty exists and then to manage the decisions we will make accordingly.  If we have no knowledge about the uncertainty, we would not want to make decisions where precision is important.  
+
+Judgements apart from data are very difficult to make.  Simply evaluating an IRR would be extremely difficult.  Making the judgement relies on intuition and experience.  But it also relies on cognitive biases.  These engage beliefs that may or may not be true, they may engage heuristics that causes an engineer to adjust their estimates based on pre-existing beliefs.  
+
+Common cognitive biases include:
+
+1.  Anchoring biases - The anchoring bias, is the tendency to "anchor" on one piece of information when making decisions.  If a value is suggested by and expert source, then the decision is anchored to that value even if adjsutments are made.  This is often with disregard for differences in context or problem structure.
+
+2.  Availability Biases - The tendency to overestimate the likelihood of a value based on more recent memory, which can be influenced by how unusual they may be. For instance, a major problem related to the decision addressed in the recent past may cause the decision maker to overemphasize the likelihood of that event recurring.
+
+3.  Selection Biases - when a sample of information is not statistically representative of the problem
+
+4.  Confirmation Biases - when the decision maker relies solely on data that confirms pre-existing beliefs and fails to consider all relevant data.
+
+For more discussion and additional cognitive biases see [List of Cognitive Bias](https://en.wikipedia.org/wiki/List_of_cognitive_biases)
+
+Properly calibrating judgements to avoid these biases is essential.
+
+### Point Estimates
+
+Point estimates exist when a single value for each term is either known or assumed to be known. The Design Engineer will select point values for the probability of failure given conformance and the probability of failure given nonconformance that, in their judgement, represents the design decisions made when the product is certified.  
+
+::: {.note}
+**Note:** The probability of failure given conformance is reflected in judgement based on product testing required for design certification.
+:::
+
+But the usual approach to design certification is only required to test conforming product.  Nonconforming product is screened out by definition, meaning that these conditions are not available for testing.  The probability of failure given nonconformance truly depend on engineering judgement.
+
+If, however, certification by analysis is used, then simulation results may well exist for both conforming conditions and nonconforming conditions.  The Design Engineer may well have access to results that will provide some support for their judgement.
+
+However, no measure of uncertainty is provided.
+
+::: {.warning}
+**Warning:** This form of estimate does not allow for uncertainty to be assessed in the estimate of the IRR.
+:::
+
+This will matter when the IRR is estimated, and the effect of the estimate falls into one of three categories:
+
+1. The estimate is a perfect reflection of the product design decisions and therefore its probability of failure will be satisfied by any inspection system that satisfies the IRR.  
+2. The input values are conservative and the required IRR is overestimated.  The product is protected, but the the cost of inspection will be increased above optimum.
+3.  The input values will be liberal and the required IRR will be underestimated.  The product is not protected and the probability of failure will not be achieved, driving cost to the customer.
+
+#### Epistemic estimates
+
+If the probability of failure is bounded by a design engineer's experience or beliefs, we have what is called an epistemic estimate of the values.  We do not know the actual values, but we are able to establish an expected upper and lower limit for the estimate.  We also do not know the distribution of possible values that could exist between these values.  IN this context it is best to not supply more than the boundary conditions, making no assumptions about possible distributions.  The IRR estimates then establish a bounded region within which we belief that the true IRR will lie.
+
+#### Aleatoric Estimates
+
+These estimates are based on data, with enough data accumulated to estimate the distribution of values within which true value is likely to fall.  This form of estimate is called aleatoric.  
+
+We will use the distributions for each of the three input parameters to generate a sampling distribution for the IRR.  From this distribution we can select a parameter that meets selected criteria.  For instance we can select the most conservative IRR where the value is greater than or equal to 90%, 95% or most conservatively 99% of the distribution of IRR values.
+
+## Using the Calculator for Design Purposes
+
+A Design Engineer will use this tool to answer two questions:
+
+1.  Given a known value for PNC and PC, for a specified target value, what IRR will we achieve
+2.  For a specified IRR and Target, what values of PNC and PC are required - the tool will not work for this task - the contour plots are more useful.
+
+The Design Engineer may well have an already existing design.  This situation will arise when a request is made for an IRR where data is not available.  The Design Engineer has three choices for identifying an acceptable IRR:
+
+1.  use a judgement based estimate of the three input parameters 
+2.  use epistemic boundaries to account for the uncertainty in the engineers knowledge
+3.  Gather data and estimate the three parameters.  
+
+These represent decreasing uncertainty, both in terms of magnitude and in terms of knowledge.  With point estimates no uncertainty is represented or its effect on IRR estimates is se the uncertainty associated with these estimates to propagate uncertainty into the estimated IRR. Epistemic uncertainties still represent judgement, but uncertainty is introduced into the estimate of the IRR by providing boundaries within which the we demonstrate a range of possible values.  Finally, where the input values are estimated from data, we have a full accounting of the uncertainty in the estimates and can use simulation to estimate the resulting uncertainty in our IRR estimate.
+
+With this in mind, we recommend that point estimates be used only when the target maximum probability of failure coincides with the Likely Failure Condition Category.  We would recommend that Epistemic uncertainties be applied only to Likely Failure Conditions or to Probable Failure Conditions.  Neither of these two approaches should be applied to conditions where the target maximum is is 1 x e-5 of greater.  
+
+Then we recommend that data driven estimates be required for all values <= 1 x e-5.  
+
+It is beyond the scope of this document to present the data that justifies these recommendations, we plan to add this to SCMH documentation in the future.
+
+### Point Estimates
+
+Point Estimates are only useful for low risk conditions.  We would recommend that this method of evaluating a product and its relationship to the IRR only for Likely Failure Conditions.
+
+The Design Engineer identifies values for the probability of failure given conformance, and the probability of failure given nonconformance.  
+
+### Epistemic Boundaries
+
+Epistemic boundaries are constructed by estimating the minimum and maximum values expected by the Engineer for the probability of failure given conformance and the probability of failure given nonconformance.  IF the target maximum probability of failure is also uncertain, then upper and lower boundaries can be added for this also.
+
+When combined, these should produce a total of four (eight) IRR estimates.  These four (eight) estimates represent the range of IRR values that the engineer expects to bound the IRR.  The final step in the process is to select the IRR that provides the maximum protection to the product, which would be the maximim IRR represented in the range.
+
+### Aleatoric Estimates
+
+## Using the Calculator for Quality Purposes
+
+Note that it is possible to suggest a starting point with Design Engineers based on Appendix A in AS9138.  This tool then can be used to assess whether that IRR is acceptable given the Design Engineers input for our three parameters. 
+
+It is also possible to start discussion by estimating the AOQ for an existing inspection method then discussing the results with the Design Engineer.  In many cases the linkage between the two may not be clear and enough information may not be available to support a judgment
