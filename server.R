@@ -2217,31 +2217,31 @@ function(input, output, session) {
         
         # Create Vectors
         
-      PNC_lower <- isolate(input$PF_NC_lower)
-      PNC_upper <- isolate(input$PF_NC_upper)
-      PNC <- c(PNC_lower,PNC_upper)
-      PC <- isolate(input$PF_C)
-      PoF <- isolate(input$PF_TARG)
-      
-      # Validate Constraints
-      
-      validate(
-        need(PNC >= PoF,"- The Probability of Failure given Nonconformance is less than the upper Target Probability of Failure which produces invalid probability for the IRR (the numerator becomes a negative number making the ratio less than 0)"),
-        need(PC <= PoF,"- The Probability of Failure given Conformance is greater than the lower boundary for the Target Probability of Failure which produces invalid probability for the IRR (the denominator is less than the numerator, making the ratio greater than 1)"),
-        need(PC != PNC,"- The Probability of Failure given Conformance is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)")
-      )
-      
-      # Create dataframe
-      
-      df <- expand.grid(PNC,PC,PoF)
-      names(df) <- c("PNC", "PC", "PoF")
-      
-      # Add IRR
-      
-      df$IRR <- (df$PNC-df$PoF)/(df$PNC-df$PC)
-      
-      return(df)
-      
+        PNC_lower <- isolate(input$PF_NC_lower)
+        PNC_upper <- isolate(input$PF_NC_upper)
+        PNC <- c(PNC_lower,PNC_upper)
+        PC <- isolate(input$PF_C)
+        PoF <- isolate(input$PF_TARG)
+        
+        # Validate Constraints
+        
+        validate(
+          need(PNC >= PoF,"- The Probability of Failure given Nonconformance is less than the upper Target Probability of Failure which produces invalid probability for the IRR (the numerator becomes a negative number making the ratio less than 0)"),
+          need(PC <= PoF,"- The Probability of Failure given Conformance is greater than the lower boundary for the Target Probability of Failure which produces invalid probability for the IRR (the denominator is less than the numerator, making the ratio greater than 1)"),
+          need(PC != PNC,"- The Probability of Failure given Conformance is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)")
+        )
+        
+        # Create dataframe
+        
+        df <- expand.grid(PNC,PC,PoF)
+        names(df) <- c("PNC", "PC", "PoF")
+        
+        # Add IRR
+        
+        df$IRR <- (df$PNC-df$PoF)/(df$PNC-df$PC)
+        
+        return(df)
+        
       }
     })
     
@@ -2402,39 +2402,39 @@ function(input, output, session) {
     analysis_results_11 <- eventReactive(input$start_btn, {
       
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
-
-      # Create Vectors
         
-      PNC_lower <- isolate(input$PF_NC_lower)
-      PNC_upper <- isolate(input$PF_NC_upper)
-      PNC <- c(PNC_lower,PNC_upper)
-      PC <- isolate(input$PF_C)
-      PoF_lower <- isolate(input$PF_TARG_lower)
-      PoF_upper <- isolate(input$PF_TARG_upper)
-      PoF <- c(input$PF_TARG_lower,input$PF_TARG_upper)
-      
-      # Validate Constraints
-      
-      validate(
-        need(PNC_lower >= PoF_upper,"- The Probability of Failure given Nonconformance lower boundary is less than the Target Probability of Failure upper boundary which produces invalid probability for the IRR (the numerator becomes a negative number making the ratio less than 0)"),
-        need(PC <= PoF_lower,"- The Probability of Failure given Conformance is greater than the Target Probability of Failure lower boundary which produces invalid probability for the IRR (the denominator is less than the numerator, making the ratio greater than 1)"),
-        need(PoF_lower < PoF_upper,"- The Target Probability of Failure lower boundary is greater than the Target Probability of Failure upper boundary" ),
-        need(PNC_lower < PNC_upper,"- The Probability of Failure given Nononformance lower boundary is greater than the the Probability of Failure given Nonconformance upper boundary" ),
-        need(PNC_lower != PC,"- The Probability of Failure given Nonconformance lower boundary is equal to Probability of Failure given Conformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
-        need(PNC_upper != PC,"- The Probability of Failure given Nonconformance upper boundary is equal to Probability of Failure given Conformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)")
-      )
-      
-      # Create dataframe
-      
-      df <- expand.grid(PNC,PC,PoF)
-      names(df) <- c("PNC", "PC", "Target")
-      
-      # Add IRR
-      
-      df$IRR <- (df$PNC-df$Target)/(df$PNC-df$PC)
-      
-      return(df)
-      
+        # Create Vectors
+        
+        PNC_lower <- isolate(input$PF_NC_lower)
+        PNC_upper <- isolate(input$PF_NC_upper)
+        PNC <- c(PNC_lower,PNC_upper)
+        PC <- isolate(input$PF_C)
+        PoF_lower <- isolate(input$PF_TARG_lower)
+        PoF_upper <- isolate(input$PF_TARG_upper)
+        PoF <- c(input$PF_TARG_lower,input$PF_TARG_upper)
+        
+        # Validate Constraints
+        
+        validate(
+          need(PNC_lower >= PoF_upper,"- The Probability of Failure given Nonconformance lower boundary is less than the Target Probability of Failure upper boundary which produces invalid probability for the IRR (the numerator becomes a negative number making the ratio less than 0)"),
+          need(PC <= PoF_lower,"- The Probability of Failure given Conformance is greater than the Target Probability of Failure lower boundary which produces invalid probability for the IRR (the denominator is less than the numerator, making the ratio greater than 1)"),
+          need(PoF_lower < PoF_upper,"- The Target Probability of Failure lower boundary is greater than the Target Probability of Failure upper boundary" ),
+          need(PNC_lower < PNC_upper,"- The Probability of Failure given Nononformance lower boundary is greater than the the Probability of Failure given Nonconformance upper boundary" ),
+          need(PNC_lower != PC,"- The Probability of Failure given Nonconformance lower boundary is equal to Probability of Failure given Conformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
+          need(PNC_upper != PC,"- The Probability of Failure given Nonconformance upper boundary is equal to Probability of Failure given Conformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)")
+        )
+        
+        # Create dataframe
+        
+        df <- expand.grid(PNC,PC,PoF)
+        names(df) <- c("PNC", "PC", "Target")
+        
+        # Add IRR
+        
+        df$IRR <- (df$PNC-df$Target)/(df$PNC-df$PC)
+        
+        return(df)
+        
       }
     })
     
@@ -2595,44 +2595,44 @@ function(input, output, session) {
       
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
         
-      PNC_lower <- isolate(input$PF_NC_lower)
-      PNC_upper <- isolate(input$PF_NC_upper)
-      PNC <- c(PNC_lower, PNC_upper)
-      PC <- isolate(input$PF_C)
-      
-      if(input$TARG_in == "TARG_norm"){
-        # Normal distribution
-        PTARG_mean <- isolate(input$PF_TARG_mean)
-        PTARG_sd <- isolate(input$PF_TARG_sd)
-        PoF <- rnorm(100000, mean = PTARG_mean, sd = PTARG_sd)
-      } 
-      else if(input$TARG_in == "TARG_beta"){
-        PTARG_shape1 <- isolate(input$PF_TARG_shape1)
-        PTARG_shape2 <- isolate(input$PF_TARG_shape2)
-        PoF <- rbeta(100000, shape1 = PTARG_shape1, shape2 = PTARG_shape2)
-      }
-      else if(input$TARG_in == "TARG_lgnorm"){
-        PTARG_lgMmean <- isolate(input$PF_TARG_lgMean)
-        PTARG_lgSD <- isolate(input$PF_TARG_lgSD)
-        PoF <- rlnorm(100000, meanlog = PTARG_lgMean, sdlog = PTARG_lgSD)
-      }
-      
-      # Create dataframe
-      
-      df <- data.frame("PNC" = rep(PNC, times = 50000), "PC" = rep(PC, times = 100000), "PoF" = PoF)
-      
-      # Add IRR
-      
-      df$IRR <- round((df$PNC - df$PoF)/(df$PNC - df$PC),digits = 9)
-      
-      # Check Constraints
-      
-      df <- df[df$PNC >= df$PoF & df$PC <= df$PoF & df$PC < df$PNC,]
-      
-      df <- df[df$PNC >= 0 & df$PNC <= 1 & df$PC >= 0 & df$PC <= 1,]
-      
-      return(df)
-      
+        PNC_lower <- isolate(input$PF_NC_lower)
+        PNC_upper <- isolate(input$PF_NC_upper)
+        PNC <- c(PNC_lower, PNC_upper)
+        PC <- isolate(input$PF_C)
+        
+        if(input$TARG_in == "TARG_norm"){
+          # Normal distribution
+          PTARG_mean <- isolate(input$PF_TARG_mean)
+          PTARG_sd <- isolate(input$PF_TARG_sd)
+          PoF <- rnorm(100000, mean = PTARG_mean, sd = PTARG_sd)
+        } 
+        else if(input$TARG_in == "TARG_beta"){
+          PTARG_shape1 <- isolate(input$PF_TARG_shape1)
+          PTARG_shape2 <- isolate(input$PF_TARG_shape2)
+          PoF <- rbeta(100000, shape1 = PTARG_shape1, shape2 = PTARG_shape2)
+        }
+        else if(input$TARG_in == "TARG_lgnorm"){
+          PTARG_lgMmean <- isolate(input$PF_TARG_lgMean)
+          PTARG_lgSD <- isolate(input$PF_TARG_lgSD)
+          PoF <- rlnorm(100000, meanlog = PTARG_lgMean, sdlog = PTARG_lgSD)
+        }
+        
+        # Create dataframe
+        
+        df <- data.frame("PNC" = rep(PNC, times = 50000), "PC" = rep(PC, times = 100000), "PoF" = PoF)
+        
+        # Add IRR
+        
+        df$IRR <- round((df$PNC - df$PoF)/(df$PNC - df$PC),digits = 9)
+        
+        # Check Constraints
+        
+        df <- df[df$PNC >= df$PoF & df$PC <= df$PoF & df$PC < df$PNC,]
+        
+        df <- df[df$PNC >= 0 & df$PNC <= 1 & df$PC >= 0 & df$PC <= 1,]
+        
+        return(df)
+        
       }
     })
     
@@ -2642,41 +2642,41 @@ function(input, output, session) {
       
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
         
-      fig <- plot_ly(type = "histogram", alpha = 1.0) 
-      
-      fig <- fig %>% add_histogram(x = ~analysis_results_12()[analysis_results_12()$PNC == input$PF_NC_lower,"IRR"], name = "PNC lower")
-      
-      fig <- fig %>% add_histogram(x = ~analysis_results_12()[analysis_results_12()$PNC == input$PF_NC_upper,"IRR"], name = "PNC upper")
-      
-      fig <- fig %>%
-        layout(
-          xaxis = list(title = "IRR Distribution"),
-          yaxis = list(title = "Frequency",
-                       barmode = "overlay")
+        fig <- plot_ly(type = "histogram", alpha = 1.0) 
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_12()[analysis_results_12()$PNC == input$PF_NC_lower,"IRR"], name = "PNC lower")
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_12()[analysis_results_12()$PNC == input$PF_NC_upper,"IRR"], name = "PNC upper")
+        
+        fig <- fig %>%
+          layout(
+            xaxis = list(title = "IRR Distribution"),
+            yaxis = list(title = "Frequency",
+                         barmode = "overlay")
+          )
+        
+        fig <- fig %>% config(
+          displayModeBar = TRUE,  # Show the toolbar
+          modeBarButtonsToRemove = c(
+            'select2d',
+            'lasso2d',
+            'autoScale2d',
+            'hoverClosestCartesian',
+            'hoverCompareCartesian',
+            'toggleSpikelines'
+          ),
+          displaylogo = FALSE,  # Remove plotly logo
+          toImageButtonOptions = list(
+            format = 'png',
+            filename = 'IRR_plot',
+            height = 600,
+            width = 800,
+            scale = 1
+          )
         )
-      
-      fig <- fig %>% config(
-        displayModeBar = TRUE,  # Show the toolbar
-        modeBarButtonsToRemove = c(
-          'select2d',
-          'lasso2d',
-          'autoScale2d',
-          'hoverClosestCartesian',
-          'hoverCompareCartesian',
-          'toggleSpikelines'
-        ),
-        displaylogo = FALSE,  # Remove plotly logo
-        toImageButtonOptions = list(
-          format = 'png',
-          filename = 'IRR_plot',
-          height = 600,
-          width = 800,
-          scale = 1
-        )
-      )
-      
-      fig
-      
+        
+        fig
+        
       }
     })
     
@@ -2880,44 +2880,44 @@ function(input, output, session) {
     analysis_results_13 <- eventReactive(input$start_btn, {
       
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'unknownUnc_PTARG') {
-
-      PNC_lower <- isolate(input$PF_NC_lower)
-      PNC_upper <- isolate(input$PF_NC_upper)
-      PNC <- c(PNC_lower, PNC_upper)
-      PC_lower <- isolate(input$PF_C_lower)
-      PC_upper <- isolate(input$PF_C_upper)
-      PC <- c(PC_lower,PC_upper)
-      PoF <- isolate(input$PF_TARG)
-      
-      # Validate Constraints
-      
-      validate(
         
-        #Epistemic Ranges
-        need(PC_lower < PC_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
-        need(PNC_lower < PNC_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
+        PNC_lower <- isolate(input$PF_NC_lower)
+        PNC_upper <- isolate(input$PF_NC_upper)
+        PNC <- c(PNC_lower, PNC_upper)
+        PC_lower <- isolate(input$PF_C_lower)
+        PC_upper <- isolate(input$PF_C_upper)
+        PC <- c(PC_lower,PC_upper)
+        PoF <- isolate(input$PF_TARG)
         
-        #comparisons to Target
-        need(PNC_lower >= PoF,"- The Probability of Failure given Nonconformance is less than the Target Probability of Failure which produces invalid probability for the IRR (the numerator becomes a negative number making the ratio less than 0)"),
-        need(PC_upper <= PoF,"- The Probability of Failure given Conformance is greater than the Target Probability of Failure which produces invalid probability for the IRR (the denominator is less than the numerator, making the ratio greater than 1)"),
+        # Validate Constraints
         
-        #comparisons between A & B
-        need(PC_lower != PNC_upper,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
-        need(PC_lower != PNC_lower,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
-        need(PC_upper != PNC_upper,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
-        need(PC_upper != PNC_lower,"- The Probability of Failure given Conformance upper boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)")
-      )
-      
-      # Create dataframe
-      
-      df <- expand.grid(PNC,PC,PoF)
-      names(df) <- c("PNC", "PC", "Target")
-      
-      # Add IRR
-      df$IRR <- (df$PNC-df$Target)/(df$PNC-df$PC)
-      
-      return(df)
-      
+        validate(
+          
+          #Epistemic Ranges
+          need(PC_lower < PC_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
+          need(PNC_lower < PNC_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
+          
+          #comparisons to Target
+          need(PNC_lower >= PoF,"- The Probability of Failure given Nonconformance is less than the Target Probability of Failure which produces invalid probability for the IRR (the numerator becomes a negative number making the ratio less than 0)"),
+          need(PC_upper <= PoF,"- The Probability of Failure given Conformance is greater than the Target Probability of Failure which produces invalid probability for the IRR (the denominator is less than the numerator, making the ratio greater than 1)"),
+          
+          #comparisons between A & B
+          need(PC_lower != PNC_upper,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
+          need(PC_lower != PNC_lower,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
+          need(PC_upper != PNC_upper,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
+          need(PC_upper != PNC_lower,"- The Probability of Failure given Conformance upper boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)")
+        )
+        
+        # Create dataframe
+        
+        df <- expand.grid(PNC,PC,PoF)
+        names(df) <- c("PNC", "PC", "Target")
+        
+        # Add IRR
+        df$IRR <- (df$PNC-df$Target)/(df$PNC-df$PC)
+        
+        return(df)
+        
       }
     })
     
@@ -3050,7 +3050,7 @@ function(input, output, session) {
         tagList(div1)
       }
     })  
-  
+    
     ## End System 13                                   ##
     
     ## System 14                                       ##
@@ -3081,48 +3081,48 @@ function(input, output, session) {
       
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
         
-      # Create Vectors
+        # Create Vectors
         
-      PNC_lower <- isolate(input$PF_NC_lower)
-      PNC_upper <- isolate(input$PF_NC_upper)
-      PNC <- c(PNC_lower, PNC_upper)
-      PC_lower <- isolate(input$PF_C_lower)
-      PC_upper <- isolate(input$PF_C_upper)
-      PC <- c(PC_lower,PC_upper)
-      PoF_lower <- isolate(input$PF_TARG_lower)
-      PoF_upper <- isolate(input$PF_TARG_upper)
-      PoF <- c(PoF_lower,PoF_upper)
-      
-      # Validate Constraints
-      
-      validate(
+        PNC_lower <- isolate(input$PF_NC_lower)
+        PNC_upper <- isolate(input$PF_NC_upper)
+        PNC <- c(PNC_lower, PNC_upper)
+        PC_lower <- isolate(input$PF_C_lower)
+        PC_upper <- isolate(input$PF_C_upper)
+        PC <- c(PC_lower,PC_upper)
+        PoF_lower <- isolate(input$PF_TARG_lower)
+        PoF_upper <- isolate(input$PF_TARG_upper)
+        PoF <- c(PoF_lower,PoF_upper)
         
-        #Epistemic Range Orientation
-        need(PC_lower < PC_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
-        need(PNC_lower < PNC_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
-        need(PoF_lower < PoF_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
+        # Validate Constraints
         
-        #comparisons to Target
-        need(PNC_lower >= PoF_upper,"- The Probability of Failure given Nonconformance is less than the Target Probability of Failure which produces invalid probability for the IRR (the numerator becomes a negative number making the ratio less than 0)"),
-        need(PC_upper <= PoF_lower,"- The Probability of Failure given Conformance is greater than the Target Probability of Failure which produces invalid probability for the IRR (the denominator is less than the numerator, making the ratio greater than 1)"),
+        validate(
+          
+          #Epistemic Range Orientation
+          need(PC_lower < PC_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
+          need(PNC_lower < PNC_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
+          need(PoF_lower < PoF_upper,"- The Probability of Failure given Conformance lower is greater than the upper boundary for the Probability of Failure given Conformance)" ),
+          
+          #comparisons to Target
+          need(PNC_lower >= PoF_upper,"- The Probability of Failure given Nonconformance is less than the Target Probability of Failure which produces invalid probability for the IRR (the numerator becomes a negative number making the ratio less than 0)"),
+          need(PC_upper <= PoF_lower,"- The Probability of Failure given Conformance is greater than the Target Probability of Failure which produces invalid probability for the IRR (the denominator is less than the numerator, making the ratio greater than 1)"),
+          
+          #comparisons between A & B
+          need(PC_lower != PNC_upper,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
+          need(PC_lower != PNC_lower,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
+          need(PC_upper != PNC_upper,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
+          need(PC_upper != PNC_lower,"- The Probability of Failure given Conformance upper boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)")
+        )
         
-        #comparisons between A & B
-        need(PC_lower != PNC_upper,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
-        need(PC_lower != PNC_lower,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
-        need(PC_upper != PNC_upper,"- The Probability of Failure given Conformance lower boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)"),
-        need(PC_upper != PNC_lower,"- The Probability of Failure given Conformance upper boundary is equal to Probability of Failure given Nononformance which produces invalid probability for the IRR (the denominator goes to zero violating a fundamental mathematical principle)")
-      )
-      
-      # Create dataframe
-      
-      df <- expand.grid(PNC,PC,PoF)
-      names(df) <- c("PNC", "PC", "Target")
-      
-      # Add IRR
-      df$IRR <- (df$PNC-df$Target)/(df$PNC-df$PC)
-      
-      return(df)
-      
+        # Create dataframe
+        
+        df <- expand.grid(PNC,PC,PoF)
+        names(df) <- c("PNC", "PC", "Target")
+        
+        # Add IRR
+        df$IRR <- (df$PNC-df$Target)/(df$PNC-df$PC)
+        
+        return(df)
+        
       }
     })
     
@@ -3286,47 +3286,47 @@ function(input, output, session) {
       
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
         
-      # Create Vectors
+        # Create Vectors
         
-      PNC_lower <- isolate(input$PF_NC_lower)
-      PNC_upper <- isolate(input$PF_NC_upper)
-      PNC <- c(PNC_lower, PNC_upper)
-      PC_lower <- isolate(input$PF_C_lower)
-      PC_upper <- isolate(input$PF_C_upper)
-      PC <- c(PC_lower, PC_upper)
-      
-      if(input$TARG_in == "TARG_norm"){
-        # Normal distribution
-        PTARG_mean <- isolate(input$PF_TARG_mean)
-        PTARG_sd <- isolate(input$PF_TARG_sd)
-        PoF <- rnorm(100000, mean = PTARG_mean, sd = PTARG_sd)
-      } 
-      else if(input$TARG_in == "TARG_beta"){
-        PTARG_shape1 <- isolate(input$PF_TARG_shape1)
-        PTARG_shape2 <- isolate(input$PF_TARG_shape2)
-        PoF <- rbeta(100000, shape1 = PTARG_shape1, shape2 = PTARG_shape2)
-      }
-      else if(input$TARG_in == "TARG_lgnorm"){
-        PTARG_lgMmean <- isolate(input$PF_TARG_lgMean)
-        PTARG_lgSD <- isolate(input$PF_TARG_lgSD)
-        PoF <- rlnorm(100000, meanlog = PTARG_lgMean, sdlog = PTARG_lgSD)
-      }
-      
-      test <- expand.grid(PNC,PC)
-      df <- data.frame("PNC" = rep(test$Var1,25000),"PC" = rep(test$Var2,25000))
-      
-      df$PoF <- PoF
-      
-      df$IRR <- round((df$PNC - df$PoF)/(df$PNC - df$PC),digits = 9)
-      
-      # Check Constraints
-      
-      df <- df[df$PNC >= df$PoF & df$PC <= df$PoF & df$PC < df$PNC,]
-      
-      df <- df[df$PNC >= 0 & df$PNC <= 1 & df$PC >= 0 & df$PC <= 1,]
-      
-      return(df)
-      
+        PNC_lower <- isolate(input$PF_NC_lower)
+        PNC_upper <- isolate(input$PF_NC_upper)
+        PNC <- c(PNC_lower, PNC_upper)
+        PC_lower <- isolate(input$PF_C_lower)
+        PC_upper <- isolate(input$PF_C_upper)
+        PC <- c(PC_lower, PC_upper)
+        
+        if(input$TARG_in == "TARG_norm"){
+          # Normal distribution
+          PTARG_mean <- isolate(input$PF_TARG_mean)
+          PTARG_sd <- isolate(input$PF_TARG_sd)
+          PoF <- rnorm(100000, mean = PTARG_mean, sd = PTARG_sd)
+        } 
+        else if(input$TARG_in == "TARG_beta"){
+          PTARG_shape1 <- isolate(input$PF_TARG_shape1)
+          PTARG_shape2 <- isolate(input$PF_TARG_shape2)
+          PoF <- rbeta(100000, shape1 = PTARG_shape1, shape2 = PTARG_shape2)
+        }
+        else if(input$TARG_in == "TARG_lgnorm"){
+          PTARG_lgMmean <- isolate(input$PF_TARG_lgMean)
+          PTARG_lgSD <- isolate(input$PF_TARG_lgSD)
+          PoF <- rlnorm(100000, meanlog = PTARG_lgMean, sdlog = PTARG_lgSD)
+        }
+        
+        test <- expand.grid(PNC,PC)
+        df <- data.frame("PNC" = rep(test$Var1,25000),"PC" = rep(test$Var2,25000))
+        
+        df$PoF <- PoF
+        
+        df$IRR <- round((df$PNC - df$PoF)/(df$PNC - df$PC),digits = 9)
+        
+        # Check Constraints
+        
+        df <- df[df$PNC >= df$PoF & df$PC <= df$PoF & df$PC < df$PNC,]
+        
+        df <- df[df$PNC >= 0 & df$PNC <= 1 & df$PC >= 0 & df$PC <= 1,]
+        
+        return(df)
+        
       }
     })
     
@@ -3338,45 +3338,45 @@ function(input, output, session) {
       
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
         
-      fig <- plot_ly(type = "histogram", alpha = 0.8) 
-      
-      fig <- fig %>% add_histogram(x = ~analysis_results_15()[analysis_results_15()$PNC == input$PF_NC_lower & analysis_results_15()$PC == input$PF_C_lower,"IRR"], name = "PNC lower & PC lower")
-      
-      fig <- fig %>% add_histogram(x = ~analysis_results_15()[analysis_results_15()$PNC == input$PF_NC_upper & analysis_results_15()$PC == input$PF_C_lower,"IRR"], name = "PNC upper & PC lower")
-      
-      fig <- fig %>% add_histogram(x = ~analysis_results_15()[analysis_results_15()$PNC == input$PF_NC_lower & analysis_results_15()$PC == input$PF_C_upper,"IRR"], name = "PNC lower & PC upper")
-      
-      fig <- fig %>% add_histogram(x = ~analysis_results_15()[analysis_results_15()$PNC == input$PF_NC_upper & analysis_results_15()$PC == input$PF_C_upper,"IRR"], name = "PNC upper & PC upper")
-      
-      fig <- fig %>%
-        layout(
-          xaxis = list(title = "IRR Distribution"),
-          yaxis = list(title = "Frequency",
-                       barmode = "overlay")
+        fig <- plot_ly(type = "histogram", alpha = 0.8) 
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_15()[analysis_results_15()$PNC == input$PF_NC_lower & analysis_results_15()$PC == input$PF_C_lower,"IRR"], name = "PNC lower & PC lower")
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_15()[analysis_results_15()$PNC == input$PF_NC_upper & analysis_results_15()$PC == input$PF_C_lower,"IRR"], name = "PNC upper & PC lower")
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_15()[analysis_results_15()$PNC == input$PF_NC_lower & analysis_results_15()$PC == input$PF_C_upper,"IRR"], name = "PNC lower & PC upper")
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_15()[analysis_results_15()$PNC == input$PF_NC_upper & analysis_results_15()$PC == input$PF_C_upper,"IRR"], name = "PNC upper & PC upper")
+        
+        fig <- fig %>%
+          layout(
+            xaxis = list(title = "IRR Distribution"),
+            yaxis = list(title = "Frequency",
+                         barmode = "overlay")
+          )
+        
+        fig <- fig %>% config(
+          displayModeBar = TRUE,  # Show the toolbar
+          modeBarButtonsToRemove = c(
+            'select2d',
+            'lasso2d',
+            'autoScale2d',
+            'hoverClosestCartesian',
+            'hoverCompareCartesian',
+            'toggleSpikelines'
+          ),
+          displaylogo = FALSE,  # Remove plotly logo
+          toImageButtonOptions = list(
+            format = 'png',
+            filename = 'IRR_plot',
+            height = 600,
+            width = 800,
+            scale = 1
+          )
         )
-      
-      fig <- fig %>% config(
-        displayModeBar = TRUE,  # Show the toolbar
-        modeBarButtonsToRemove = c(
-          'select2d',
-          'lasso2d',
-          'autoScale2d',
-          'hoverClosestCartesian',
-          'hoverCompareCartesian',
-          'toggleSpikelines'
-        ),
-        displaylogo = FALSE,  # Remove plotly logo
-        toImageButtonOptions = list(
-          format = 'png',
-          filename = 'IRR_plot',
-          height = 600,
-          width = 800,
-          scale = 1
-        )
-      )
-      
-      fig
-      
+        
+        fig
+        
       }
     })
     
@@ -3387,8 +3387,8 @@ function(input, output, session) {
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'epistemicUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
         
         value <- nrow(analysis_results_15())/100000
-       paste("Fraction of simulated values included in the histogram", value)
-      
+        paste("Fraction of simulated values included in the histogram", value)
+        
       }
     })
     
@@ -3476,17 +3476,17 @@ function(input, output, session) {
           geom_segment(aes(x = quantile(PNClowPClow,0.025), y = 0.025-0.02, xend = quantile(PNClowPClow,0.025), yend = 0.025+0.02)) +
           geom_segment(aes(x = (quantile(PNClowPClow,0.025)-0.005), y = 0.025, xend = (quantile(PNClowPClow,0.025)+0.005), yend = 0.025)) +
           annotate("text", x=quantile(PNClowPClow,0.025)-0.010, y=0.025+0.030, label= round(quantile(PNClowPClow,0.025),3)) +
-
+          
           #Point RL
           geom_segment(aes(x = quantile(PNChighPChigh,0.025), y = 0.025-0.02, xend = quantile(PNChighPChigh,0.025), yend = 0.025+0.02)) +
           geom_segment(aes(x = (quantile(PNChighPChigh,0.025)-0.005), y = 0.025, xend = (quantile(PNChighPChigh,0.025)+0.005), yend = 0.025)) +
           annotate("text", x=quantile(PNChighPChigh,0.025)+0.005, y=0.025+0.030, label= round(quantile(PNChighPChigh,0.025),3)) +
-
+          
           # Point LH
           geom_segment(aes(x = quantile(PNClowPClow,0.975), y = 0.975-0.02, xend = quantile(PNClowPClow,0.975), yend = 0.975+0.02)) +
           geom_segment(aes(x = (quantile(PNClowPClow,0.975)-0.005), y = 0.975, xend = (quantile(PNClowPClow,0.975)+0.005), yend = 0.975)) +
           annotate("text", x=quantile(PNClowPClow,0.975)-0.010, y=0.975-0.030, label= round(quantile(PNClowPClow,0.975),3)) +
-
+          
           # Point RL
           geom_segment(aes(x = quantile(PNChighPChigh,0.975), y = 0.975-0.02, xend = quantile(PNChighPChigh,0.975), yend = 0.975+0.02)) +
           geom_segment(aes(x = (quantile(PNChighPChigh,0.975)-0.005), y = 0.975, xend = (quantile(PNChighPChigh,0.975)+0.005), yend = 0.975)) +
@@ -3595,49 +3595,49 @@ function(input, output, session) {
         
         # Create Vectors
         
-      PNC_lower <- isolate(input$PF_NC_lower)
-      PNC_upper <- isolate(input$PF_NC_upper)
-      PNC <- c(PNC_lower, PNC_upper)
-      
-      if(input$PC_in == "PC_norm"){
-        # Normal distribution
-        PC_mean <- isolate(input$PF_C_mean)
-        PC_sd <- isolate(input$PF_C_sd)
-        PC <- rnorm(100000, mean = PC_mean, sd = PC_sd)
-      } 
-      else if(input$PC_in == "PC_beta"){
-        # Beta distribution
-        PC_shape1 <- isolate(input$PF_C_shape1)
-        PC_shape2 <- isolate(input$PF_C_shape2)
-        PC <- rbeta(100000, shape1 = PC_shape1, shape2 = PC_shape2)
-      }
-      else if(input$PC_in == "PC_lgnorm"){
-        # Log Normal distribution
-        PC_lgMean <- isolate(input$PF_C_lgMean)
-        PC_lgSD <- isolate(input$PF_C_lgSD)
-        PC <- rlnorm(100000, meanlog = PC_lgMean, sdlog = PC_lgSD)
-      }
-      
-      PoF <- isolate(input$PF_TARG)
-      
-      # Validate Constraints
-      
-      # Create dataframe
-      
-      df <- data.frame("PNC" = PNC, "PC" = PC, "PoF" = PoF)
-      
-      # Add IRR
-      
-      df$IRR <- round((df$PNC - df$PoF)/(df$PNC - df$PC),digits = 9)
-      
-      # Check Constraints
-      
-      df <- df[df$PNC >= df$PoF & df$PC <= df$PoF & df$PC < df$PNC,]
-      
-      df <- df[df$PNC >= 0 & df$PNC <= 1 & df$PC >= 0 & df$PC <= 1,]
-      
-      return(df)
-      
+        PNC_lower <- isolate(input$PF_NC_lower)
+        PNC_upper <- isolate(input$PF_NC_upper)
+        PNC <- c(PNC_lower, PNC_upper)
+        
+        if(input$PC_in == "PC_norm"){
+          # Normal distribution
+          PC_mean <- isolate(input$PF_C_mean)
+          PC_sd <- isolate(input$PF_C_sd)
+          PC <- rnorm(100000, mean = PC_mean, sd = PC_sd)
+        } 
+        else if(input$PC_in == "PC_beta"){
+          # Beta distribution
+          PC_shape1 <- isolate(input$PF_C_shape1)
+          PC_shape2 <- isolate(input$PF_C_shape2)
+          PC <- rbeta(100000, shape1 = PC_shape1, shape2 = PC_shape2)
+        }
+        else if(input$PC_in == "PC_lgnorm"){
+          # Log Normal distribution
+          PC_lgMean <- isolate(input$PF_C_lgMean)
+          PC_lgSD <- isolate(input$PF_C_lgSD)
+          PC <- rlnorm(100000, meanlog = PC_lgMean, sdlog = PC_lgSD)
+        }
+        
+        PoF <- isolate(input$PF_TARG)
+        
+        # Validate Constraints
+        
+        # Create dataframe
+        
+        df <- data.frame("PNC" = PNC, "PC" = PC, "PoF" = PoF)
+        
+        # Add IRR
+        
+        df$IRR <- round((df$PNC - df$PoF)/(df$PNC - df$PC),digits = 9)
+        
+        # Check Constraints
+        
+        df <- df[df$PNC >= df$PoF & df$PC <= df$PoF & df$PC < df$PNC,]
+        
+        df <- df[df$PNC >= 0 & df$PNC <= 1 & df$PC >= 0 & df$PC <= 1,]
+        
+        return(df)
+        
       }
     })
     
@@ -3647,41 +3647,41 @@ function(input, output, session) {
       
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'unknownUnc_PTARG') {
         
-      fig <- plot_ly(type = "histogram", alpha = 0.8) 
-      
-      fig <- fig %>% add_histogram(x = ~analysis_results_16()[analysis_results_16()$PNC == input$PF_NC_lower,"IRR"], name = "PNC lower")
-      
-      fig <- fig %>% add_histogram(x = ~analysis_results_16()[analysis_results_16()$PNC == input$PF_NC_upper,"IRR"], name = "PNC upper")
-      
-      fig <- fig %>%
-        layout(
-          xaxis = list(title = "IRR Distribution"),
-          yaxis = list(title = "Frequency",
-                       barmode = "overlay")
+        fig <- plot_ly(type = "histogram", alpha = 0.8) 
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_16()[analysis_results_16()$PNC == input$PF_NC_lower,"IRR"], name = "PNC lower")
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_16()[analysis_results_16()$PNC == input$PF_NC_upper,"IRR"], name = "PNC upper")
+        
+        fig <- fig %>%
+          layout(
+            xaxis = list(title = "IRR Distribution"),
+            yaxis = list(title = "Frequency",
+                         barmode = "overlay")
+          )
+        
+        fig <- fig %>% config(
+          displayModeBar = TRUE,  # Show the toolbar
+          modeBarButtonsToRemove = c(
+            'select2d',
+            'lasso2d',
+            'autoScale2d',
+            'hoverClosestCartesian',
+            'hoverCompareCartesian',
+            'toggleSpikelines'
+          ),
+          displaylogo = FALSE,  # Remove plotly logo
+          toImageButtonOptions = list(
+            format = 'png',
+            filename = 'IRR_plot',
+            height = 600,
+            width = 800,
+            scale = 1
+          )
         )
-      
-      fig <- fig %>% config(
-        displayModeBar = TRUE,  # Show the toolbar
-        modeBarButtonsToRemove = c(
-          'select2d',
-          'lasso2d',
-          'autoScale2d',
-          'hoverClosestCartesian',
-          'hoverCompareCartesian',
-          'toggleSpikelines'
-        ),
-        displaylogo = FALSE,  # Remove plotly logo
-        toImageButtonOptions = list(
-          format = 'png',
-          filename = 'IRR_plot',
-          height = 600,
-          width = 800,
-          scale = 1
-        )
-      )
-      
-      fig
-      
+        
+        fig
+        
       }
     })
     
@@ -3692,8 +3692,8 @@ function(input, output, session) {
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'unknownUnc_PTARG') {
         
         value <- nrow(analysis_results_16())/100000
-      paste("Fraction of simulated values included in the histogram", value)
-      
+        paste("Fraction of simulated values included in the histogram", value)
+        
       }
     })
     
@@ -3917,29 +3917,29 @@ function(input, output, session) {
           PC <- rlnorm(100000, meanlog = PC_lgMean, sdlog = PC_lgSD)
         }
         
-       PoF_lower <- isolate(input$PF_TARG_lower)
-       PoF_upper <- isolate(input$PF_TARG_upper)
-       PoF <- c(PoF_lower, PoF_upper)
-       
-       # Validate constraints
-       
-       # Create dataframe
-       test <- expand.grid(PNC,PoF)
-       names(test) <- c("PNC","PoF")
-       df <- data.frame("PNC" = rep(test$PNC,25000),"PC" = PC,"PoF" = rep(test$PoF,25000))
-       
-       # Add IRR
-       
-       df$IRR <- round((df$PNC - df$PoF)/(df$PNC - df$PC),digits = 9)
-       
-       # Check Constraints
-      
-      df <- df[df$PNC >= df$PoF & df$PC <= df$PoF & df$PC < df$PNC,]
-      
-      df <- df[df$PNC >= 0 & df$PNC <= 1 & df$PC >= 0 & df$PC <= 1,]
-      
-      return(df)
-      
+        PoF_lower <- isolate(input$PF_TARG_lower)
+        PoF_upper <- isolate(input$PF_TARG_upper)
+        PoF <- c(PoF_lower, PoF_upper)
+        
+        # Validate constraints
+        
+        # Create dataframe
+        test <- expand.grid(PNC,PoF)
+        names(test) <- c("PNC","PoF")
+        df <- data.frame("PNC" = rep(test$PNC,25000),"PC" = PC,"PoF" = rep(test$PoF,25000))
+        
+        # Add IRR
+        
+        df$IRR <- round((df$PNC - df$PoF)/(df$PNC - df$PC),digits = 9)
+        
+        # Check Constraints
+        
+        df <- df[df$PNC >= df$PoF & df$PC <= df$PoF & df$PC < df$PNC,]
+        
+        df <- df[df$PNC >= 0 & df$PNC <= 1 & df$PC >= 0 & df$PC <= 1,]
+        
+        return(df)
+        
       }
     })
     
@@ -3949,57 +3949,57 @@ function(input, output, session) {
       
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
         
-      fig <- plot_ly(type = "histogram", alpha = 0.8) 
-      
-      fig <- fig %>% add_histogram(x = ~analysis_results_17()[analysis_results_17()$PNC == input$PF_NC_lower & analysis_results_17()$PoF == input$PF_TARG_lower,"IRR"], name = "PNC lower & Target lower")
-      
-      fig <- fig %>% add_histogram(x = ~analysis_results_17()[analysis_results_17()$PNC == input$PF_NC_upper & analysis_results_17()$PoF == input$PF_TARG_lower,"IRR"], name = "PNC upper & Target lower")
-      
-      fig <- fig %>% add_histogram(x = ~analysis_results_17()[analysis_results_17()$PNC == input$PF_NC_lower & analysis_results_17()$PoF == input$PF_TARG_upper,"IRR"], name = "PNC lower & Target upper")
-      
-      fig <- fig %>% add_histogram(x = ~analysis_results_17()[analysis_results_17()$PNC == input$PF_NC_upper & analysis_results_17()$PoF == input$PF_TARG_upper,"IRR"], name = "PNC upper & Target upper")
-      
-      fig <- fig %>%
-        layout(
-          xaxis = list(title = "IRR Distribution"),
-          yaxis = list(title = "Frequency",
-                       barmode = "overlay")
+        fig <- plot_ly(type = "histogram", alpha = 0.8) 
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_17()[analysis_results_17()$PNC == input$PF_NC_lower & analysis_results_17()$PoF == input$PF_TARG_lower,"IRR"], name = "PNC lower & Target lower")
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_17()[analysis_results_17()$PNC == input$PF_NC_upper & analysis_results_17()$PoF == input$PF_TARG_lower,"IRR"], name = "PNC upper & Target lower")
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_17()[analysis_results_17()$PNC == input$PF_NC_lower & analysis_results_17()$PoF == input$PF_TARG_upper,"IRR"], name = "PNC lower & Target upper")
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_17()[analysis_results_17()$PNC == input$PF_NC_upper & analysis_results_17()$PoF == input$PF_TARG_upper,"IRR"], name = "PNC upper & Target upper")
+        
+        fig <- fig %>%
+          layout(
+            xaxis = list(title = "IRR Distribution"),
+            yaxis = list(title = "Frequency",
+                         barmode = "overlay")
+          )
+        
+        fig <- fig %>% config(
+          displayModeBar = TRUE,  # Show the toolbar
+          modeBarButtonsToRemove = c(
+            'select2d',
+            'lasso2d',
+            'autoScale2d',
+            'hoverClosestCartesian',
+            'hoverCompareCartesian',
+            'toggleSpikelines'
+          ),
+          displaylogo = FALSE,  # Remove plotly logo
+          toImageButtonOptions = list(
+            format = 'png',
+            filename = 'IRR_plot',
+            height = 600,
+            width = 800,
+            scale = 1
+          )
         )
-      
-      fig <- fig %>% config(
-        displayModeBar = TRUE,  # Show the toolbar
-        modeBarButtonsToRemove = c(
-          'select2d',
-          'lasso2d',
-          'autoScale2d',
-          'hoverClosestCartesian',
-          'hoverCompareCartesian',
-          'toggleSpikelines'
-        ),
-        displaylogo = FALSE,  # Remove plotly logo
-        toImageButtonOptions = list(
-          format = 'png',
-          filename = 'IRR_plot',
-          height = 600,
-          width = 800,
-          scale = 1
-        )
-      )
-      
-      fig
-      
+        
+        fig
+        
       }
     })
     
     #create measure of utilization
     
     output$count_data_s17 <- renderPrint({
-
+      
       if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
         
-      value <- nrow(analysis_results_17())/100000
-      paste("Fraction of simulated values included in the histogram", value)
-      
+        value <- nrow(analysis_results_17())/100000
+        paste("Fraction of simulated values included in the histogram", value)
+        
       }
     })
     
@@ -4052,7 +4052,7 @@ function(input, output, session) {
         PNClowPoFhigh <- analysis_results_17()[analysis_results_17()$PNC == min(analysis_results_17()$PNC) & analysis_results_17()$PoF == max(analysis_results_17()$PoF),"IRR"]
         PNChighPoFhigh <- analysis_results_17()[analysis_results_17()$PNC == max(analysis_results_17()$PNC) & analysis_results_17()$PoF == max(analysis_results_17()$PoF),"IRR"]
         
-
+        
         quantile_table <- data.frame("PNC" = c(min(analysis_results_17()$PNC),min(analysis_results_17()$PNC),max(analysis_results_17()$PNC),max(analysis_results_17()$PNC)),
                                      "PoF" = c(min(analysis_results_17()$PoF),max(analysis_results_17()$PoF),min(analysis_results_17()$PoF),max(analysis_results_17()$PoF)),
                                      "0.025" = c(quantile(PNClowPoFlow,0.025),quantile(PNChighPoFlow,0.025),quantile(PNClowPoFhigh,0.025),quantile(PNChighPoFhigh,0.025)),
@@ -4194,101 +4194,317 @@ function(input, output, session) {
     ## End System 17                 ##
     
     ## System 18  ##
+    ## PNC = Epistemic              ##
+    ## PC = Aleatoric               ##
+    ## PTARG = Aleatoric            ##
     
-    # create data
+    ## Create Subtitle
     
-    aleatoric_data_s18 <- reactive({
-      #browser()
-      PNC <- c(input$PF_NC_lower,input$PF_NC_upper)
-      test <- expand.grid(PNC)
-      df <- data.frame("PNC" = rep(PNC,50000))
+    output$subtitle_s18 <- renderUI({
       
-      
-      if(input$PC_in == "PC_norm"){
-        # Normal distribution
-        PC <- rnorm(100000, mean = input$PF_C_mean, sd = input$PF_C_sd)
-      } 
-      else if(input$PC_in == "PC_beta"){
-        PC <- rbeta(100000, shape1 = input$PF_C_shape1, shape2 = input$PF_C_shape2)
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        # Create div for Variable 1 statement
+        div1 <- div(
+          style = "text-align: center; font-size: 20px; font-weight: bold;",
+          p(paste("PNC is an ",type_list[2], ", PC is an ", type_list[3], ", Target is a ",type_list[2]))
+        )
+        
+        # Return all div elements
+        
+        tagList(div1)
       }
-      else if(input$PC_in == "PC_lgnorm"){
-        PC <- rlnorm(100000, meanlog = input$PF_C_lgMean, sdlog = input$PF_C_lgSD)
+    }) 
+    
+    ## Create data
+    
+    analysis_results_18 <- eventReactive(input$start_btn, {
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        PNC_lower <- isolate(input$PF_NC_lower)
+        PNC_upper <- isolate(input$PF_NC_upper)
+        PNC <- c(PNC_lower,PNC_upper)
+        
+        if(input$PC_in == "PC_norm"){
+          # Normal distribution
+          PC_mean <- isolate(input$PF_C_mean)
+          PC_sd <- isolate(input$PF_C_sd)
+          PC <- rnorm(100000, mean = PC_mean, sd = PC_sd)
+        } 
+        else if(input$PC_in == "PC_beta"){
+          # Beta distribution
+          PC_shape1 <- isolate(input$PF_C_shape1)
+          PC_shape2 <- isolate(input$PF_C_shape2)
+          PC <- rbeta(100000, shape1 = PC_shape1, shape2 = PC_shape2)
+        }
+        else if(input$PC_in == "PC_lgnorm"){
+          # Log Normal distribution
+          PC_lgMean <- isolate(input$PF_C_lgMean)
+          PC_lgSD <- isolate(input$PF_C_lgSD)
+          PC <- rlnorm(100000, meanlog = PC_lgMean, sdlog = PC_lgSD)
+        }
+        
+        if(input$TARG_in == "TARG_norm"){
+          # Normal distribution
+          PTARG_mean <- isolate(input$PF_TARG_mean)
+          PTARG_sd <- isolate(input$PF_TARG_sd)
+          PoF <- rnorm(100000, mean = PTARG_mean, sd = PTARG_sd)
+        } 
+        else if(input$TARG_in == "TARG_beta"){
+          PTARG_shape1 <- isolate(input$PF_TARG_shape1)
+          PTARG_shape2 <- isolate(input$PF_TARG_shape2)
+          PoF <- rbeta(100000, shape1 = PTARG_shape1, shape2 = PTARG_shape2)
+        }
+        else if(input$TARG_in == "TARG_lgnorm"){
+          PTARG_lgMmean <- isolate(input$PF_TARG_lgMean)
+          PTARG_lgSD <- isolate(input$PF_TARG_lgSD)
+          PoF <- rlnorm(100000, meanlog = PTARG_lgMean, sdlog = PTARG_lgSD)
+        }
+        
+        # Validate Constraints
+        
+        # Create dataframe
+        
+        df <- data.frame("PNC" = rep(PNC, times = 50000), "PC" = PC, "PoF" = PoF)
+        
+        # Add IRR
+        
+        df$IRR <- round((df$PNC - df$PoF)/(df$PNC - df$PC),digits = 9)
+        
+        # Check Constraints
+        
+        df <- df[df$PNC >= df$PoF & df$PC <= df$PoF & df$PC < df$PNC,]
+        
+        df <- df[df$PNC >= 0 & df$PNC <= 1 & df$PC >= 0 & df$PC <= 1,]
+        
+        return(df)
+        
       }
-      
-      if(input$TARG_in == "PC_norm"){
-        # Normal distribution
-        PoF <- rnorm(100000, mean = input$PF_TARG_mean, sd = input$PF_TARG_sd)
-      } 
-      else if(input$TARG_in == "PC_beta"){
-        PoF <- rbeta(100000, shape1 = input$PF_TARG_shape1, shape2 = input$PF_TARG_shape2)
-      }
-      else if(input$TARG_in == "PC_lgnorm"){
-        PoF <- rlnorm(100000, meanlog = input$PF_TARG_lgMean, sdlog = input$PF_TARG_lgSD)
-      }
-      
-      df$PC <- PC
-      
-      df$PoF <- PoF
-      
-      df$IRR <- round((df$PNC - df$PoF)/(df$PNC - df$PC),digits = 9)
-      
-      #df <- data.frame("PNC" = PNC, "PC" = PC, "PoF" = PoF, "IRR" = IRR)
-      
-      df <- df[df$PNC >= df$PoF & df$PC <= df$PoF & df$PC < df$PNC,]
-      
-      df <- df[df$PNC >= 0 & df$PNC <= 1 & df$PC >= 0 & df$PC <= 1,]
-      
-      return(df)
-      
     })
     
     # create results histogram
     
     output$aleatoric_hist_s18 <- renderPlotly({
       
-      fig <- plot_ly(type = "histogram", alpha = 0.8) 
-      
-      fig <- fig %>% add_histogram(x = ~aleatoric_data_s18()[aleatoric_data_s18()$PNC == input$PF_NC_lower,"IRR"], name = "PNC lower")
-      fig <- fig %>% add_histogram(x = ~aleatoric_data_s18()[aleatoric_data_s18()$PNC == input$PF_NC_upper,"IRR"], name = "PNC upper")
-      
-      fig <- fig %>%
-        layout(
-          xaxis = list(title = "IRR Distribution"),
-          yaxis = list(title = "Frequency")
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        fig <- plot_ly(type = "histogram", alpha = 0.8) 
+        
+        fig <- fig %>% add_histogram(x = ~analysis_results_18()[analysis_results_18()$PNC == input$PF_NC_lower,"IRR"], name = "PNC lower")
+        fig <- fig %>% add_histogram(x = ~analysis_results_18()[analysis_results_18()$PNC == input$PF_NC_upper,"IRR"], name = "PNC upper")
+        
+        fig <- fig %>%
+          layout(
+            xaxis = list(title = "IRR Distribution"),
+            yaxis = list(title = "Frequency")
+          )
+        
+        fig <- fig %>% config(
+          displayModeBar = TRUE,  # Show the toolbar
+          modeBarButtonsToRemove = c(
+            'select2d',
+            'lasso2d',
+            'autoScale2d',
+            'hoverClosestCartesian',
+            'hoverCompareCartesian',
+            'toggleSpikelines'
+          ),
+          displaylogo = FALSE,  # Remove plotly logo
+          toImageButtonOptions = list(
+            format = 'png',
+            filename = 'IRR_plot',
+            height = 600,
+            width = 800,
+            scale = 1
+          )
         )
-      
-      fig <- fig %>% config(
-        displayModeBar = TRUE,  # Show the toolbar
-        modeBarButtonsToRemove = c(
-          'select2d',
-          'lasso2d',
-          'autoScale2d',
-          'hoverClosestCartesian',
-          'hoverCompareCartesian',
-          'toggleSpikelines'
-        ),
-        displaylogo = FALSE,  # Remove plotly logo
-        toImageButtonOptions = list(
-          format = 'png',
-          filename = 'IRR_plot',
-          height = 600,
-          width = 800,
-          scale = 1
-        )
-      )
-      
-      fig
-      
+        
+        fig
+        
+      }
     })
     
-    #create measure of utilization
+    # create measure of utilization
     
     output$count_data_s18 <- renderPrint({
-      value <- nrow(aleatoric_data_s18())/100000
-      paste("Fraction of simulated values included in the histogram", value)
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        value <- nrow(analysis_results_18())/100000
+        paste("Fraction of simulated values included in the histogram", value)
+        
+      }
     })
     
-
+    # add results comment
+    
+    output$results_comment_s18 <- renderUI({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        #Create div for Variable 3 statement
+        div1 <- div(
+          style = "text-align: center; font-size: 20px; font-weight: bold;",
+          p(results_comment_list[18])
+        )
+        
+        # Return all three div elements
+        tagList(div1)
+      }
+    })
+    
+    ## Summary
+    
+    # create summarization table
+    
+    output$quantile_data_s18 <- renderTable({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        quantiles <- round(quantile(analysis_results_18()$IRR, probs = c(0.95, 0.975, 0.99, 0.999, 0.9999, 0.99999, 0.999999, 0.9999999, 0.99999999, 0.999999999)),digits = 9)
+        quantile_table <- (data.frame(
+          Quantile = names(quantiles),
+          Value = as.numeric(quantiles)
+        ))
+        
+      }
+    }, 
+    digits = 9,
+    caption = "Maximum IRR Values",
+    caption.placement = getOption("xtable.caption.placement", "top"), 
+    caption.width = getOption("xtable.caption.width", NULL)
+    )
+    
+    # create 95% interval
+    
+    output$interval_data_s18 <- renderTable({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        dflow <- analysis_results_18()[analysis_results_18()$PNC == min(analysis_results_18()$PNC),"IRR"]
+        dfhigh <- analysis_results_18()[analysis_results_18()$PNC == max(analysis_results_18()$PNC),"IRR"]
+        
+        quantile_table <- data.frame("PNC" = c(min(analysis_results_18()$PNC),max(analysis_results_18()$PNC)),
+                                     "0.025" = c(quantile(dflow,0.025),quantile(dfhigh,0.025)),
+                                     "0.975" = c(quantile(dflow,0.975),quantile(dfhigh,0.975))
+        )
+        return(quantile_table)
+        
+      }
+    }, 
+    digits = 9, 
+    caption = "95% Interval",
+    caption.placement = getOption("xtable.caption.placement", "top"), 
+    caption.width = getOption("xtable.caption.width", NULL))
+    
+    # create ecdf plot
+    
+    output$ecdf_plot_s18 <- renderPlot({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        dflow <- analysis_results_18()[analysis_results_18()$PNC == min(analysis_results_18()$PNC),"IRR"]
+        dfhigh <- analysis_results_18()[analysis_results_18()$PNC == max(analysis_results_18()$PNC),"IRR"]
+        
+        fig <-ggplot() +
+          stat_ecdf(aes(dflow), color = "darkblue") +
+          stat_ecdf(aes(dfhigh), color = "red") +
+          
+          #Point LL
+          geom_segment(aes(x = quantile(dflow,0.025), y = 0.025-0.02, xend = quantile(dflow,0.025), yend = 0.025+0.02)) +
+          geom_segment(aes(x = (quantile(dflow,0.025)-0.005), y = 0.025, xend = (quantile(dflow,0.025)+0.005), yend = 0.025)) +
+          annotate("text", x=quantile(dflow,0.025)-0.010, y=0.025+0.030, label= round(quantile(dflow,0.025),3)) +
+          
+          #Point RL
+          geom_segment(aes(x = quantile(dfhigh,0.025), y = 0.025-0.02, xend = quantile(dfhigh,0.025), yend = 0.025+0.02)) +
+          geom_segment(aes(x = (quantile(dfhigh,0.025)-0.005), y = 0.025, xend = (quantile(dfhigh,0.025)+0.005), yend = 0.025)) +
+          annotate("text", x=quantile(dfhigh,0.025)+0.005, y=0.025+0.030, label= round(quantile(dfhigh,0.025),3)) +
+          
+          # Point LH
+          geom_segment(aes(x = quantile(dflow,0.975), y = 0.975-0.02, xend = quantile(dflow,0.975), yend = 0.975+0.02)) +
+          geom_segment(aes(x = (quantile(dflow,0.975)-0.005), y = 0.975, xend = (quantile(dflow,0.975)+0.005), yend = 0.975)) +
+          annotate("text", x=quantile(dflow,0.975)-0.010, y=0.975-0.030, label= round(quantile(dflow,0.975),3)) +
+          
+          # Point RL
+          geom_segment(aes(x = quantile(dfhigh,0.975), y = 0.975-0.02, xend = quantile(dfhigh,0.975), yend = 0.975+0.02)) +
+          geom_segment(aes(x = (quantile(dfhigh,0.975)-0.005), y = 0.975, xend = (quantile(dfhigh,0.975)+0.005), yend = 0.975)) +
+          annotate("text", x=quantile(dfhigh,0.975)-0.010, y=0.975-0.030, label= round(quantile(dfhigh,0.975),3)) +
+          
+          ggtitle("ECDF for IRR from Simulation (Cumulative Density Function)") +
+          xlab("IRR") +
+          ylab("Probability")
+        
+        fig
+        
+      }
+    })
+    
+    # create uncertainty statements
+    
+    output$uncertainty_statements_s18 <- renderUI({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        # Create div for Variable 1 statement
+        div1 <- div(
+          style = "background-color: #fff8f0; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #FF9800;",
+          h5("PNC Uncertainty Notes:"),
+          p(uncertainty_list[4])
+        )
+        
+        # Create div for Variable 2 statement
+        div2 <- div(
+          style = "background-color: #f0f8ff; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #4CAF50;",
+          h5("PC Uncertainty Assessment:"),
+          p(uncertainty_list[8])
+        )
+        
+        # Create div for Variable 3 statement
+        div3 <- div(
+          style = "background-color: #f0f8ff; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #4CAF50;",
+          h5("Target Uncertainty Assessment:"),
+          p(uncertainty_list[9])
+        )
+        
+        # Return all three div elements
+        tagList(div1, div2, div3)
+      }
+    })  
+    
+    # add summary comment
+    
+    output$summary_comment_s18 <- renderUI({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'epistemicUnc_PTARG') {
+        #Create div for Variable 3 statement
+        div1 <- div(
+          style = "text-align: center; font-size: 20px; font-weight: bold;",
+          p(summary_comment_list[18])
+        )
+        
+        # Return all three div elements
+        tagList(div1)
+      }
+    })
+    
+    ## Create Recommendations
+    
+    output$recommendation_statement_s18 <- renderUI({
+      
+      if(input$eType_PNC == 'epistemicUnc_PNC' & input$eType_PC == 'aleatoricUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        # Create div for Variable 1 statement
+        div1 <- div(
+          style = "background-color: #fff8f0; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #FF9800;",
+          p(recommendation_list[1])
+        )
+        
+        tagList(div1)
+      }
+    })  
+    
+    ## End System 18                 ##
+    
+    
+    
     ## End System 18                 ##
     
     ## System 19                                ##
