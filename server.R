@@ -5051,43 +5051,78 @@ function(input, output, session) {
       }
     })  
     
-    ## End System 16                 ##
+    ## End System 20                 ##
     
     ## System 21  ##
+    ## PNC = Aleatoric              ##
+    ## PC = Point                   ##
+    ## PTARG = Aleatoric            ##
     
-    # create data
+    ## Create Subtitle
     
-    aleatoric_data_s21 <- reactive({
+    output$subtitle_s21 <- renderUI({
       
+      if(input$eType_PNC == 'aleatoricUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        # Create div for Variable 1 statement
+        div1 <- div(
+          style = "text-align: center; font-size: 20px; font-weight: bold;",
+          p(paste("PNC is an ",type_list[3], ", PC is a ", type_list[1], ", Target is a ",type_list[3]))
+        )
+        
+        # Return all div elements
+        
+        tagList(div1)
+      }
+    }) 
+    
+    ## Create data
+    
+    analysis_results_21 <- eventReactive(input$start_btn, {
+      
+      if(input$eType_PNC == 'aleatoricUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
       # Create Vectors
       
-      if(input$PNC_in == "PNC_norm"){
-        # Normal distribution
-        PNC <- rnorm(100000, mean = input$PF_NC_mean, sd = input$PF_NC_sd)
-      } 
-      else if(input$PNC_in == "PNC_beta"){
-        PNC <- rbeta(100000, shape1 = input$PF_NC_shape1, shape2 = input$PF_NC_shape2)
-      }
-      else if(input$PNC_in == "PNC_lgnorm"){
-        PNC <- rlnorm(100000, meanlog = input$PF_NC_lgMean, sdlog = input$PF_NC_lgSD)
-      }
+        if(input$PNC_in == "PNC_norm"){
+          # Normal distribution
+          PNC_mean <- isolate(input$PF_NC_mean)
+          PNC_sd <- isolate(input$PF_NC_sd)
+          PNC <- rnorm(100000, mean = PNC_mean, sd = PNC_sd)
+        } 
+        else if(input$NC_in == "PNC_beta"){
+          PNC_shape1 <- isolate(input$PF_NC_shape1)
+          PNC_shape2 <- isolate(input$PF_NC_shape2)
+          PNC <- rbeta(100000, shape1 = PNC_shape1, shape2 = PNC_shape2)
+        }
+        else if(input$PNC_in == "PNC_lgnorm"){
+          PNC_lgMean <- isolate(input$PF_NC_lgMean)
+          PNC_lgSD <- isolate(input$PF_NC_lgSD)
+          PNC <- rlnorm(100000, meanlog = PNC_lgMean, sdlog = PNC_lgSD)
+        }
+        
+      PC <- isolate(input$PF_C)
       
-      PC <- rep(input$PF_C, times = 100000)
-      
-      if(input$TARG_in == "PC_norm"){
+      if(input$TARG_in == "TARG_norm"){
         # Normal distribution
-        PoF <- rnorm(100000, mean = input$PF_TARG_mean, sd = input$PF_TARG_sd)
+        PTARG_mean <- isolate(input$PF_TARG_mean)
+        PTARG_sd <- isolate(input$PF_TARG_sd)
+        PoF <- rnorm(100000, mean = PTARG_mean, sd = PTARG_sd)
       } 
-      else if(input$TARG_in == "PC_beta"){
-        PoF <- rbeta(100000, shape1 = input$PF_TARG_shape1, shape2 = input$PF_TARG_shape2)
+      else if(input$TARG_in == "TARG_beta"){
+        PTARG_shape1 <- isolate(input$PF_TARG_shape1)
+        PTARG_shape2 <- isolate(input$PF_TARG_shape2)
+        PoF <- rbeta(100000, shape1 = PTARG_shape1, shape2 = PTARG_shape2)
       }
-      else if(input$TARG_in == "PC_lgnorm"){
-        PoF <- rlnorm(100000, meanlog = input$PF_TARG_lgMean, sdlog = input$PF_TARG_lgSD)
+      else if(input$TARG_in == "TARG_lgnorm"){
+        PTARG_lgMmean <- isolate(input$PF_TARG_lgMean)
+        PTARG_lgSD <- isolate(input$PF_TARG_lgSD)
+        PoF <- rlnorm(100000, meanlog = PTARG_lgMean, sdlog = PTARG_lgSD)
       }
       
       # Create dataframe
       
-      df <- data.frame("PNC" = PNC, "PC" = PC, "PoF" = PoF)
+      df <- data.frame("PNC" = PNC, "PC" = rep(PC, times = 100000), "PoF" = PoF)
       
       # Add IRR
       
@@ -5101,15 +5136,18 @@ function(input, output, session) {
       
       return(df)
       
+      }
     })
     
     # create results histogram
     
     output$aleatoric_hist_s21 <- renderPlotly({
       
-      fig <- plot_ly(type = "histogram", alpha = 0.8) 
+      if(input$eType_PNC == 'aleatoricUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        fig <- plot_ly(type = "histogram", alpha = 0.8) 
       
-      fig <- fig %>% add_histogram(x = ~aleatoric_data_s21()$IRR, name = "PC is a point estimate")
+      fig <- fig %>% add_histogram(x = ~analysis_results_21()$IRR, name = "PC is a point estimate")
       
       fig <- fig %>%
         layout(
@@ -5139,26 +5177,152 @@ function(input, output, session) {
       
       fig
       
+      }
     })
     
     #create measure of utilization
     
     output$count_data_s21 <- renderPrint({
-      value <- nrow(aleatoric_data_s21())/100000
+      
+      if(input$eType_PNC == 'aleatoricUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        value <- nrow(analysis_results_21())/100000
       paste("Fraction of simulated values included in the histogram", value)
+      
+      }
     })
+    
+    # add summary comment
+    
+    output$results_comment_s21 <- renderUI({
+      
+      if(input$eType_PNC == 'aleatoricUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        #Create div for Variable 3 statement
+        div1 <- div(
+          style = "text-align: center; font-size: 20px; font-weight: bold;",
+          p(results_comment_list[21])
+        )
+        
+        # Return all three div elements
+        tagList(div1)
+      }
+    })
+    
+    ## Create Summary
     
     # create summarization table
     
     output$quantile_data_s21 <- renderTable({
-      quantiles <- round(quantile(aleatoric_data_s21()$IRR, probs = c(0.95, 0.975, 0.99, 0.999, 0.9999, 0.99999, 0.999999, 0.9999999, 0.99999999, 0.999999999)),digits = 9)
-      quantile_table <- t(data.frame(
-        Quantile = names(quantiles),
-        Value = as.numeric(quantiles)
-      ))
-    }, digits = 9)
+      
+      if(input$eType_PNC == 'aleatoricUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        quantiles <- round(quantile(analysis_results_21()$IRR, probs = c(0.95, 0.975, 0.99, 0.999, 0.9999, 0.99999, 0.999999, 0.9999999, 0.99999999, 0.999999999)),digits = 9)
+        quantile_table <- (data.frame(
+          Quantile = names(quantiles),
+          Value = as.numeric(quantiles)
+        ))
+        
+      }
+    }, digits = 9, 
+    caption = "Maximum IRR Values",
+    caption.placement = getOption("xtable.caption.placement", "top"), 
+    caption.width = getOption("xtable.caption.width", NULL)
+    )
     
-    ##                                          ##
+    # create 95% interval
+    
+    output$interval_data_s21 <- renderTable({
+      
+      if(input$eType_PNC == 'aleatoricUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        quantiles <- round(quantile(analysis_results_21()$IRR, probs = c(0.025, 0.975)),digits = 9)
+        quantile_table <- (data.frame(
+          Quantile = names(quantiles),
+          Value = as.numeric(quantiles)
+        ))
+        
+      }
+    }, digits = 9, caption = "95% Interval",
+    caption.placement = getOption("xtable.caption.placement", "top"), 
+    caption.width = getOption("xtable.caption.width", NULL))
+    
+    # create ecdf plot
+    
+    output$ecdf_plot_s21 <- renderPlot({
+      
+      if(input$eType_PNC == 'aleatoricUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        
+        fig <- ggplot(analysis_results_21(),aes(x = IRR))+
+          stat_ecdf() +
+          ggtitle("ECDF for IRR from Simulation (Cumulative Density Function)")
+        fig
+        
+      }
+    })
+    
+    # create uncertainty statements
+    
+    output$uncertainty_statements_s21 <- renderUI({
+      
+      if(input$eType_PNC == 'aleatoricUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        # Create div for Variable 1 statement
+        div1 <- div(
+          style = "background-color: #f0f8ff; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #4CAF50;",
+          h5("PNC Uncertainty Notes:"),
+          p(uncertainty_list[7])
+        )
+        
+        # Create div for Variable 2 statement
+        div2 <- div(
+          style = "background-color: #f8f0ff; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #9C27B0;",
+          h5("PC Uncertainty Assessment:"),
+          p(uncertainty_list[2])
+        )
+        
+        # Create div for Variable 3 statement
+        div3 <- div(
+          style = "background-color: #f0f8ff; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #4CAF50;",
+          h5("Target Uncertainty Assessment:"),
+          p(uncertainty_list[9])
+        )
+        
+        # Return all three div elements
+        tagList(div1, div2, div3)
+      }
+    })  
+    
+    # add summary comment
+    
+    output$summary_comment_s21 <- renderUI({
+      
+      if(input$eType_PNC == 'aleatoricUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        #Create div for Variable 3 statement
+        div1 <- div(
+          style = "text-align: center; font-size: 20px; font-weight: bold;",
+          p(summary_comment_list[21])
+        )
+        
+        # Return all three div elements
+        tagList(div1)
+      }
+    })
+    
+    ## Create Recommendations
+    
+    output$recommendation_statement_s21 <- renderUI({
+      
+      if(input$eType_PNC == 'aleatoricUnc_PNC' & input$eType_PC == 'unknownUnc_PC' & input$eType_PTARG == 'aleatoricUnc_PTARG') {
+        # Create div for Variable 1 statement
+        div1 <- div(
+          style = "background-color: #f8f0ff; padding: 15px; margin: 10px; border-radius: 5px; border-left: 4px solid #9C27B0;",
+          p(recommendation_list[1])
+        )
+        
+        tagList(div1)
+      }
+    })  
+    
+    ## End System 21                                 ##
     
     ## System 22  ##
     
