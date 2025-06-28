@@ -45,7 +45,7 @@ navbarPage(id = "tabs1",
   "))),
            
            
-           title = "IRR Calculator",
+           title = "IRR Calculator Version 0.1.0",
            
            theme = bslib::bs_theme(bootswatch= "materia"),  
            
