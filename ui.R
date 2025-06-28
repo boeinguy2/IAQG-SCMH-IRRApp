@@ -461,7 +461,6 @@ navbarPage(id = "tabs1",
                                       type = "pills",
                                       tabPanel("Step 1: IRR Results",
                                                fluidRow(
-                                                 
                                                  column(12, align="center",
                                                         
                                                         # The Title Section
@@ -487,7 +486,6 @@ navbarPage(id = "tabs1",
                                       ),
                                       
                                       tabPanel("Step 2: Uncertainty",
-                                               #type = "pills",
                                                fluidRow(
                                                  column(12, align="center",
                                                         # The Summary Section
@@ -504,7 +502,6 @@ navbarPage(id = "tabs1",
                                       ),
                                       
                                       tabPanel("Step 3: Recommendations",
-                                               #type = "pills",
                                                fluidRow(
                                                  column(12, align="center",
                                                         # The Summary Section
@@ -527,8 +524,8 @@ navbarPage(id = "tabs1",
                         conditionalPanel(
                           condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
                           tabsetPanel(id = "System2",
+                                      type = "pills",
                                       tabPanel("Step 1: IRR Results",
-                                               #type = "pills",
                                                fluidRow(
                                                  column(12, align="center", 
                                                         
@@ -564,9 +561,8 @@ navbarPage(id = "tabs1",
                                       ),
                                       
                                       tabPanel("Step 2: Uncertainty",
-                                               #type = "pills",
                                                fluidRow(
-                                                 column(12, align="center", 
+                                                 column(12, align="center",
                                                         
                                                         # The Summary
                                                         
@@ -584,9 +580,9 @@ navbarPage(id = "tabs1",
                                                )
                                       ),
                                       tabPanel("Step 3: Recommendations",
-                                               #type = "pills",
                                                fluidRow(
-                                                 column(12, align="center", 
+                                                 column(12, align="center",
+                                                        
                                                         # The Recommendation
                                                         
                                                         br(),
@@ -606,6 +602,7 @@ navbarPage(id = "tabs1",
                         conditionalPanel(
                           condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
                           tabsetPanel(id = "System3",
+                                      type = "pills",
                                       tabPanel("Step 1: IRR Results",
                                                fluidRow(
                                                  column(12, align="center",
@@ -639,26 +636,28 @@ navbarPage(id = "tabs1",
                                       # The Discussion Section
                                       tabPanel("Step 2: Uncertainty",
                                                fluidRow(
-                                                 
-                                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                                 br(),
-                                                 fluidRow(
-                                                   column(6, a="center",
-                                                          plotOutput(outputId = "ecdf_plot_s3",
-                                                                         width = "100%",
-                                                                         height = 600)
-                                                   ),
-                                                   column(6, align="center",
-                                                          tableOutput("quantile_data_s3"),
-                                                          br(),
-                                                          tableOutput("interval_data_s3")
-                                                   )
-                                                 ),
-                                                 br(),
-                                                 uiOutput("uncertainty_statements_s3"),
-                                                 br(),
-                                                 uiOutput("summary_comment_s3"),
-                                                 hr()
+                                                 column(12, align="center",
+                                                        
+                                                        tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                        br(),
+                                                        fluidRow(
+                                                          column(6, a="center",
+                                                                 plotOutput(outputId = "ecdf_plot_s3",
+                                                                            width = "100%",
+                                                                            height = 600)
+                                                          ),
+                                                          column(6, align="center",
+                                                                 tableOutput("quantile_data_s3"),
+                                                                 br(),
+                                                                 tableOutput("interval_data_s3")
+                                                          )
+                                                        ),
+                                                        br(),
+                                                        uiOutput("uncertainty_statements_s3"),
+                                                        br(),
+                                                        uiOutput("summary_comment_s3"),
+                                                        hr()
+                                                 )
                                                )
                                       ),
                                       
@@ -666,1614 +665,2058 @@ navbarPage(id = "tabs1",
                                       
                                       tabPanel("Step 3: Recommendations",
                                                fluidRow(
-                                                 br(),
-                                                 br(),
-                                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                                 br(),
-                                                 uiOutput("recommendation_statement_s3"),
-                                                 hr()
-                                               )
-                                      )
-                                      
-                          )
-                        ),
-                        
-                        #System 4: PNC = point, PC = epistemic, PTarg = point
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
-                          tabsetPanel(id = "System4",
-                                      tabPanel("Step 1: IRR Results",
-                                               column(12, align="center",
-                                                      fluidRow(
-                                                        
-                                                        # The Title Section
-                                                        
+                                                 column(12, align="center",
                                                         br(),
-                                                        br(),
-                                                        hr(),
-                                                        tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                                        br(),
-                                                        uiOutput("subtitle_s4"),
-                                                        hr(),
-                                                        
-                                                        # The Results Section
-                                                        
-                                                        br(),
-                                                        tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                                        br(),
-                                                        tags$head(
-                                                          tags$style(
-                                                            "tr:nth-child(1) {font-weight: bold;}
-                                              tr:nth-child(2) {font-weight: bold;}
-                                               "
-                                                          )
-                                                        ),
-                                                        br(),
-                                                        tableOutput("epi_PoF_table_s4"),
-                                                        br(),
-                                                        uiOutput("results_comment_s4"),
-                                                        br(),
-                                                        hr()
-                                                      )
-                                               )
-                                      ),
-                                      
-                                      # The Summary
-                                      
-                                      tabPanel("Step 2: Uncertainty",
-                                               column(12, align="center",
-                                                      fluidRow(
-                                                        br(),
-                                                        tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                                        br(),
-                                                        tableOutput("epi_values_table_s4"),
-                                                        br(),
-                                                        uiOutput("uncertainty_statements_s4"),
-                                                        br(),
-                                                        uiOutput("summary_comment_s4"),
-                                                        hr()
-                                                      )
-                                               )
-                                      ),
-                                      
-                                      # The Recommendation
-                                      
-                                      tabPanel("Step 3: Recommendations",
-                                               column(12, align="center",
-                                                      fluidRow(
                                                         br(),
                                                         tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
                                                         br(),
-                                                        uiOutput("recommendation_statement_s4"),
+                                                        uiOutput("recommendation_statement_s3"),
                                                         hr()
-                                                      )
+                                                 )
                                                )
+                                               
                                       )
-                                      
                           )
-                        ),
-                        
-                        #System 5: PNC = point, PC = epistemic, PTarg = epistemic
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 hr(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s5"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 tags$head(
-                                   tags$style(
-                                     "tr:nth-child(1) {font-weight: bold;}
+                          ),
+                          
+                          #System 4: PNC = point, PC = epistemic, PTarg = point
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
+                            tabsetPanel(id = "System4",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          hr(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s4"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          tags$head(
+                                                            tags$style(
+                                                              "tr:nth-child(1) {font-weight: bold;}
                                               tr:nth-child(2) {font-weight: bold;}
                                                "
-                                   )
-                                 ),
-                                 br(),
-                                 tableOutput("epi_PoF_table_s5"),
-                                 br(),
-                                 uiOutput("results_comment_s5"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 tableOutput("epi_values_table_s5"),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s5"),
-                                 br(),
-                                 uiOutput("summary_comment_s5"),
-                                 hr(),
-                                 
-                                 # The Recommendation
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s5"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        #System 6: PNC = point, PC = epistemic, PTarg = aleatoric
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s6"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s6",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s6"),
-                                 br(),
-                                 uiOutput("results_comment_s6"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s6",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s6"),
-                                          br(),
-                                          tableOutput("interval_data_s6")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s6"),
-                                 br(),
-                                 uiOutput("summary_comment_s6"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s6"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 7: PNC = point, PC = aleatoric, PTarg = point
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s7"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s7",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s7"),
-                                 br(),
-                                 uiOutput("results_comment_s7"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s7",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s7"),
-                                          br(),
-                                          tableOutput("interval_data_s7")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s7"),
-                                 br(),
-                                 uiOutput("summary_comment_s7"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s7"),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 8: PNC = point, PC = aleatoric, PTarg = epistemic
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s8"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s8",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s8"),
-                                 br(),
-                                 uiOutput("results_comment_s8"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s8",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s8"),
-                                          br(),
-                                          tableOutput("interval_data_s8")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s8"),
-                                 br(),
-                                 uiOutput("summary_comment_s8"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s8"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 9: PNC = point, PC = alleatoric, PTarg = aleatoric
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s9"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s9",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s9"),
-                                 br(),
-                                 uiOutput("results_comment_s9"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s9",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s9"),
-                                          br(),
-                                          tableOutput("interval_data_s9")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s9"),
-                                 br(),
-                                 uiOutput("summary_comment_s9"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s9"),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        
-                        #System 10: PNC = epistemic, PC = point, PTarg = point
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 hr(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s10"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 
-                                 tags$head(
-                                   tags$style(
-                                     "tr:nth-child(1) {font-weight: bold;}
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          tableOutput("epi_PoF_table_s4"),
+                                                          br(),
+                                                          uiOutput("results_comment_s4"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          tableOutput("epi_values_table_s4"),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s4"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s4"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s4"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 5: PNC = point, PC = epistemic, PTarg = epistemic
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
+                            tabsetPanel(id = "System5",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          hr(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s5"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          tags$head(
+                                                            tags$style(
+                                                              "tr:nth-child(1) {font-weight: bold;}
                                               tr:nth-child(2) {font-weight: bold;}
                                                "
-                                   )
-                                 ),
-                                 tableOutput("epi_PoF_table_s10"),
-                                 br(),
-                                 uiOutput("results_comment_s10"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary
-                                 
-                                 br(),
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 tableOutput("epi_values_table_s10"),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s10"),
-                                 br(),
-                                 uiOutput("summary_comment_s10"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Recommendation
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s10"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 11: PNC = epistemic, PC = point, PTarg = epistemic
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 hr(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s11"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 
-                                 tags$head(
-                                   tags$style(
-                                     "tr:nth-child(1) {font-weight: bold;}
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          tableOutput("epi_PoF_table_s5"),
+                                                          br(),
+                                                          uiOutput("results_comment_s5"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          tableOutput("epi_values_table_s5"),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s5"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s5"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s5"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                                 
+                                        )
+                                        
+                            )
+                          ),
+                          #System 6: PNC = point, PC = epistemic, PTarg = aleatoric
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
+                            tabsetPanel(id = "System6",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s6"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s6",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s6"),
+                                                          br(),
+                                                          uiOutput("results_comment_s6"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s6",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s6"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s6")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s6"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s6"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s6"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 7: PNC = point, PC = aleatoric, PTarg = point
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
+                            tabsetPanel(id = "System7",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s7"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s7",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s7"),
+                                                          br(),
+                                                          uiOutput("results_comment_s7"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s7",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s7"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s7")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s7"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s7"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s7"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 8: PNC = point, PC = aleatoric, PTarg = epistemic
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
+                            tabsetPanel(id = "System8",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s8"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s8",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s8"),
+                                                          br(),
+                                                          uiOutput("results_comment_s8"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s8",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s8"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s8")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s8"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s8"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s8"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 9: PNC = point, PC = alleatoric, PTarg = aleatoric
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'unknownUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
+                            tabsetPanel(id = "System9",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s9"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s9",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s9"),
+                                                          br(),
+                                                          uiOutput("results_comment_s9"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s9",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s9"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s9")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s9"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s9"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s9"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          
+                          #System 10: PNC = epistemic, PC = point, PTarg = point
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
+                            tabsetPanel(id = "System10",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          hr(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s10"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          
+                                                          tags$head(
+                                                            tags$style(
+                                                              "tr:nth-child(1) {font-weight: bold;}
                                               tr:nth-child(2) {font-weight: bold;}
                                                "
-                                   )
-                                 ),
-                                 tableOutput("epi_PoF_table_s11"),
-                                 br(),
-                                 uiOutput("results_comment_s11"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary
-                                 
-                                 br(),
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 tableOutput("epi_values_table_s11"),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s11"),
-                                 br(),
-                                 uiOutput("summary_comment_s11"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Recommendation
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s11"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 12: PNC = epistemic, PC = point, PTarg = aleatoric
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s12"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s12",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s12"),
-                                 br(),
-                                 uiOutput("results_comment_s12"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s12",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s12"),
-                                          br(),
-                                          tableOutput("interval_data_s12")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s12"),
-                                 br(),
-                                 uiOutput("summary_comment_s12"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s12"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 13: PNC = epistemic, PC = epistemic, PTarg = point
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 hr(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s13"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 tags$head(
-                                   tags$style(
-                                     "tr:nth-child(1) {font-weight: bold;}
+                                                            )
+                                                          ),
+                                                          tableOutput("epi_PoF_table_s10"),
+                                                          br(),
+                                                          uiOutput("results_comment_s10"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          tableOutput("epi_values_table_s10"),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s10"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s10"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s10"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 11: PNC = epistemic, PC = point, PTarg = epistemic
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
+                            tabsetPanel(id = "System11",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          hr(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s11"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          
+                                                          tags$head(
+                                                            tags$style(
+                                                              "tr:nth-child(1) {font-weight: bold;}
                                               tr:nth-child(2) {font-weight: bold;}
                                                "
-                                   )
-                                 ),
-                                 br(),
-                                 tableOutput("epi_PoF_table_s13"),
-                                 br(),
-                                 uiOutput("results_comment_s13"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 tableOutput("epi_values_table_s13"),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s13"),
-                                 br(),
-                                 uiOutput("summary_comment_s13"),
-                                 hr(),
-                                 
-                                 # The Recommendation
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s13"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 14: PNC = epistemic, PC = epistemic, PTarg = epistemic
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 hr(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s14"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 tags$head(
-                                   tags$style(
-                                     "tr:nth-child(1) {font-weight: bold;}
+                                                            )
+                                                          ),
+                                                          tableOutput("epi_PoF_table_s11"),
+                                                          br(),
+                                                          uiOutput("results_comment_s11"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          tableOutput("epi_values_table_s11"),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s11"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s11"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s11"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 12: PNC = epistemic, PC = point, PTarg = aleatoric
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
+                            tabsetPanel(id = "System12",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s12"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s12",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s12"),
+                                                          br(),
+                                                          uiOutput("results_comment_s12"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s12",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s12"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s12")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s12"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s12"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s12"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 13: PNC = epistemic, PC = epistemic, PTarg = point
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
+                            tabsetPanel(id = "System13",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          hr(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s13"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          tags$head(
+                                                            tags$style(
+                                                              "tr:nth-child(1) {font-weight: bold;}
                                               tr:nth-child(2) {font-weight: bold;}
                                                "
-                                   )
-                                 ),
-                                 br(),
-                                 tableOutput("epi_PoF_table_s14"),
-                                 br(),
-                                 uiOutput("results_comment_s14"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 tableOutput("epi_values_table_s14"),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s14"),
-                                 br(),
-                                 uiOutput("summary_comment_s14"),
-                                 hr(),
-                                 
-                                 # The Recommendation
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s14"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 15: PNC = epistemic, PC = epistemic, PTarg = aleatoric
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s15"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s15",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s15"),
-                                 br(),
-                                 uiOutput("results_comment_s15"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s15",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s15"),
-                                          br(),
-                                          tableOutput("interval_data_s15")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s15"),
-                                 br(),
-                                 uiOutput("summary_comment_s15"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s15"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 16: PNC = epistemic, PC = aleatoric, PTarg = point
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s16"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s16",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s16"),
-                                 br(),
-                                 uiOutput("results_comment_s16"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s16",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s16"),
-                                          br(),
-                                          tableOutput("interval_data_s16")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s16"),
-                                 br(),
-                                 uiOutput("summary_comment_s16"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s16"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 17: PNC = epistemic, PC = aleatoric, PTarg = epistemic
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s17"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s17",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s17"),
-                                 br(),
-                                 uiOutput("results_comment_s17"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s17",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s17"),
-                                          br(),
-                                          tableOutput("interval_data_s17")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s17"),
-                                 br(),
-                                 uiOutput("summary_comment_s17"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s17"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 18: PNC = epistemic, PC = aleatoric, PTarg = aleatoric
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s18"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s18",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s18"),
-                                 br(),
-                                 uiOutput("results_comment_s18"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s18",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s18"),
-                                          br(),
-                                          tableOutput("interval_data_s18")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s18"),
-                                 br(),
-                                 uiOutput("summary_comment_s18"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s18"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 19: PNC = aleatoric, PC = point, PTarg = point
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s19"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s19",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s19"),
-                                 br(),
-                                 uiOutput("results_comment_s19"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s19",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s19"),
-                                          br(),
-                                          tableOutput("interval_data_s19")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s19"),
-                                 br(),
-                                 uiOutput("summary_comment_s19"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s19"),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 20: PNC = aleatoric, PC = point, PTarg = epistemic
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s20"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s20",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s20"),
-                                 br(),
-                                 uiOutput("results_comment_s20"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s20",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s20"),
-                                          br(),
-                                          tableOutput("interval_data_s20")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s20"),
-                                 br(),
-                                 uiOutput("summary_comment_s20"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s20"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 21: PNC = aleatoric, PC = point, PTarg = aleatoric
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s21"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s21",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s21"),
-                                 br(),
-                                 uiOutput("results_comment_s21"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s21",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s21"),
-                                          br(),
-                                          tableOutput("interval_data_s21")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s21"),
-                                 br(),
-                                 uiOutput("summary_comment_s21"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s21"),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 22: PNC = aleatoric, PC = epistemic, PTarg = point
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s22"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s22",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s22"),
-                                 br(),
-                                 uiOutput("results_comment_s22"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s22",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s22"),
-                                          br(),
-                                          tableOutput("interval_data_s22")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s22"),
-                                 br(),
-                                 uiOutput("summary_comment_s22"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s22"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 23: PNC = aleatoric, PC = epistemic, PTarg = epistemic
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s23"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s23",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s23"),
-                                 br(),
-                                 uiOutput("results_comment_s23"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s23",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s23"),
-                                          br(),
-                                          tableOutput("interval_data_s23")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s23"),
-                                 br(),
-                                 uiOutput("summary_comment_s23"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s23"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 24: PNC = aleatoric, PC = epistemic, PTarg = aleatoric
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s24"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s24",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s24"),
-                                 br(),
-                                 uiOutput("results_comment_s24"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s24",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s24"),
-                                          br(),
-                                          tableOutput("interval_data_s24")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s24"),
-                                 br(),
-                                 uiOutput("summary_comment_s24"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s24"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 25: PNC = aleatoric, PC = aleatoric, PTarg = point
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s25"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s25",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s25"),
-                                 br(),
-                                 uiOutput("results_comment_s25"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s25",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s25"),
-                                          br(),
-                                          tableOutput("interval_data_s25")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s25"),
-                                 br(),
-                                 uiOutput("summary_comment_s25"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s25"),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 26: PNC = aleatoric, PC = aleatoric, PTarg = epistemic
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s26"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s26",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s26"),
-                                 br(),
-                                 uiOutput("results_comment_s26"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s26",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s26"),
-                                          br(),
-                                          tableOutput("interval_data_s26")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s26"),
-                                 br(),
-                                 uiOutput("summary_comment_s26"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s26"),
-                                 br(),
-                                 hr()
-                                 
-                          )
-                        ),
-                        
-                        #System 27: PNC = aleatoric, PC = aleatoric, PTarg = aleatoric
-                        conditionalPanel(
-                          condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
-                          column(12, align="center",
-                                 
-                                 # The Title Section
-                                 
-                                 br(),
-                                 br(),
-                                 tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("subtitle_s27"),
-                                 hr(),
-                                 
-                                 # The Results Section
-                                 
-                                 br(),
-                                 tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 plotlyOutput(outputId = "aleatoric_hist_s27",
-                                              width = "100%",
-                                              height = 600),
-                                 verbatimTextOutput("count_data_s27"),
-                                 br(),
-                                 uiOutput("results_comment_s27"),
-                                 br(),
-                                 hr(),
-                                 
-                                 # The Summary Section
-                                 
-                                 tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 fluidRow(
-                                   column(6, align="center",
-                                          plotOutput(outputId = "ecdf_plot_s27",
-                                                     width = "100%",
-                                                     height = 600)
-                                   ),
-                                   column(6, align="center",
-                                          tableOutput("quantile_data_s27"),
-                                          br(),
-                                          tableOutput("interval_data_s27")
-                                   )
-                                 ),
-                                 br(),
-                                 uiOutput("uncertainty_statements_s27"),
-                                 br(),
-                                 uiOutput("summary_comment_s27"),
-                                 hr(),
-                                 
-                                 # The Recommendation Section
-                                 
-                                 br(),
-                                 tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
-                                 br(),
-                                 uiOutput("recommendation_statement_s27"),
-                                 br(),
-                                 hr()
-                                 
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          tableOutput("epi_PoF_table_s13"),
+                                                          br(),
+                                                          uiOutput("results_comment_s13"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          tableOutput("epi_values_table_s13"),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s13"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s13"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s13"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 14: PNC = epistemic, PC = epistemic, PTarg = epistemic
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
+                            tabsetPanel(id = "System14",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          hr(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s14"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          tags$head(
+                                                            tags$style(
+                                                              "tr:nth-child(1) {font-weight: bold;}
+                                              tr:nth-child(2) {font-weight: bold;}
+                                               "
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          tableOutput("epi_PoF_table_s14"),
+                                                          br(),
+                                                          uiOutput("results_comment_s14"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          tableOutput("epi_values_table_s14"),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s14"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s14"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s14"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 15: PNC = epistemic, PC = epistemic, PTarg = aleatoric
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
+                            tabsetPanel(id = "System15",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s15"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s15",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s15"),
+                                                          br(),
+                                                          uiOutput("results_comment_s15"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s15",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s15"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s15")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s15"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s15"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s15"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 16: PNC = epistemic, PC = aleatoric, PTarg = point
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
+                            tabsetPanel(id = "System16",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s16"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s16",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s16"),
+                                                          br(),
+                                                          uiOutput("results_comment_s16"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s16",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s16"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s16")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s16"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s16"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s16"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 17: PNC = epistemic, PC = aleatoric, PTarg = epistemic
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
+                            tabsetPanel(id = "System17",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s17"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s17",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s17"),
+                                                          br(),
+                                                          uiOutput("results_comment_s17"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s17",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s17"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s17")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s17"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s17"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s17"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 18: PNC = epistemic, PC = aleatoric, PTarg = aleatoric
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'epistemicUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
+                            tabsetPanel(id = "System18",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s18"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s18",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s18"),
+                                                          br(),
+                                                          uiOutput("results_comment_s18"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s18",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s18"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s18")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s18"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s18"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s18"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 19: PNC = aleatoric, PC = point, PTarg = point
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
+                            tabsetPanel(id = "System19",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s19"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s19",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s19"),
+                                                          br(),
+                                                          uiOutput("results_comment_s19"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s19",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s19"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s19")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s19"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s19"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s19"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 20: PNC = aleatoric, PC = point, PTarg = epistemic
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
+                            tabsetPanel(id = "System20",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s20"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s20",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s20"),
+                                                          br(),
+                                                          uiOutput("results_comment_s20"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                                 
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s20",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s20"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s20")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s20"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s20"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s20"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 21: PNC = aleatoric, PC = point, PTarg = aleatoric
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'unknownUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
+                            tabsetPanel(id = "System21",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s21"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s21",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s21"),
+                                                          br(),
+                                                          uiOutput("results_comment_s21"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s21",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s21"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s21")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s21"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s21"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s21"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 22: PNC = aleatoric, PC = epistemic, PTarg = point
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
+                            tabsetPanel(id = "System22",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s22"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s22",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s22"),
+                                                          br(),
+                                                          uiOutput("results_comment_s22"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s22",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s22"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s22")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s22"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s22"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s22"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 23: PNC = aleatoric, PC = epistemic, PTarg = epistemic
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
+                            tabsetPanel(id = "System23",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s23"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s23",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s23"),
+                                                          br(),
+                                                          uiOutput("results_comment_s23"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s23",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s23"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s23")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s23"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s23"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s23"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 24: PNC = aleatoric, PC = epistemic, PTarg = aleatoric
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'epistemicUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
+                            tabsetPanel(id = "System24",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s24"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s24",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s24"),
+                                                          br(),
+                                                          uiOutput("results_comment_s24"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s24",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s24"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s24")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s24"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s24"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s24"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 25: PNC = aleatoric, PC = aleatoric, PTarg = point
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'unknownUnc_PTARG' ",
+                            tabsetPanel(id = "System25",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s25"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s25",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s25"),
+                                                          br(),
+                                                          uiOutput("results_comment_s25"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s25",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s25"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s25")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s25"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s25"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s25"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 26: PNC = aleatoric, PC = aleatoric, PTarg = epistemic
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'epistemicUnc_PTARG' ",
+                            tabsetPanel(id = "System26",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s26"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s26",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s26"),
+                                                          br(),
+                                                          uiOutput("results_comment_s26"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s26",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s26"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s26")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s26"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s26"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s26"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
+                          ),
+                          
+                          #System 27: PNC = aleatoric, PC = aleatoric, PTarg = aleatoric
+                          conditionalPanel(
+                            condition = "input.eType_PNC == 'aleatoricUnc_PNC' & input.eType_PC == 'aleatoricUnc_PC' & input.eType_PTARG == 'aleatoricUnc_PTARG' ",
+                            tabsetPanel(id = "System27",
+                                        type = "pills",
+                                        tabPanel("Step 1: IRR Results",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          
+                                                          # The Title Section
+                                                          
+                                                          br(),
+                                                          br(),
+                                                          tags$div("IRR Estimates", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("subtitle_s27"),
+                                                          hr(),
+                                                          
+                                                          # The Results Section
+                                                          
+                                                          br(),
+                                                          tags$div("Results", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          plotlyOutput(outputId = "aleatoric_hist_s27",
+                                                                       width = "100%",
+                                                                       height = 600),
+                                                          verbatimTextOutput("count_data_s27"),
+                                                          br(),
+                                                          uiOutput("results_comment_s27"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Summary Section
+                                        
+                                        tabPanel("Step 2: Uncertainty",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          tags$div("Discussion", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          fluidRow(
+                                                            column(6, align="center",
+                                                                   plotOutput(outputId = "ecdf_plot_s27",
+                                                                              width = "100%",
+                                                                              height = 600)
+                                                            ),
+                                                            column(6, align="center",
+                                                                   tableOutput("quantile_data_s27"),
+                                                                   br(),
+                                                                   tableOutput("interval_data_s27")
+                                                            )
+                                                          ),
+                                                          br(),
+                                                          uiOutput("uncertainty_statements_s27"),
+                                                          br(),
+                                                          uiOutput("summary_comment_s27"),
+                                                          hr()
+                                                   )
+                                                 )
+                                        ),
+                                        
+                                        # The Recommendation Section
+                                        
+                                        tabPanel("Step 3: Recommendations",
+                                                 fluidRow(
+                                                   column(12, align="center",
+                                                          br(),
+                                                          tags$div("Recommendation", style = "text-align: center; font-size: 24px; font-weight: bold;"),
+                                                          br(),
+                                                          uiOutput("recommendation_statement_s27"),
+                                                          br(),
+                                                          hr()
+                                                   )
+                                                 )
+                                        )
+                                        
+                            )
                           )
                         )
                       )
-                    )
-           #)           
-),
-
-# Panel with contour plot ----
-tabPanel("Contour Plot", 
-         
-         sidebarLayout( 
-           sidebarPanel(width=3,
-                        
-                        # Input: Numeric Value for Minimum IRR Plot Display
-                        numericInput( 
-                          "minScale", 
-                          "Mininum IRR", 
-                          value = 0.5, 
-                          min = 0, 
-                          max = 1 
-                        ),   
-                        
-                        radioButtons("rbsTarget",
-                                     label = "Target Entry",
-                                     choices = c(
-                                       "Select List" = "select",
-                                       "Manual Input" = "manual"
-                                     )
-                        ),
-                        
-                        conditionalPanel(
-                          condition = "input.rbsTarget == 'select'",
-                          radioButtons("rbsSelect",
-                                       label = "Target Selection",
-                                       choices = c("1 X 10-1" = 0.1,
-                                                   "1 X 10-2" = 0.01,
-                                                   "1 X 10-3" = 0.001,
-                                                   "1 X 10-4" = 0.0001,
-                                                   "1 X 10-5" = 0.00001,
-                                                   "1 X 10-6" = 0.000001,
-                                                   "1 X 10-7" = 0.0000001,
-                                                   "1 X 10-8" = 0.00000001,
-                                                   "1 X 10-9" = 0.000000001)
-                          )
-                          #Ptarget = input$rbsSelect
-                        ),
-                        
-                        conditionalPanel(
-                          condition = "input.rbsTarget == 'manual'",
-                          numericInput(
-                            "Ptarget",
-                            "Target Maximum Probability of Failure Manual Input",
-                            value = 0.1,
-                            min = 0,
-                            max = 1
-                          )
-                        ),
-                        
-                        # Evaluate a selected IRR
-                        
-                        checkboxInput(inputId = "cbEval",
-                                      label = "Evaluate a specified IRR"#,
-                                      #value = FALSE
-                        ),
-                        
-                        conditionalPanel(
-                          condition = "input.cbEval",
-                          numericInput(
-                            "selIRR",
-                            "IRR To Be Evaluated",
-                            value = 0.9,
-                            min = 0,
-                            max = 1
-                          )
-                          
-                        )
-           ),
-           mainPanel(
-             tabsetPanel(id = "Contourtabs",
-                         tabPanel("IRR Contours",
-                                  type = "pills",
-                                  fluidRow(
-                                    conditionalPanel(
-                                      condition = "input$tabs1 == 'Contour Plot'",
-                                      fluidRow(
-                                        plotlyOutput(outputId = "contPlot",
-                                                     width = "100%",
-                                                     height = 600)
-                                      ),
-                                      fluidRow(
-                                        column(12, align="center",
-                                               wellPanel(
-                                                 h4("Current Values"),
-                                                 tableOutput("current_values")
-                                               )
-                                        )
-                                      )
-                                    )
-                                  )
-                         ),
-                         tabPanel("IRR Protection Summary",
-                                  br(),
-                                  br(),
-                                  fluidRow(
-                                    conditionalPanel(
-                                      condition = "input$cbEval",
-                                      plotlyOutput(outputId = "contPlot2",
-                                                   width = "100%",
-                                                   height = 600)
-                                    )
-                                  ),
-                                  br(),
-                                  br(),
-                                  br()
-                         )
-             )
-           )                    )
-         
-) 
-
-# Contour Plot of IRR Region
+                    ),
+                    
+                    # Panel with contour plot ----
+                    tabPanel("Contour Plot", 
+                             
+                             sidebarLayout( 
+                               sidebarPanel(width=3,
+                                            
+                                            # Input: Numeric Value for Minimum IRR Plot Display
+                                            numericInput( 
+                                              "minScale", 
+                                              "Mininum IRR", 
+                                              value = 0.5, 
+                                              min = 0, 
+                                              max = 1 
+                                            ),   
+                                            
+                                            radioButtons("rbsTarget",
+                                                         label = "Target Entry",
+                                                         choices = c(
+                                                           "Select List" = "select",
+                                                           "Manual Input" = "manual"
+                                                         )
+                                            ),
+                                            
+                                            conditionalPanel(
+                                              condition = "input.rbsTarget == 'select'",
+                                              radioButtons("rbsSelect",
+                                                           label = "Target Selection",
+                                                           choices = c("1 X 10-1" = 0.1,
+                                                                       "1 X 10-2" = 0.01,
+                                                                       "1 X 10-3" = 0.001,
+                                                                       "1 X 10-4" = 0.0001,
+                                                                       "1 X 10-5" = 0.00001,
+                                                                       "1 X 10-6" = 0.000001,
+                                                                       "1 X 10-7" = 0.0000001,
+                                                                       "1 X 10-8" = 0.00000001,
+                                                                       "1 X 10-9" = 0.000000001)
+                                              )
+                                              #Ptarget = input$rbsSelect
+                                            ),
+                                            
+                                            conditionalPanel(
+                                              condition = "input.rbsTarget == 'manual'",
+                                              numericInput(
+                                                "Ptarget",
+                                                "Target Maximum Probability of Failure Manual Input",
+                                                value = 0.1,
+                                                min = 0,
+                                                max = 1
+                                              )
+                                            ),
+                                            
+                                            # Evaluate a selected IRR
+                                            
+                                            checkboxInput(inputId = "cbEval",
+                                                          label = "Evaluate a specified IRR"#,
+                                                          #value = FALSE
+                                            ),
+                                            
+                                            conditionalPanel(
+                                              condition = "input.cbEval",
+                                              numericInput(
+                                                "selIRR",
+                                                "IRR To Be Evaluated",
+                                                value = 0.9,
+                                                min = 0,
+                                                max = 1
+                                              )
+                                              
+                                            )
+                               ),
+                               mainPanel(
+                                 tabsetPanel(id = "Contourtabs",
+                                             tabPanel("IRR Contours",
+                                                      type = "pills",
+                                                      fluidRow(
+                                                        conditionalPanel(
+                                                          condition = "input$tabs1 == 'Contour Plot'",
+                                                          fluidRow(
+                                                            plotlyOutput(outputId = "contPlot",
+                                                                         width = "100%",
+                                                                         height = 600)
+                                                          ),
+                                                          fluidRow(
+                                                            column(12, align="center",
+                                                                   wellPanel(
+                                                                     h4("Current Values"),
+                                                                     tableOutput("current_values")
+                                                                   )
+                                                            )
+                                                          )
+                                                        )
+                                                      )
+                                             ),
+                                             tabPanel("IRR Protection Summary",
+                                                      br(),
+                                                      br(),
+                                                      fluidRow(
+                                                        conditionalPanel(
+                                                          condition = "input$cbEval",
+                                                          plotlyOutput(outputId = "contPlot2",
+                                                                       width = "100%",
+                                                                       height = 600)
+                                                        )
+                                                      ),
+                                                      br(),
+                                                      br(),
+                                                      br()
+                                             )
+                                 )
+                               )                    
+                             )
+                             
+                    ) 
+                    
+                    # Contour Plot of IRR Region
+           #)
 )
+           
